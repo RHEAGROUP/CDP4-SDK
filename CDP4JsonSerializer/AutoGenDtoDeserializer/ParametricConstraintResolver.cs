@@ -91,7 +91,7 @@ namespace CDP4JsonSerializer
             {
                 if(modifiedOnProperty.ValueKind == JsonValueKind.Null)
                 {
-                    Logger.Trace("The non-nullabale modifiedOn property of the parametricConstraint {id} is null", parametricConstraint.Iid);
+                    Logger.Debug("The non-nullabale modifiedOn property of the parametricConstraint {id} is null", parametricConstraint.Iid);
                 }
                 else
                 {
@@ -103,7 +103,7 @@ namespace CDP4JsonSerializer
             {
                 if(thingPreferenceProperty.ValueKind == JsonValueKind.Null)
                 {
-                    Logger.Trace("The non-nullabale thingPreference property of the parametricConstraint {id} is null", parametricConstraint.Iid);
+                    Logger.Debug("The non-nullabale thingPreference property of the parametricConstraint {id} is null", parametricConstraint.Iid);
                 }
                 else
                 {
