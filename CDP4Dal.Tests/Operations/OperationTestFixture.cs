@@ -28,6 +28,8 @@ namespace CDP4Dal.Tests
 
     using CDP4DalCommon.Protocol.Operations;
 
+    using CDP4DalCommon.Protocol.Operations;
+
     using NUnit.Framework;
 
     [TestFixture]

@@ -4,7 +4,7 @@
     <TargetFrameworks>net48;netstandard2.0</TargetFrameworks>
     <Company>Starion Group S.A.</Company>
     <Title>CDP4JsonSerializer Community Edition</Title>
-    <VersionPrefix>27.4.2</VersionPrefix>
+    <VersionPrefix>28.0.0</VersionPrefix>
     <Description>CDP4 JSON Serialization Library</Description>
     <Copyright>Copyright © RHEA System S.A.</Copyright>
     <Authors>Sam, Merlin, Alex, Naron, Alexander, Yevhen, Nathanael, Jaime, Antoine</Authors>
@@ -28,8 +28,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
-    <PackageReference Include="NLog" Version="5.2.8" />
-    <PackageReference Include="System.Text.Json" Version="8.0.3" />  
+    <PackageReference Include="NLog" Version="5.3.4" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />  
   </ItemGroup>
 
   <PropertyGroup>
