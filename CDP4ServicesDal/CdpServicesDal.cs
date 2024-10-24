@@ -44,8 +44,6 @@ namespace CDP4ServicesDal
     using CDP4Common.DTO;
     using CDP4Common.Extensions;
 
-    using CDP4DalCommon.Tasks;
-
     using CDP4Dal;
     using CDP4Dal.Composition;
     using CDP4Dal.DAL;
