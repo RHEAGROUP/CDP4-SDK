@@ -22,11 +22,14 @@
     <PackageReleaseNotes>
         [BUMP] To CDP4Common 27.4.0
     </PackageReleaseNotes>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
+      <PackageReadmeFile>README.md</PackageReadmeFile>
+    <LangVersion>11.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+    <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />  
   </ItemGroup>
 
   <PropertyGroup>
@@ -34,23 +37,13 @@
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\docs\cdp4-icon.png" Pack="true" PackagePath="\" />
-    <None Include="..\README.md" Pack="true" PackagePath="\" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Include="..\docs\cdp4-icon.png" Pack="true" PackagePath="\" />
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CDP4Common\CDP4Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="AutoGenDtoDeserializer\" />
-    <Folder Include="AutoGenDtoSerializer\" />
-    <Folder Include="Helper\" />
   </ItemGroup>
 
 </Project>
