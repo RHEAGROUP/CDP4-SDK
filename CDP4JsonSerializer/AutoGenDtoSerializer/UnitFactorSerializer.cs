@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnitFactorSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="UnitFactorSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -92,23 +92,31 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing UnitFactor for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(unitFactor.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(unitFactor.Exponent);
@@ -125,23 +133,31 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing UnitFactor for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(unitFactor.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(unitFactor.Exponent);
@@ -171,23 +187,31 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(unitFactor.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in unitFactor.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (unitFactor.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in unitFactor.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(unitFactor.Exponent);
@@ -265,17 +289,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -283,17 +306,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "exponent":
                     if(!AllowedVersionsPerProperty["exponent"].Contains(requestedVersion))

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="TelephoneNumberSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="TelephoneNumberSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -85,37 +85,49 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(telephoneNumber.RevisionNumber);
                     writer.WritePropertyName("value"u8);
                     writer.WriteStringValue(telephoneNumber.Value);
-                    writer.WriteStartArray("vcardType"u8);
 
-                    foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                    if (telephoneNumber.VcardType.Count > 0)
                     {
-                        writer.WriteStringValue(vcardTypeItem.ToString());
-                    }
+                        writer.WriteStartArray("vcardType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                        {
+                            writer.WriteStringValue(vcardTypeItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing TelephoneNumber for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(telephoneNumber.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(telephoneNumber.Iid);
@@ -125,37 +137,49 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(telephoneNumber.RevisionNumber);
                     writer.WritePropertyName("value"u8);
                     writer.WriteStringValue(telephoneNumber.Value);
-                    writer.WriteStartArray("vcardType"u8);
 
-                    foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                    if (telephoneNumber.VcardType.Count > 0)
                     {
-                        writer.WriteStringValue(vcardTypeItem.ToString());
-                    }
+                        writer.WriteStartArray("vcardType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                        {
+                            writer.WriteStringValue(vcardTypeItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing TelephoneNumber for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(telephoneNumber.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(telephoneNumber.Iid);
@@ -167,14 +191,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(telephoneNumber.ThingPreference);
                     writer.WritePropertyName("value"u8);
                     writer.WriteStringValue(telephoneNumber.Value);
-                    writer.WriteStartArray("vcardType"u8);
 
-                    foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                    if (telephoneNumber.VcardType.Count > 0)
                     {
-                        writer.WriteStringValue(vcardTypeItem.ToString());
-                    }
+                        writer.WriteStartArray("vcardType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                        {
+                            writer.WriteStringValue(vcardTypeItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -192,23 +220,31 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(telephoneNumber.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in telephoneNumber.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (telephoneNumber.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in telephoneNumber.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(telephoneNumber.Iid);
@@ -220,14 +256,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(telephoneNumber.ThingPreference);
                     writer.WritePropertyName("value"u8);
                     writer.WriteStringValue(telephoneNumber.Value);
-                    writer.WriteStartArray("vcardType"u8);
 
-                    foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                    if (telephoneNumber.VcardType.Count > 0)
                     {
-                        writer.WriteStringValue(vcardTypeItem.ToString());
-                    }
+                        writer.WriteStartArray("vcardType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var vcardTypeItem in telephoneNumber.VcardType)
+                        {
+                            writer.WriteStringValue(vcardTypeItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -293,17 +333,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -311,17 +350,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -419,17 +457,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("vcardType"u8);
-
-                    if(value is IEnumerable<object> objectListVcardType)
+                    if (value is IEnumerable<object> objectListVcardType && objectListVcardType.Any())
                     {
-                        foreach(var vcardTypeItem in objectListVcardType)
+                        writer.WriteStartArray("vcardType"u8);
+
+                        foreach (var vcardTypeItem in objectListVcardType)
                         {
                             writer.WriteStringValue(((VcardTelephoneNumberKind)vcardTypeItem).ToString());
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the TelephoneNumber");

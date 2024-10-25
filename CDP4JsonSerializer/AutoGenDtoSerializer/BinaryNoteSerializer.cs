@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="BinaryNoteSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="BinaryNoteSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -79,36 +79,48 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing BinaryNote for Version 1.1.0");
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -129,36 +141,48 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing BinaryNote for Version 1.2.0");
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -192,36 +216,48 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryNote.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -303,17 +339,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -357,17 +392,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -375,17 +409,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "filetype":
                     if(!AllowedVersionsPerProperty["fileType"].Contains(requestedVersion))

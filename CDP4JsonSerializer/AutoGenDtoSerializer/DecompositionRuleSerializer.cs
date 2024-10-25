@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DecompositionRuleSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="DecompositionRuleSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,45 +77,61 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.0.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
-                    writer.WriteStartArray("containedCategory"u8);
 
-                    foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ContainedCategory.Count > 0)
                     {
-                        writer.WriteStringValue(containedCategoryItem);
-                    }
+                        writer.WriteStartArray("containedCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(containedCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -143,63 +159,87 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.1.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
-                    writer.WriteStartArray("containedCategory"u8);
 
-                    foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ContainedCategory.Count > 0)
                     {
-                        writer.WriteStringValue(containedCategoryItem);
-                    }
+                        writer.WriteStartArray("containedCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(containedCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -229,63 +269,87 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
-                    writer.WriteStartArray("containedCategory"u8);
 
-                    foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ContainedCategory.Count > 0)
                     {
-                        writer.WriteStringValue(containedCategoryItem);
-                    }
+                        writer.WriteStartArray("containedCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(containedCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -328,63 +392,86 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
-                    writer.WriteStartArray("containedCategory"u8);
 
-                    foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ContainedCategory.Count > 0)
                     {
-                        writer.WriteStringValue(containedCategoryItem);
-                    }
+                        writer.WriteStartArray("containedCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(containedCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (decompositionRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -459,17 +546,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -495,17 +581,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("containedCategory"u8);
-
-                    if(value is IEnumerable<object> objectListContainedCategory)
+                    if (value is IEnumerable<object> objectListContainedCategory && objectListContainedCategory.Any())
                     {
+                        writer.WriteStartArray("containedCategory"u8);
+
                         foreach(var containedCategoryItem in objectListContainedCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(containedCategoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "containingcategory":
                     if(!AllowedVersionsPerProperty["containingCategory"].Contains(requestedVersion))
@@ -531,17 +616,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -549,17 +633,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -567,17 +650,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "hyperlink":
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
@@ -585,17 +667,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))

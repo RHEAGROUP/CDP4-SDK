@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="LogarithmicScaleSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="LogarithmicScaleSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,38 +77,50 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing LogarithmicScale for Version 1.0.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(logarithmicScale.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(logarithmicScale.Exponent);
                     writer.WritePropertyName("factor"u8);
                     writer.WriteStringValue(logarithmicScale.Factor);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(logarithmicScale.Iid);
@@ -120,14 +132,18 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(logarithmicScale.IsMinimumInclusive);
                     writer.WritePropertyName("logarithmBase"u8);
                     writer.WriteStringValue(logarithmicScale.LogarithmBase.ToString());
-                    writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.MappingToReferenceScale.Count > 0)
                     {
-                        writer.WriteStringValue(mappingToReferenceScaleItem);
-                    }
+                        writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(mappingToReferenceScaleItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("maximumPermissibleValue"u8);
                     writer.WriteStringValue(logarithmicScale.MaximumPermissibleValue);
@@ -143,14 +159,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.PositiveValueConnotation);
                     writer.WritePropertyName("referenceQuantityKind"u8);
                     writer.WriteStringValue(logarithmicScale.ReferenceQuantityKind);
-                    writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ReferenceQuantityValue.Count > 0)
                     {
-                        writer.WriteStringValue(referenceQuantityValueItem);
-                    }
+                        writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(referenceQuantityValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(logarithmicScale.RevisionNumber);
@@ -158,68 +178,92 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.ShortName);
                     writer.WritePropertyName("unit"u8);
                     writer.WriteStringValue(logarithmicScale.Unit);
-                    writer.WriteStartArray("valueDefinition"u8);
 
-                    foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ValueDefinition.Count > 0)
                     {
-                        writer.WriteStringValue(valueDefinitionItem);
-                    }
+                        writer.WriteStartArray("valueDefinition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueDefinitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing LogarithmicScale for Version 1.1.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(logarithmicScale.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(logarithmicScale.Exponent);
                     writer.WritePropertyName("factor"u8);
                     writer.WriteStringValue(logarithmicScale.Factor);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(logarithmicScale.Iid);
@@ -231,14 +275,18 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(logarithmicScale.IsMinimumInclusive);
                     writer.WritePropertyName("logarithmBase"u8);
                     writer.WriteStringValue(logarithmicScale.LogarithmBase.ToString());
-                    writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.MappingToReferenceScale.Count > 0)
                     {
-                        writer.WriteStringValue(mappingToReferenceScaleItem);
-                    }
+                        writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(mappingToReferenceScaleItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("maximumPermissibleValue"u8);
                     writer.WriteStringValue(logarithmicScale.MaximumPermissibleValue);
@@ -256,14 +304,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.PositiveValueConnotation);
                     writer.WritePropertyName("referenceQuantityKind"u8);
                     writer.WriteStringValue(logarithmicScale.ReferenceQuantityKind);
-                    writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ReferenceQuantityValue.Count > 0)
                     {
-                        writer.WriteStringValue(referenceQuantityValueItem);
-                    }
+                        writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(referenceQuantityValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(logarithmicScale.RevisionNumber);
@@ -271,68 +323,92 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.ShortName);
                     writer.WritePropertyName("unit"u8);
                     writer.WriteStringValue(logarithmicScale.Unit);
-                    writer.WriteStartArray("valueDefinition"u8);
 
-                    foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ValueDefinition.Count > 0)
                     {
-                        writer.WriteStringValue(valueDefinitionItem);
-                    }
+                        writer.WriteStartArray("valueDefinition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueDefinitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing LogarithmicScale for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(logarithmicScale.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(logarithmicScale.Exponent);
                     writer.WritePropertyName("factor"u8);
                     writer.WriteStringValue(logarithmicScale.Factor);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(logarithmicScale.Iid);
@@ -344,14 +420,18 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(logarithmicScale.IsMinimumInclusive);
                     writer.WritePropertyName("logarithmBase"u8);
                     writer.WriteStringValue(logarithmicScale.LogarithmBase.ToString());
-                    writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.MappingToReferenceScale.Count > 0)
                     {
-                        writer.WriteStringValue(mappingToReferenceScaleItem);
-                    }
+                        writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(mappingToReferenceScaleItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("maximumPermissibleValue"u8);
                     writer.WriteStringValue(logarithmicScale.MaximumPermissibleValue);
@@ -369,14 +449,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.PositiveValueConnotation);
                     writer.WritePropertyName("referenceQuantityKind"u8);
                     writer.WriteStringValue(logarithmicScale.ReferenceQuantityKind);
-                    writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ReferenceQuantityValue.Count > 0)
                     {
-                        writer.WriteStringValue(referenceQuantityValueItem);
-                    }
+                        writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(referenceQuantityValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(logarithmicScale.RevisionNumber);
@@ -386,14 +470,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.ThingPreference);
                     writer.WritePropertyName("unit"u8);
                     writer.WriteStringValue(logarithmicScale.Unit);
-                    writer.WriteStartArray("valueDefinition"u8);
 
-                    foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ValueDefinition.Count > 0)
                     {
-                        writer.WriteStringValue(valueDefinitionItem);
-                    }
+                        writer.WriteStartArray("valueDefinition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueDefinitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -409,56 +497,75 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in logarithmicScale.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(logarithmicScale.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in logarithmicScale.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in logarithmicScale.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in logarithmicScale.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("exponent"u8);
                     writer.WriteStringValue(logarithmicScale.Exponent);
                     writer.WritePropertyName("factor"u8);
                     writer.WriteStringValue(logarithmicScale.Factor);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in logarithmicScale.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(logarithmicScale.Iid);
@@ -470,14 +577,18 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(logarithmicScale.IsMinimumInclusive);
                     writer.WritePropertyName("logarithmBase"u8);
                     writer.WriteStringValue(logarithmicScale.LogarithmBase.ToString());
-                    writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.MappingToReferenceScale.Count > 0)
                     {
-                        writer.WriteStringValue(mappingToReferenceScaleItem);
-                    }
+                        writer.WriteStartArray("mappingToReferenceScale"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var mappingToReferenceScaleItem in logarithmicScale.MappingToReferenceScale.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(mappingToReferenceScaleItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("maximumPermissibleValue"u8);
                     writer.WriteStringValue(logarithmicScale.MaximumPermissibleValue);
@@ -495,14 +606,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.PositiveValueConnotation);
                     writer.WritePropertyName("referenceQuantityKind"u8);
                     writer.WriteStringValue(logarithmicScale.ReferenceQuantityKind);
-                    writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ReferenceQuantityValue.Count > 0)
                     {
-                        writer.WriteStringValue(referenceQuantityValueItem);
-                    }
+                        writer.WriteStartArray("referenceQuantityValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var referenceQuantityValueItem in logarithmicScale.ReferenceQuantityValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(referenceQuantityValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(logarithmicScale.RevisionNumber);
@@ -512,14 +627,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(logarithmicScale.ThingPreference);
                     writer.WritePropertyName("unit"u8);
                     writer.WriteStringValue(logarithmicScale.Unit);
-                    writer.WriteStartArray("valueDefinition"u8);
 
-                    foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                    if (logarithmicScale.ValueDefinition.Count > 0)
                     {
-                        writer.WriteStringValue(valueDefinitionItem);
-                    }
+                        writer.WriteStartArray("valueDefinition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueDefinitionItem in logarithmicScale.ValueDefinition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueDefinitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -567,17 +686,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -603,17 +721,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -621,17 +738,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -639,17 +755,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "exponent":
                     if(!AllowedVersionsPerProperty["exponent"].Contains(requestedVersion))
@@ -693,17 +808,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -801,17 +915,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("mappingToReferenceScale"u8);
-
-                    if(value is IEnumerable<object> objectListMappingToReferenceScale)
+                    if (value is IEnumerable<object> objectListMappingToReferenceScale && objectListMappingToReferenceScale.Any())
                     {
+                        writer.WriteStartArray("mappingToReferenceScale"u8);
+
                         foreach(var mappingToReferenceScaleItem in objectListMappingToReferenceScale.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(mappingToReferenceScaleItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "maximumpermissiblevalue":
                     if(!AllowedVersionsPerProperty["maximumPermissibleValue"].Contains(requestedVersion))
@@ -963,17 +1076,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("referenceQuantityValue"u8);
-
-                    if(value is IEnumerable<object> objectListReferenceQuantityValue)
+                    if (value is IEnumerable<object> objectListReferenceQuantityValue && objectListReferenceQuantityValue.Any())
                     {
+                        writer.WriteStartArray("referenceQuantityValue"u8);
+
                         foreach(var referenceQuantityValueItem in objectListReferenceQuantityValue.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(referenceQuantityValueItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
@@ -1053,17 +1165,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("valueDefinition"u8);
-
-                    if(value is IEnumerable<object> objectListValueDefinition)
+                    if (value is IEnumerable<object> objectListValueDefinition && objectListValueDefinition.Any())
                     {
+                        writer.WriteStartArray("valueDefinition"u8);
+
                         foreach(var valueDefinitionItem in objectListValueDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(valueDefinitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the LogarithmicScale");

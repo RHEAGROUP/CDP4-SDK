@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContractChangeNoticeSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="ContractChangeNoticeSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,25 +77,33 @@ namespace CDP4JsonSerializer
             {
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing ContractChangeNotice for Version 1.1.0");
-                    writer.WriteStartArray("approvedBy"u8);
 
-                    foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ApprovedBy.Count > 0)
                     {
-                        writer.WriteStringValue(approvedByItem);
-                    }
+                        writer.WriteStartArray("approvedBy"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(approvedByItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(contractChangeNotice.Author);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("changeProposal"u8);
                     writer.WriteStringValue(contractChangeNotice.ChangeProposal);
@@ -107,32 +115,44 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(contractChangeNotice.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(contractChangeNotice.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("discussion"u8);
 
-                    foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Discussion.Count > 0)
                     {
-                        writer.WriteStringValue(discussionItem);
-                    }
+                        writer.WriteStartArray("discussion"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(discussionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(contractChangeNotice.Iid);
@@ -153,27 +173,34 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("relatedThing"u8);
-
-                    foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(contractChangeNotice.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(contractChangeNotice.ShortName);
-                    writer.WriteStartArray("sourceAnnotation"u8);
 
-                    foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.SourceAnnotation.Count > 0)
                     {
-                        writer.WriteStringValue(sourceAnnotationItem);
-                    }
+                        writer.WriteStartArray("sourceAnnotation"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(sourceAnnotationItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(contractChangeNotice.Status.ToString());
@@ -182,25 +209,33 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing ContractChangeNotice for Version 1.2.0");
-                    writer.WriteStartArray("approvedBy"u8);
 
-                    foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ApprovedBy.Count > 0)
                     {
-                        writer.WriteStringValue(approvedByItem);
-                    }
+                        writer.WriteStartArray("approvedBy"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(approvedByItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(contractChangeNotice.Author);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("changeProposal"u8);
                     writer.WriteStringValue(contractChangeNotice.ChangeProposal);
@@ -212,32 +247,44 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(contractChangeNotice.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(contractChangeNotice.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("discussion"u8);
 
-                    foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Discussion.Count > 0)
                     {
-                        writer.WriteStringValue(discussionItem);
-                    }
+                        writer.WriteStartArray("discussion"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(discussionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(contractChangeNotice.Iid);
@@ -258,27 +305,34 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("relatedThing"u8);
-
-                    foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(contractChangeNotice.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(contractChangeNotice.ShortName);
-                    writer.WriteStartArray("sourceAnnotation"u8);
 
-                    foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.SourceAnnotation.Count > 0)
                     {
-                        writer.WriteStringValue(sourceAnnotationItem);
-                    }
+                        writer.WriteStartArray("sourceAnnotation"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(sourceAnnotationItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(contractChangeNotice.Status.ToString());
@@ -300,25 +354,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("approvedBy"u8);
-
-                    foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ApprovedBy.Count > 0)
                     {
-                        writer.WriteStringValue(approvedByItem);
-                    }
+                        writer.WriteStartArray("approvedBy"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var approvedByItem in contractChangeNotice.ApprovedBy.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(approvedByItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(contractChangeNotice.Author);
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in contractChangeNotice.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("changeProposal"u8);
                     writer.WriteStringValue(contractChangeNotice.ChangeProposal);
@@ -330,32 +391,44 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(contractChangeNotice.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(contractChangeNotice.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("discussion"u8);
 
-                    foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.Discussion.Count > 0)
                     {
-                        writer.WriteStringValue(discussionItem);
-                    }
+                        writer.WriteStartArray("discussion"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var discussionItem in contractChangeNotice.Discussion.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(discussionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in contractChangeNotice.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in contractChangeNotice.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(contractChangeNotice.Iid);
@@ -376,27 +449,34 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("relatedThing"u8);
-
-                    foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in contractChangeNotice.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(contractChangeNotice.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(contractChangeNotice.ShortName);
-                    writer.WriteStartArray("sourceAnnotation"u8);
 
-                    foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                    if (contractChangeNotice.SourceAnnotation.Count > 0)
                     {
-                        writer.WriteStringValue(sourceAnnotationItem);
-                    }
+                        writer.WriteStartArray("sourceAnnotation"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var sourceAnnotationItem in contractChangeNotice.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(sourceAnnotationItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(contractChangeNotice.Status.ToString());
@@ -450,17 +530,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("approvedBy"u8);
-
-                    if(value is IEnumerable<object> objectListApprovedBy)
+                    if (value is IEnumerable<object> objectListApprovedBy && objectListApprovedBy.Any())
                     {
+                        writer.WriteStartArray("approvedBy"u8);
+
                         foreach(var approvedByItem in objectListApprovedBy.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(approvedByItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "author":
                     if(!AllowedVersionsPerProperty["author"].Contains(requestedVersion))
@@ -486,17 +565,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "changeproposal":
                     if(!AllowedVersionsPerProperty["changeProposal"].Contains(requestedVersion))
@@ -594,17 +672,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("discussion"u8);
-
-                    if(value is IEnumerable<object> objectListDiscussion)
+                    if (value is IEnumerable<object> objectListDiscussion && objectListDiscussion.Any())
                     {
+                        writer.WriteStartArray("discussion"u8);
+
                         foreach(var discussionItem in objectListDiscussion.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(discussionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -612,17 +689,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -630,17 +706,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -738,17 +813,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("relatedThing"u8);
-
-                    if(value is IEnumerable<object> objectListRelatedThing)
+                    if (value is IEnumerable<object> objectListRelatedThing && objectListRelatedThing.Any())
                     {
+                        writer.WriteStartArray("relatedThing"u8);
+
                         foreach(var relatedThingItem in objectListRelatedThing.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(relatedThingItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
@@ -792,17 +866,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("sourceAnnotation"u8);
-
-                    if(value is IEnumerable<object> objectListSourceAnnotation)
+                    if (value is IEnumerable<object> objectListSourceAnnotation && objectListSourceAnnotation.Any())
                     {
+                        writer.WriteStartArray("sourceAnnotation"u8);
+
                         foreach(var sourceAnnotationItem in objectListSourceAnnotation.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(sourceAnnotationItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "status":
                     if(!AllowedVersionsPerProperty["status"].Contains(requestedVersion))

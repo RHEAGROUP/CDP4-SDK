@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="DiagramCanvasSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="DiagramCanvasSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,45 +77,61 @@ namespace CDP4JsonSerializer
             {
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing DiagramCanvas for Version 1.1.0");
-                    writer.WriteStartArray("bounds"u8);
 
-                    foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.Bounds.Count > 0)
                     {
-                        writer.WriteStringValue(boundsItem);
-                    }
+                        writer.WriteStartArray("bounds"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(boundsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(diagramCanvas.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(diagramCanvas.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("diagramElement"u8);
 
-                    foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.DiagramElement.Count > 0)
                     {
-                        writer.WriteStringValue(diagramElementItem);
-                    }
+                        writer.WriteStartArray("diagramElement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(diagramElementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(diagramCanvas.Iid);
@@ -128,45 +144,61 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing DiagramCanvas for Version 1.2.0");
-                    writer.WriteStartArray("bounds"u8);
 
-                    foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.Bounds.Count > 0)
                     {
-                        writer.WriteStringValue(boundsItem);
-                    }
+                        writer.WriteStartArray("bounds"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(boundsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(diagramCanvas.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(diagramCanvas.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("diagramElement"u8);
 
-                    foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.DiagramElement.Count > 0)
                     {
-                        writer.WriteStringValue(diagramElementItem);
-                    }
+                        writer.WriteStartArray("diagramElement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(diagramElementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(diagramCanvas.Iid);
@@ -192,45 +224,60 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("bounds"u8);
-
-                    foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.Bounds.Count > 0)
                     {
-                        writer.WriteStringValue(boundsItem);
-                    }
+                        writer.WriteStartArray("bounds"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var boundsItem in diagramCanvas.Bounds.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(boundsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(diagramCanvas.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(diagramCanvas.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("diagramElement"u8);
 
-                    foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.DiagramElement.Count > 0)
                     {
-                        writer.WriteStringValue(diagramElementItem);
-                    }
+                        writer.WriteStartArray("diagramElement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var diagramElementItem in diagramCanvas.DiagramElement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(diagramElementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in diagramCanvas.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (diagramCanvas.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in diagramCanvas.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(diagramCanvas.Iid);
@@ -288,17 +335,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("bounds"u8);
-
-                    if(value is IEnumerable<object> objectListBounds)
+                    if (value is IEnumerable<object> objectListBounds && objectListBounds.Any())
                     {
+                        writer.WriteStartArray("bounds"u8);
+
                         foreach(var boundsItem in objectListBounds.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(boundsItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -342,17 +388,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("diagramElement"u8);
-
-                    if(value is IEnumerable<object> objectListDiagramElement)
+                    if (value is IEnumerable<object> objectListDiagramElement && objectListDiagramElement.Any())
                     {
+                        writer.WriteStartArray("diagramElement"u8);
+
                         foreach(var diagramElementItem in objectListDiagramElement.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(diagramElementItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -360,17 +405,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -378,17 +422,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))

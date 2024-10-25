@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CommonFileStoreSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="CommonFileStoreSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -81,23 +81,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(commonFileStore.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("file"u8);
 
-                    foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.File.Count > 0)
                     {
-                        writer.WriteStringValue(fileItem);
-                    }
+                        writer.WriteStartArray("file"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(fileItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("folder"u8);
 
-                    foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.Folder.Count > 0)
                     {
-                        writer.WriteStringValue(folderItem);
-                    }
+                        writer.WriteStartArray("folder"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(folderItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -114,41 +122,57 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(commonFileStore.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("file"u8);
 
-                    foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.File.Count > 0)
                     {
-                        writer.WriteStringValue(fileItem);
-                    }
+                        writer.WriteStartArray("file"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(fileItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("folder"u8);
 
-                    foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.Folder.Count > 0)
                     {
-                        writer.WriteStringValue(folderItem);
-                    }
+                        writer.WriteStartArray("folder"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(folderItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -167,41 +191,57 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(commonFileStore.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("file"u8);
 
-                    foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.File.Count > 0)
                     {
-                        writer.WriteStringValue(fileItem);
-                    }
+                        writer.WriteStartArray("file"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(fileItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("folder"u8);
 
-                    foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.Folder.Count > 0)
                     {
-                        writer.WriteStringValue(folderItem);
-                    }
+                        writer.WriteStartArray("folder"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(folderItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -233,41 +273,57 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(commonFileStore.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("file"u8);
 
-                    foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.File.Count > 0)
                     {
-                        writer.WriteStringValue(fileItem);
-                    }
+                        writer.WriteStartArray("file"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(fileItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("folder"u8);
 
-                    foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                    if (commonFileStore.Folder.Count > 0)
                     {
-                        writer.WriteStringValue(folderItem);
-                    }
+                        writer.WriteStartArray("folder"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(folderItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -363,17 +419,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -381,17 +436,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "file":
                     if(!AllowedVersionsPerProperty["file"].Contains(requestedVersion))
@@ -399,17 +453,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("file"u8);
-
-                    if(value is IEnumerable<object> objectListFile)
+                    if (value is IEnumerable<object> objectListFile && objectListFile.Any())
                     {
+                        writer.WriteStartArray("file"u8);
+
                         foreach(var fileItem in objectListFile.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(fileItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "folder":
                     if(!AllowedVersionsPerProperty["folder"].Contains(requestedVersion))
@@ -417,17 +470,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("folder"u8);
-
-                    if(value is IEnumerable<object> objectListFolder)
+                    if (value is IEnumerable<object> objectListFolder && objectListFolder.Any())
                     {
+                        writer.WriteStartArray("folder"u8);
+
                         foreach(var folderItem in objectListFolder.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(folderItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))

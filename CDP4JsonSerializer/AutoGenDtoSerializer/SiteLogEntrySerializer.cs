@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SiteLogEntrySerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="SiteLogEntrySerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,23 +77,31 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing SiteLogEntry for Version 1.0.0");
-                    writer.WriteStartArray("affectedDomainIid"u8);
 
-                    foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                    if (siteLogEntry.AffectedDomainIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedDomainIidItem);
-                    }
+                        writer.WriteStartArray("affectedDomainIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                        {
+                            writer.WriteStringValue(affectedDomainIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("affectedItemIid"u8);
 
-                    foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                    if (siteLogEntry.AffectedItemIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedItemIidItem);
-                    }
+                        writer.WriteStartArray("affectedItemIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                        {
+                            writer.WriteStringValue(affectedItemIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
 
@@ -106,14 +114,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteLogEntry.ClassKind.ToString());
@@ -132,23 +143,31 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing SiteLogEntry for Version 1.1.0");
-                    writer.WriteStartArray("affectedDomainIid"u8);
 
-                    foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                    if (siteLogEntry.AffectedDomainIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedDomainIidItem);
-                    }
+                        writer.WriteStartArray("affectedDomainIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                        {
+                            writer.WriteStringValue(affectedDomainIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("affectedItemIid"u8);
 
-                    foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                    if (siteLogEntry.AffectedItemIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedItemIidItem);
-                    }
+                        writer.WriteStartArray("affectedItemIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                        {
+                            writer.WriteStringValue(affectedItemIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
 
@@ -161,14 +180,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteLogEntry.ClassKind.ToString());
@@ -176,23 +198,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(siteLogEntry.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(siteLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteLogEntry.Iid);
@@ -207,23 +237,31 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing SiteLogEntry for Version 1.2.0");
-                    writer.WriteStartArray("affectedDomainIid"u8);
 
-                    foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                    if (siteLogEntry.AffectedDomainIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedDomainIidItem);
-                    }
+                        writer.WriteStartArray("affectedDomainIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                        {
+                            writer.WriteStringValue(affectedDomainIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("affectedItemIid"u8);
 
-                    foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                    if (siteLogEntry.AffectedItemIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedItemIidItem);
-                    }
+                        writer.WriteStartArray("affectedItemIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                        {
+                            writer.WriteStringValue(affectedItemIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
 
@@ -236,14 +274,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteLogEntry.ClassKind.ToString());
@@ -251,23 +292,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(siteLogEntry.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(siteLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteLogEntry.Iid);
@@ -275,14 +324,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(siteLogEntry.LanguageCode);
                     writer.WritePropertyName("level"u8);
                     writer.WriteStringValue(siteLogEntry.Level.ToString());
-                    writer.WriteStartArray("logEntryChangelogItem"u8);
 
-                    foreach(var logEntryChangelogItemItem in siteLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.LogEntryChangelogItem.Count > 0)
                     {
-                        writer.WriteStringValue(logEntryChangelogItemItem);
-                    }
+                        writer.WriteStartArray("logEntryChangelogItem"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var logEntryChangelogItemItem in siteLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(logEntryChangelogItemItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(siteLogEntry.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -304,23 +357,30 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("affectedDomainIid"u8);
-
-                    foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                    if (siteLogEntry.AffectedDomainIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedDomainIidItem);
-                    }
+                        writer.WriteStartArray("affectedDomainIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedDomainIidItem in siteLogEntry.AffectedDomainIid)
+                        {
+                            writer.WriteStringValue(affectedDomainIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("affectedItemIid"u8);
 
-                    foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                    if (siteLogEntry.AffectedItemIid.Count > 0)
                     {
-                        writer.WriteStringValue(affectedItemIidItem);
-                    }
+                        writer.WriteStartArray("affectedItemIid"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var affectedItemIidItem in siteLogEntry.AffectedItemIid)
+                        {
+                            writer.WriteStringValue(affectedItemIidItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("author"u8);
 
@@ -333,14 +393,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in siteLogEntry.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteLogEntry.ClassKind.ToString());
@@ -348,23 +411,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(siteLogEntry.Content);
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(siteLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in siteLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in siteLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteLogEntry.Iid);
@@ -372,14 +443,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(siteLogEntry.LanguageCode);
                     writer.WritePropertyName("level"u8);
                     writer.WriteStringValue(siteLogEntry.Level.ToString());
-                    writer.WriteStartArray("logEntryChangelogItem"u8);
 
-                    foreach(var logEntryChangelogItemItem in siteLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
+                    if (siteLogEntry.LogEntryChangelogItem.Count > 0)
                     {
-                        writer.WriteStringValue(logEntryChangelogItemItem);
-                    }
+                        writer.WriteStartArray("logEntryChangelogItem"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var logEntryChangelogItemItem in siteLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(logEntryChangelogItemItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(siteLogEntry.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -433,17 +508,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("affectedDomainIid"u8);
-
-                    if(value is IEnumerable<object> objectListAffectedDomainIid)
+                    if (value is IEnumerable<object> objectListAffectedDomainIid && objectListAffectedDomainIid.Any())
                     {
-                        foreach(var affectedDomainIidItem in objectListAffectedDomainIid)
+                        writer.WriteStartArray("affectedDomainIid"u8);
+
+                        foreach (var affectedDomainIidItem in objectListAffectedDomainIid)
                         {
                             writer.WriteStringValue((Guid)affectedDomainIidItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "affecteditemiid":
                     if(!AllowedVersionsPerProperty["affectedItemIid"].Contains(requestedVersion))
@@ -451,17 +525,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("affectedItemIid"u8);
-
-                    if(value is IEnumerable<object> objectListAffectedItemIid)
+                    if (value is IEnumerable<object> objectListAffectedItemIid && objectListAffectedItemIid.Any())
                     {
-                        foreach(var affectedItemIidItem in objectListAffectedItemIid)
+                        writer.WriteStartArray("affectedItemIid"u8);
+
+                        foreach (var affectedItemIidItem in objectListAffectedItemIid)
                         {
                             writer.WriteStringValue((Guid)affectedItemIidItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "author":
                     if(!AllowedVersionsPerProperty["author"].Contains(requestedVersion))
@@ -487,17 +560,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -559,17 +631,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -577,17 +648,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -649,17 +719,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("logEntryChangelogItem"u8);
-
-                    if(value is IEnumerable<object> objectListLogEntryChangelogItem)
+                    if (value is IEnumerable<object> objectListLogEntryChangelogItem && objectListLogEntryChangelogItem.Any())
                     {
+                        writer.WriteStartArray("logEntryChangelogItem"u8);
+
                         foreach(var logEntryChangelogItemItem in objectListLogEntryChangelogItem.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(logEntryChangelogItemItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "modifiedon":
                     if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))

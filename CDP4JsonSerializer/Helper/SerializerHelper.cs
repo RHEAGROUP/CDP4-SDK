@@ -111,6 +111,9 @@ namespace CDP4JsonSerializer
                 case int intValue:
                     writer.WriteNumberValue(intValue);
                     break;
+                case long longValue:
+                    writer.WriteNumberValue(longValue);
+                    break;
                 case double doubleValue:
                     writer.WriteNumberValue(doubleValue);
                     break;
@@ -141,7 +144,7 @@ namespace CDP4JsonSerializer
                 object valueToAssign = valueKind switch
                 {
                     JsonValueKind.String => valueProp.GetString(),
-                    JsonValueKind.Number => valueProp.GetInt64(),
+                    JsonValueKind.Number => valueProp.GetInt32(),
                     _ => null
                 };
 

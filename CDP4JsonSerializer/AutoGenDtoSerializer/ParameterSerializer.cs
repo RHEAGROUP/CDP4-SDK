@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ParameterSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="ParameterSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -100,14 +100,18 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(parameter.IsOptionDependent);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(parameter.Owner);
-                    writer.WriteStartArray("parameterSubscription"u8);
 
-                    foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ParameterSubscription.Count > 0)
                     {
-                        writer.WriteStringValue(parameterSubscriptionItem);
-                    }
+                        writer.WriteStartArray("parameterSubscription"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterSubscriptionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("parameterType"u8);
                     writer.WriteStringValue(parameter.ParameterType);
@@ -146,14 +150,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("valueSet"u8);
-
-                    foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ValueSet.Count > 0)
                     {
-                        writer.WriteStringValue(valueSetItem);
-                    }
+                        writer.WriteStartArray("valueSet"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueSetItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
@@ -162,23 +169,31 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(parameter.AllowDifferentOwnerOfOverride);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameter.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("expectsOverride"u8);
                     writer.WriteBooleanValue(parameter.ExpectsOverride);
@@ -201,14 +216,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(parameter.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(parameter.Owner);
-                    writer.WriteStartArray("parameterSubscription"u8);
 
-                    foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ParameterSubscription.Count > 0)
                     {
-                        writer.WriteStringValue(parameterSubscriptionItem);
-                    }
+                        writer.WriteStartArray("parameterSubscription"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterSubscriptionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("parameterType"u8);
                     writer.WriteStringValue(parameter.ParameterType);
@@ -247,14 +266,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("valueSet"u8);
-
-                    foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ValueSet.Count > 0)
                     {
-                        writer.WriteStringValue(valueSetItem);
-                    }
+                        writer.WriteStartArray("valueSet"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueSetItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
@@ -263,23 +285,31 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(parameter.AllowDifferentOwnerOfOverride);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameter.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("expectsOverride"u8);
                     writer.WriteBooleanValue(parameter.ExpectsOverride);
@@ -302,14 +332,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(parameter.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(parameter.Owner);
-                    writer.WriteStartArray("parameterSubscription"u8);
 
-                    foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ParameterSubscription.Count > 0)
                     {
-                        writer.WriteStringValue(parameterSubscriptionItem);
-                    }
+                        writer.WriteStartArray("parameterSubscription"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterSubscriptionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("parameterType"u8);
                     writer.WriteStringValue(parameter.ParameterType);
@@ -350,14 +384,18 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(parameter.ThingPreference);
-                    writer.WriteStartArray("valueSet"u8);
 
-                    foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ValueSet.Count > 0)
                     {
-                        writer.WriteStringValue(valueSetItem);
-                    }
+                        writer.WriteStartArray("valueSet"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueSetItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -377,23 +415,31 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(parameter.AllowDifferentOwnerOfOverride);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameter.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in parameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in parameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("expectsOverride"u8);
                     writer.WriteBooleanValue(parameter.ExpectsOverride);
@@ -416,14 +462,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(parameter.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(parameter.Owner);
-                    writer.WriteStartArray("parameterSubscription"u8);
 
-                    foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ParameterSubscription.Count > 0)
                     {
-                        writer.WriteStringValue(parameterSubscriptionItem);
-                    }
+                        writer.WriteStartArray("parameterSubscription"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterSubscriptionItem in parameter.ParameterSubscription.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterSubscriptionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("parameterType"u8);
                     writer.WriteStringValue(parameter.ParameterType);
@@ -464,14 +514,18 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(parameter.ThingPreference);
-                    writer.WriteStartArray("valueSet"u8);
 
-                    foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                    if (parameter.ValueSet.Count > 0)
                     {
-                        writer.WriteStringValue(valueSetItem);
-                    }
+                        writer.WriteStartArray("valueSet"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueSetItem in parameter.ValueSet.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueSetItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -555,17 +609,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -573,17 +626,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "expectsoverride":
                     if(!AllowedVersionsPerProperty["expectsOverride"].Contains(requestedVersion))
@@ -699,17 +751,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("parameterSubscription"u8);
-
-                    if(value is IEnumerable<object> objectListParameterSubscription)
+                    if (value is IEnumerable<object> objectListParameterSubscription && objectListParameterSubscription.Any())
                     {
+                        writer.WriteStartArray("parameterSubscription"u8);
+
                         foreach(var parameterSubscriptionItem in objectListParameterSubscription.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(parameterSubscriptionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "parametertype":
                     if(!AllowedVersionsPerProperty["parameterType"].Contains(requestedVersion))
@@ -825,17 +876,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("valueSet"u8);
-
-                    if(value is IEnumerable<object> objectListValueSet)
+                    if (value is IEnumerable<object> objectListValueSet && objectListValueSet.Any())
                     {
+                        writer.WriteStartArray("valueSet"u8);
+
                         foreach(var valueSetItem in objectListValueSet.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(valueSetItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the Parameter");
