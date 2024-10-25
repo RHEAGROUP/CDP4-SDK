@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="BinaryRelationshipRuleSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="BinaryRelationshipRuleSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,36 +77,48 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.0.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -129,54 +141,74 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.1.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -201,54 +233,74 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -286,54 +338,73 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (binaryRelationshipRule.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -403,17 +474,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -439,17 +509,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -457,17 +526,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -475,17 +543,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "forwardrelationshipname":
                     if(!AllowedVersionsPerProperty["forwardRelationshipName"].Contains(requestedVersion))
@@ -511,17 +578,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="RuleViolationSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="RuleViolationSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -85,14 +85,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(ruleViolation.Iid);
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleViolation.RevisionNumber);
-                    writer.WriteStartArray("violatingThing"u8);
 
-                    foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                    if (ruleViolation.ViolatingThing.Count > 0)
                     {
-                        writer.WriteStringValue(violatingThingItem);
-                    }
+                        writer.WriteStartArray("violatingThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                        {
+                            writer.WriteStringValue(violatingThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
@@ -101,23 +105,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(ruleViolation.ClassKind.ToString());
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(ruleViolation.Description);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleViolation.Iid);
@@ -125,14 +137,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(ruleViolation.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleViolation.RevisionNumber);
-                    writer.WriteStartArray("violatingThing"u8);
 
-                    foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                    if (ruleViolation.ViolatingThing.Count > 0)
                     {
-                        writer.WriteStringValue(violatingThingItem);
-                    }
+                        writer.WriteStartArray("violatingThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                        {
+                            writer.WriteStringValue(violatingThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
@@ -141,23 +157,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(ruleViolation.ClassKind.ToString());
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(ruleViolation.Description);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleViolation.Iid);
@@ -167,14 +191,18 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(ruleViolation.RevisionNumber);
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(ruleViolation.ThingPreference);
-                    writer.WriteStartArray("violatingThing"u8);
 
-                    foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                    if (ruleViolation.ViolatingThing.Count > 0)
                     {
-                        writer.WriteStringValue(violatingThingItem);
-                    }
+                        writer.WriteStartArray("violatingThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                        {
+                            writer.WriteStringValue(violatingThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -194,23 +222,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(ruleViolation.ClassKind.ToString());
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(ruleViolation.Description);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in ruleViolation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (ruleViolation.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in ruleViolation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleViolation.Iid);
@@ -220,14 +256,18 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(ruleViolation.RevisionNumber);
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(ruleViolation.ThingPreference);
-                    writer.WriteStartArray("violatingThing"u8);
 
-                    foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                    if (ruleViolation.ViolatingThing.Count > 0)
                     {
-                        writer.WriteStringValue(violatingThingItem);
-                    }
+                        writer.WriteStartArray("violatingThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var violatingThingItem in ruleViolation.ViolatingThing)
+                        {
+                            writer.WriteStringValue(violatingThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -311,17 +351,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -329,17 +368,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -419,17 +457,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("violatingThing"u8);
-
-                    if(value is IEnumerable<object> objectListViolatingThing)
+                    if (value is IEnumerable<object> objectListViolatingThing && objectListViolatingThing.Any())
                     {
-                        foreach(var violatingThingItem in objectListViolatingThing)
+                        writer.WriteStartArray("violatingThing"u8);
+
+                        foreach (var violatingThingItem in objectListViolatingThing)
                         {
                             writer.WriteStringValue((Guid)violatingThingItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the RuleViolation");

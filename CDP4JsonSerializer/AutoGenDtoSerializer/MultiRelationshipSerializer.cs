@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="MultiRelationshipSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="MultiRelationshipSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,14 +77,18 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing MultiRelationship for Version 1.0.0");
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(multiRelationship.ClassKind.ToString());
@@ -92,48 +96,64 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(multiRelationship.Iid);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(multiRelationship.Owner);
-                    writer.WriteStartArray("relatedThing"u8);
 
-                    foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(multiRelationship.RevisionNumber);
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing MultiRelationship for Version 1.1.0");
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(multiRelationship.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(multiRelationship.Iid);
@@ -141,57 +161,77 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(multiRelationship.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(multiRelationship.Owner);
-                    writer.WriteStartArray("parameterValue"u8);
 
-                    foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ParameterValue.Count > 0)
                     {
-                        writer.WriteStringValue(parameterValueItem);
-                    }
+                        writer.WriteStartArray("parameterValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("relatedThing"u8);
 
-                    foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(multiRelationship.RevisionNumber);
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing MultiRelationship for Version 1.2.0");
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(multiRelationship.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(multiRelationship.Iid);
@@ -201,23 +241,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(multiRelationship.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(multiRelationship.Owner);
-                    writer.WriteStartArray("parameterValue"u8);
 
-                    foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ParameterValue.Count > 0)
                     {
-                        writer.WriteStringValue(parameterValueItem);
-                    }
+                        writer.WriteStartArray("parameterValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("relatedThing"u8);
 
-                    foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(multiRelationship.RevisionNumber);
@@ -237,34 +285,45 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in multiRelationship.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(multiRelationship.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in multiRelationship.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in multiRelationship.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(multiRelationship.Iid);
@@ -274,23 +333,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(multiRelationship.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(multiRelationship.Owner);
-                    writer.WriteStartArray("parameterValue"u8);
 
-                    foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.ParameterValue.Count > 0)
                     {
-                        writer.WriteStringValue(parameterValueItem);
-                    }
+                        writer.WriteStartArray("parameterValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var parameterValueItem in multiRelationship.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(parameterValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("relatedThing"u8);
 
-                    foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                    if (multiRelationship.RelatedThing.Count > 0)
                     {
-                        writer.WriteStringValue(relatedThingItem);
-                    }
+                        writer.WriteStartArray("relatedThing"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var relatedThingItem in multiRelationship.RelatedThing.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(relatedThingItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(multiRelationship.RevisionNumber);
@@ -342,17 +409,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -378,17 +444,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -396,17 +461,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -486,17 +550,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("parameterValue"u8);
-
-                    if(value is IEnumerable<object> objectListParameterValue)
+                    if (value is IEnumerable<object> objectListParameterValue && objectListParameterValue.Any())
                     {
+                        writer.WriteStartArray("parameterValue"u8);
+
                         foreach(var parameterValueItem in objectListParameterValue.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(parameterValueItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "relatedthing":
                     if(!AllowedVersionsPerProperty["relatedThing"].Contains(requestedVersion))
@@ -504,17 +567,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("relatedThing"u8);
-
-                    if(value is IEnumerable<object> objectListRelatedThing)
+                    if (value is IEnumerable<object> objectListRelatedThing && objectListRelatedThing.Any())
                     {
+                        writer.WriteStartArray("relatedThing"u8);
+
                         foreach(var relatedThingItem in objectListRelatedThing.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(relatedThingItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))

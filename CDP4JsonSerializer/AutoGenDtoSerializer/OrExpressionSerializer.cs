@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="OrExpressionSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="OrExpressionSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -83,37 +83,49 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(orExpression.Iid);
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(orExpression.RevisionNumber);
-                    writer.WriteStartArray("term"u8);
 
-                    foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.Term.Count > 0)
                     {
-                        writer.WriteStringValue(termItem);
-                    }
+                        writer.WriteStartArray("term"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(termItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing OrExpression for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(orExpression.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(orExpression.Iid);
@@ -121,37 +133,49 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(orExpression.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(orExpression.RevisionNumber);
-                    writer.WriteStartArray("term"u8);
 
-                    foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.Term.Count > 0)
                     {
-                        writer.WriteStringValue(termItem);
-                    }
+                        writer.WriteStartArray("term"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(termItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing OrExpression for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(orExpression.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(orExpression.Iid);
@@ -159,14 +183,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(orExpression.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(orExpression.RevisionNumber);
-                    writer.WriteStartArray("term"u8);
 
-                    foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.Term.Count > 0)
                     {
-                        writer.WriteStringValue(termItem);
-                    }
+                        writer.WriteStartArray("term"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(termItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(orExpression.ThingPreference);
@@ -186,23 +214,31 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(orExpression.ClassKind.ToString());
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in orExpression.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in orExpression.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(orExpression.Iid);
@@ -210,14 +246,18 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(orExpression.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(orExpression.RevisionNumber);
-                    writer.WriteStartArray("term"u8);
 
-                    foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                    if (orExpression.Term.Count > 0)
                     {
-                        writer.WriteStringValue(termItem);
-                    }
+                        writer.WriteStartArray("term"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var termItem in orExpression.Term.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(termItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(orExpression.ThingPreference);
@@ -285,17 +325,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -303,17 +342,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -375,17 +413,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("term"u8);
-
-                    if(value is IEnumerable<object> objectListTerm)
+                    if (value is IEnumerable<object> objectListTerm && objectListTerm.Any())
                     {
+                        writer.WriteStartArray("term"u8);
+
                         foreach(var termItem in objectListTerm.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(termItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "thingpreference":
                     if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))

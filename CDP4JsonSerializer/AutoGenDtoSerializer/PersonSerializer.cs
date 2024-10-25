@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="PersonSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="PersonSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -112,14 +112,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("emailAddress"u8);
-
-                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    if (person.EmailAddress.Count > 0)
                     {
-                        writer.WriteStringValue(emailAddressItem);
-                    }
+                        writer.WriteStartArray("emailAddress"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(emailAddressItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -161,23 +164,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
-                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    if (person.TelephoneNumber.Count > 0)
                     {
-                        writer.WriteStringValue(telephoneNumberItem);
-                    }
+                        writer.WriteStartArray("telephoneNumber"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(telephoneNumberItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("userPreference"u8);
 
-                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    if (person.UserPreference.Count > 0)
                     {
-                        writer.WriteStringValue(userPreferenceItem);
-                    }
+                        writer.WriteStartArray("userPreference"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(userPreferenceItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
@@ -217,32 +228,43 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("emailAddress"u8);
-
-                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    if (person.EmailAddress.Count > 0)
                     {
-                        writer.WriteStringValue(emailAddressItem);
-                    }
+                        writer.WriteStartArray("emailAddress"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(emailAddressItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -286,23 +308,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
-                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    if (person.TelephoneNumber.Count > 0)
                     {
-                        writer.WriteStringValue(telephoneNumberItem);
-                    }
+                        writer.WriteStartArray("telephoneNumber"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(telephoneNumberItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("userPreference"u8);
 
-                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    if (person.UserPreference.Count > 0)
                     {
-                        writer.WriteStringValue(userPreferenceItem);
-                    }
+                        writer.WriteStartArray("userPreference"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(userPreferenceItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
@@ -342,32 +372,43 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("emailAddress"u8);
-
-                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    if (person.EmailAddress.Count > 0)
                     {
-                        writer.WriteStringValue(emailAddressItem);
-                    }
+                        writer.WriteStartArray("emailAddress"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(emailAddressItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -411,25 +452,33 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
-                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    if (person.TelephoneNumber.Count > 0)
                     {
-                        writer.WriteStringValue(telephoneNumberItem);
-                    }
+                        writer.WriteStartArray("telephoneNumber"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(telephoneNumberItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(person.ThingPreference);
-                    writer.WriteStartArray("userPreference"u8);
 
-                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    if (person.UserPreference.Count > 0)
                     {
-                        writer.WriteStringValue(userPreferenceItem);
-                    }
+                        writer.WriteStartArray("userPreference"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(userPreferenceItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -480,32 +529,43 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("emailAddress"u8);
-
-                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    if (person.EmailAddress.Count > 0)
                     {
-                        writer.WriteStringValue(emailAddressItem);
-                    }
+                        writer.WriteStartArray("emailAddress"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(emailAddressItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (person.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -549,25 +609,33 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
-                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    if (person.TelephoneNumber.Count > 0)
                     {
-                        writer.WriteStringValue(telephoneNumberItem);
-                    }
+                        writer.WriteStartArray("telephoneNumber"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(telephoneNumberItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(person.ThingPreference);
-                    writer.WriteStartArray("userPreference"u8);
 
-                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    if (person.UserPreference.Count > 0)
                     {
-                        writer.WriteStringValue(userPreferenceItem);
-                    }
+                        writer.WriteStartArray("userPreference"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(userPreferenceItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -687,17 +755,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("emailAddress"u8);
-
-                    if(value is IEnumerable<object> objectListEmailAddress)
+                    if (value is IEnumerable<object> objectListEmailAddress && objectListEmailAddress.Any())
                     {
+                        writer.WriteStartArray("emailAddress"u8);
+
                         foreach(var emailAddressItem in objectListEmailAddress.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(emailAddressItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -705,17 +772,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -723,17 +789,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "givenname":
                     if(!AllowedVersionsPerProperty["givenName"].Contains(requestedVersion))
@@ -957,17 +1022,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("telephoneNumber"u8);
-
-                    if(value is IEnumerable<object> objectListTelephoneNumber)
+                    if (value is IEnumerable<object> objectListTelephoneNumber && objectListTelephoneNumber.Any())
                     {
+                        writer.WriteStartArray("telephoneNumber"u8);
+
                         foreach(var telephoneNumberItem in objectListTelephoneNumber.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(telephoneNumberItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "thingpreference":
                     if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
@@ -993,17 +1057,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("userPreference"u8);
-
-                    if(value is IEnumerable<object> objectListUserPreference)
+                    if (value is IEnumerable<object> objectListUserPreference && objectListUserPreference.Any())
                     {
+                        writer.WriteStartArray("userPreference"u8);
+
                         foreach(var userPreferenceItem in objectListUserPreference.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(userPreferenceItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the Person");

@@ -36,25 +36,46 @@ namespace CDP4DalCommon.Protocol.Operations
     /// </summary>
     public class PostOperation
     {
+        private List<ClasslessDTO> delete = [];
+        private List<Thing> create = [];
+        private List<ClasslessDTO> update = [];
+        private List<CopyInfo> copy = [];
+
         /// <summary>
         /// Gets or sets the collection of DTOs to delete.
         /// </summary>
-        public List<ClasslessDTO> Delete { get; set; } = [];
+        public List<ClasslessDTO> Delete
+        {
+            get => this.delete ?? [];
+            set => this.delete = value ?? [];
+        }
 
         /// <summary>
         /// Gets or sets the collection of DTOs to create.
         /// </summary>
-        public List<Thing> Create { get; set; } = [];
+        public List<Thing> Create
+        {
+            get => this.create ?? [];
+            set => this.create = value ?? [];
+        }
 
         /// <summary>
         /// Gets or sets the collection of DTOs to update.
         /// </summary>
-        public List<ClasslessDTO> Update { get; set; } = [];
+        public List<ClasslessDTO> Update
+        {
+            get => this.update ?? [];
+            set => this.update = value ?? [];
+        }
 
         /// <summary>
         /// Gets or sets the collection of DTOs to copy.
         /// </summary>
-        public List<CopyInfo> Copy { get; set; } = [];
+        public List<CopyInfo> Copy
+        {
+            get => this.copy ?? [];
+            set => this.copy = value ?? [];
+        }
 
         /// <summary>
         /// Populate the current <see cref="PostOperation"/> with the content based on the 

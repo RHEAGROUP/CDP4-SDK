@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="EngineeringModelSetupSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="EngineeringModelSetupSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,78 +77,106 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModelSetup for Version 1.0.0");
-                    writer.WriteStartArray("activeDomain"u8);
 
-                    foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ActiveDomain.Count > 0)
                     {
-                        writer.WriteStringValue(activeDomainItem);
-                    }
+                        writer.WriteStartArray("activeDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(activeDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModelSetup.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("engineeringModelIid"u8);
                     writer.WriteStringValue(engineeringModelSetup.EngineeringModelIid);
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModelSetup.Iid);
-                    writer.WriteStartArray("iterationSetup"u8);
 
-                    foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.IterationSetup.Count > 0)
                     {
-                        writer.WriteStringValue(iterationSetupItem);
-                    }
+                        writer.WriteStartArray("iterationSetup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(iterationSetupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("kind"u8);
                     writer.WriteStringValue(engineeringModelSetup.Kind.ToString());
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(engineeringModelSetup.Name);
-                    writer.WriteStartArray("participant"u8);
 
-                    foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Participant.Count > 0)
                     {
-                        writer.WriteStringValue(participantItem);
-                    }
+                        writer.WriteStartArray("participant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(participantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("requiredRdl"u8);
 
-                    foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.RequiredRdl.Count > 0)
                     {
-                        writer.WriteStringValue(requiredRdlItem);
-                    }
+                        writer.WriteStartArray("requiredRdl"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requiredRdlItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(engineeringModelSetup.RevisionNumber);
@@ -170,74 +198,102 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModelSetup for Version 1.1.0");
-                    writer.WriteStartArray("activeDomain"u8);
 
-                    foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ActiveDomain.Count > 0)
                     {
-                        writer.WriteStringValue(activeDomainItem);
-                    }
+                        writer.WriteStartArray("activeDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(activeDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModelSetup.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("engineeringModelIid"u8);
                     writer.WriteStringValue(engineeringModelSetup.EngineeringModelIid);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModelSetup.Iid);
-                    writer.WriteStartArray("iterationSetup"u8);
 
-                    foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.IterationSetup.Count > 0)
                     {
-                        writer.WriteStringValue(iterationSetupItem);
-                    }
+                        writer.WriteStartArray("iterationSetup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(iterationSetupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("kind"u8);
                     writer.WriteStringValue(engineeringModelSetup.Kind.ToString());
@@ -245,23 +301,31 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(engineeringModelSetup.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(engineeringModelSetup.Name);
-                    writer.WriteStartArray("participant"u8);
 
-                    foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Participant.Count > 0)
                     {
-                        writer.WriteStringValue(participantItem);
-                    }
+                        writer.WriteStartArray("participant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(participantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("requiredRdl"u8);
 
-                    foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.RequiredRdl.Count > 0)
                     {
-                        writer.WriteStringValue(requiredRdlItem);
-                    }
+                        writer.WriteStartArray("requiredRdl"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requiredRdlItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(engineeringModelSetup.RevisionNumber);
@@ -283,23 +347,31 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModelSetup for Version 1.2.0");
-                    writer.WriteStartArray("activeDomain"u8);
 
-                    foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ActiveDomain.Count > 0)
                     {
-                        writer.WriteStringValue(activeDomainItem);
-                    }
+                        writer.WriteStartArray("activeDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(activeDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModelSetup.ClassKind.ToString());
@@ -314,54 +386,73 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("engineeringModelIid"u8);
                     writer.WriteStringValue(engineeringModelSetup.EngineeringModelIid);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModelSetup.Iid);
-                    writer.WriteStartArray("iterationSetup"u8);
 
-                    foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.IterationSetup.Count > 0)
                     {
-                        writer.WriteStringValue(iterationSetupItem);
-                    }
+                        writer.WriteStartArray("iterationSetup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(iterationSetupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("kind"u8);
                     writer.WriteStringValue(engineeringModelSetup.Kind.ToString());
@@ -369,32 +460,44 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(engineeringModelSetup.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(engineeringModelSetup.Name);
-                    writer.WriteStartArray("organizationalParticipant"u8);
 
-                    foreach(var organizationalParticipantItem in engineeringModelSetup.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.OrganizationalParticipant.Count > 0)
                     {
-                        writer.WriteStringValue(organizationalParticipantItem);
-                    }
+                        writer.WriteStartArray("organizationalParticipant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var organizationalParticipantItem in engineeringModelSetup.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(organizationalParticipantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("participant"u8);
 
-                    foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Participant.Count > 0)
                     {
-                        writer.WriteStringValue(participantItem);
-                    }
+                        writer.WriteStartArray("participant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(participantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("requiredRdl"u8);
 
-                    foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.RequiredRdl.Count > 0)
                     {
-                        writer.WriteStringValue(requiredRdlItem);
-                    }
+                        writer.WriteStartArray("requiredRdl"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requiredRdlItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(engineeringModelSetup.RevisionNumber);
@@ -418,14 +521,18 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModelSetup for Version 1.3.0");
-                    writer.WriteStartArray("activeDomain"u8);
 
-                    foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ActiveDomain.Count > 0)
                     {
-                        writer.WriteStringValue(activeDomainItem);
-                    }
+                        writer.WriteStartArray("activeDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var activeDomainItem in engineeringModelSetup.ActiveDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(activeDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("actor"u8);
 
@@ -438,14 +545,17 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in engineeringModelSetup.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModelSetup.ClassKind.ToString());
@@ -460,54 +570,73 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in engineeringModelSetup.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("engineeringModelIid"u8);
                     writer.WriteStringValue(engineeringModelSetup.EngineeringModelIid);
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in engineeringModelSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in engineeringModelSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in engineeringModelSetup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModelSetup.Iid);
-                    writer.WriteStartArray("iterationSetup"u8);
 
-                    foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.IterationSetup.Count > 0)
                     {
-                        writer.WriteStringValue(iterationSetupItem);
-                    }
+                        writer.WriteStartArray("iterationSetup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var iterationSetupItem in engineeringModelSetup.IterationSetup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(iterationSetupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("kind"u8);
                     writer.WriteStringValue(engineeringModelSetup.Kind.ToString());
@@ -515,32 +644,44 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(engineeringModelSetup.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(engineeringModelSetup.Name);
-                    writer.WriteStartArray("organizationalParticipant"u8);
 
-                    foreach(var organizationalParticipantItem in engineeringModelSetup.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.OrganizationalParticipant.Count > 0)
                     {
-                        writer.WriteStringValue(organizationalParticipantItem);
-                    }
+                        writer.WriteStartArray("organizationalParticipant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var organizationalParticipantItem in engineeringModelSetup.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(organizationalParticipantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("participant"u8);
 
-                    foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.Participant.Count > 0)
                     {
-                        writer.WriteStringValue(participantItem);
-                    }
+                        writer.WriteStartArray("participant"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var participantItem in engineeringModelSetup.Participant.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(participantItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("requiredRdl"u8);
 
-                    foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                    if (engineeringModelSetup.RequiredRdl.Count > 0)
                     {
-                        writer.WriteStringValue(requiredRdlItem);
-                    }
+                        writer.WriteStartArray("requiredRdl"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requiredRdlItem in engineeringModelSetup.RequiredRdl.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requiredRdlItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(engineeringModelSetup.RevisionNumber);
@@ -589,17 +730,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("activeDomain"u8);
-
-                    if(value is IEnumerable<object> objectListActiveDomain)
+                    if (value is IEnumerable<object> objectListActiveDomain && objectListActiveDomain.Any())
                     {
+                        writer.WriteStartArray("activeDomain"u8);
+
                         foreach(var activeDomainItem in objectListActiveDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(activeDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "actor":
                     if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
@@ -625,17 +765,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -679,17 +818,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "engineeringmodeliid":
                     if(!AllowedVersionsPerProperty["engineeringModelIid"].Contains(requestedVersion))
@@ -715,17 +853,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -733,17 +870,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "hyperlink":
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
@@ -751,17 +887,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -787,17 +922,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("iterationSetup"u8);
-
-                    if(value is IEnumerable<object> objectListIterationSetup)
+                    if (value is IEnumerable<object> objectListIterationSetup && objectListIterationSetup.Any())
                     {
+                        writer.WriteStartArray("iterationSetup"u8);
+
                         foreach(var iterationSetupItem in objectListIterationSetup.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(iterationSetupItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "kind":
                     if(!AllowedVersionsPerProperty["kind"].Contains(requestedVersion))
@@ -859,17 +993,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("organizationalParticipant"u8);
-
-                    if(value is IEnumerable<object> objectListOrganizationalParticipant)
+                    if (value is IEnumerable<object> objectListOrganizationalParticipant && objectListOrganizationalParticipant.Any())
                     {
+                        writer.WriteStartArray("organizationalParticipant"u8);
+
                         foreach(var organizationalParticipantItem in objectListOrganizationalParticipant.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(organizationalParticipantItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "participant":
                     if(!AllowedVersionsPerProperty["participant"].Contains(requestedVersion))
@@ -877,17 +1010,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("participant"u8);
-
-                    if(value is IEnumerable<object> objectListParticipant)
+                    if (value is IEnumerable<object> objectListParticipant && objectListParticipant.Any())
                     {
+                        writer.WriteStartArray("participant"u8);
+
                         foreach(var participantItem in objectListParticipant.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(participantItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "requiredrdl":
                     if(!AllowedVersionsPerProperty["requiredRdl"].Contains(requestedVersion))
@@ -895,17 +1027,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("requiredRdl"u8);
-
-                    if(value is IEnumerable<object> objectListRequiredRdl)
+                    if (value is IEnumerable<object> objectListRequiredRdl && objectListRequiredRdl.Any())
                     {
+                        writer.WriteStartArray("requiredRdl"u8);
+
                         foreach(var requiredRdlItem in objectListRequiredRdl.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(requiredRdlItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))

@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SampledFunctionParameterTypeSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="SampledFunctionParameterTypeSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,34 +77,46 @@ namespace CDP4JsonSerializer
             {
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing SampledFunctionParameterType for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in sampledFunctionParameterType.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in sampledFunctionParameterType.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in sampledFunctionParameterType.Category.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in sampledFunctionParameterType.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(sampledFunctionParameterType.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in sampledFunctionParameterType.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in sampledFunctionParameterType.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("degreeOfInterpolation"u8);
 
@@ -117,52 +129,71 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("dependentParameterType"u8);
-
-                    foreach(var dependentParameterTypeItem in sampledFunctionParameterType.DependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                    if (sampledFunctionParameterType.DependentParameterType.Count > 0)
                     {
+                        writer.WriteStartArray("dependentParameterType"u8);
+
+                        foreach(var dependentParameterTypeItem in sampledFunctionParameterType.DependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                        {
                         writer.WriteOrderedItem(dependentParameterTypeItem);
-                    }
+                        }
 
-                    writer.WriteEndArray();
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in sampledFunctionParameterType.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in sampledFunctionParameterType.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in sampledFunctionParameterType.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in sampledFunctionParameterType.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in sampledFunctionParameterType.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in sampledFunctionParameterType.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(sampledFunctionParameterType.Iid);
-                    writer.WriteStartArray("independentParameterType"u8);
 
-                    foreach(var independentParameterTypeItem in sampledFunctionParameterType.IndependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                    if (sampledFunctionParameterType.IndependentParameterType.Count > 0)
                     {
-                        writer.WriteOrderedItem(independentParameterTypeItem);
-                    }
+                        writer.WriteStartArray("independentParameterType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var independentParameterTypeItem in sampledFunctionParameterType.IndependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                        {
+                        writer.WriteOrderedItem(independentParameterTypeItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WriteString("interpolationPeriod"u8, sampledFunctionParameterType.InterpolationPeriod.ToJsonString());
                     writer.WritePropertyName("isDeprecated"u8);
@@ -193,34 +224,45 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in sampledFunctionParameterType.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in sampledFunctionParameterType.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in sampledFunctionParameterType.Category.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in sampledFunctionParameterType.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(sampledFunctionParameterType.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in sampledFunctionParameterType.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in sampledFunctionParameterType.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("degreeOfInterpolation"u8);
 
@@ -233,52 +275,71 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("dependentParameterType"u8);
-
-                    foreach(var dependentParameterTypeItem in sampledFunctionParameterType.DependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                    if (sampledFunctionParameterType.DependentParameterType.Count > 0)
                     {
+                        writer.WriteStartArray("dependentParameterType"u8);
+
+                        foreach(var dependentParameterTypeItem in sampledFunctionParameterType.DependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                        {
                         writer.WriteOrderedItem(dependentParameterTypeItem);
-                    }
+                        }
 
-                    writer.WriteEndArray();
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in sampledFunctionParameterType.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in sampledFunctionParameterType.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in sampledFunctionParameterType.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in sampledFunctionParameterType.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in sampledFunctionParameterType.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (sampledFunctionParameterType.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in sampledFunctionParameterType.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(sampledFunctionParameterType.Iid);
-                    writer.WriteStartArray("independentParameterType"u8);
 
-                    foreach(var independentParameterTypeItem in sampledFunctionParameterType.IndependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                    if (sampledFunctionParameterType.IndependentParameterType.Count > 0)
                     {
-                        writer.WriteOrderedItem(independentParameterTypeItem);
-                    }
+                        writer.WriteStartArray("independentParameterType"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var independentParameterTypeItem in sampledFunctionParameterType.IndependentParameterType.OrderBy(x => x, this.OrderedItemComparer))
+                        {
+                        writer.WriteOrderedItem(independentParameterTypeItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WriteString("interpolationPeriod"u8, sampledFunctionParameterType.InterpolationPeriod.ToJsonString());
                     writer.WritePropertyName("isDeprecated"u8);
@@ -341,17 +402,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "category":
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
@@ -359,17 +419,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -395,17 +454,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "degreeofinterpolation":
                     if(!AllowedVersionsPerProperty["degreeOfInterpolation"].Contains(requestedVersion))
@@ -431,17 +489,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("dependentParameterType"u8);
-
-                    if(value is IEnumerable<object> objectListDependentParameterType)
+                    if (value is IEnumerable<object> objectListDependentParameterType && objectListDependentParameterType.Any())
                     {
+                        writer.WriteStartArray("dependentParameterType"u8);
+
                         foreach(var dependentParameterTypeItem in objectListDependentParameterType.OfType<OrderedItem>().OrderBy(x => x, this.OrderedItemComparer))
                         {
                             writer.WriteOrderedItem(dependentParameterTypeItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -449,17 +506,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -467,17 +523,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "hyperlink":
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
@@ -485,17 +540,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -521,17 +575,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("independentParameterType"u8);
-
-                    if(value is IEnumerable<object> objectListIndependentParameterType)
+                    if (value is IEnumerable<object> objectListIndependentParameterType && objectListIndependentParameterType.Any())
                     {
+                        writer.WriteStartArray("independentParameterType"u8);
+
                         foreach(var independentParameterTypeItem in objectListIndependentParameterType.OfType<OrderedItem>().OrderBy(x => x, this.OrderedItemComparer))
                         {
                             writer.WriteOrderedItem(independentParameterTypeItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "interpolationperiod":
                     if(!AllowedVersionsPerProperty["interpolationPeriod"].Contains(requestedVersion))

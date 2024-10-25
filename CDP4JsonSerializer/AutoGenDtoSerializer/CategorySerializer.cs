@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CategorySerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="CategorySerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,34 +77,46 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing Category for Version 1.0.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (category.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(category.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (category.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (category.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(category.Iid);
@@ -114,77 +126,105 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(category.IsDeprecated);
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(category.Name);
-                    writer.WriteStartArray("permissibleClass"u8);
 
-                    foreach(var permissibleClassItem in category.PermissibleClass)
+                    if (category.PermissibleClass.Count > 0)
                     {
-                        writer.WriteStringValue(permissibleClassItem.ToString());
-                    }
+                        writer.WriteStartArray("permissibleClass"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var permissibleClassItem in category.PermissibleClass)
+                        {
+                            writer.WriteStringValue(permissibleClassItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(category.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(category.ShortName);
-                    writer.WriteStartArray("superCategory"u8);
 
-                    foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                    if (category.SuperCategory.Count > 0)
                     {
-                        writer.WriteStringValue(superCategoryItem);
-                    }
+                        writer.WriteStartArray("superCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(superCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Category for Version 1.1.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (category.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(category.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (category.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (category.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(category.Iid);
@@ -196,77 +236,105 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(category.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(category.Name);
-                    writer.WriteStartArray("permissibleClass"u8);
 
-                    foreach(var permissibleClassItem in category.PermissibleClass)
+                    if (category.PermissibleClass.Count > 0)
                     {
-                        writer.WriteStringValue(permissibleClassItem.ToString());
-                    }
+                        writer.WriteStartArray("permissibleClass"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var permissibleClassItem in category.PermissibleClass)
+                        {
+                            writer.WriteStringValue(permissibleClassItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(category.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(category.ShortName);
-                    writer.WriteStartArray("superCategory"u8);
 
-                    foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                    if (category.SuperCategory.Count > 0)
                     {
-                        writer.WriteStringValue(superCategoryItem);
-                    }
+                        writer.WriteStartArray("superCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(superCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Category for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (category.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(category.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (category.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (category.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(category.Iid);
@@ -278,27 +346,35 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(category.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(category.Name);
-                    writer.WriteStartArray("permissibleClass"u8);
 
-                    foreach(var permissibleClassItem in category.PermissibleClass)
+                    if (category.PermissibleClass.Count > 0)
                     {
-                        writer.WriteStringValue(permissibleClassItem.ToString());
-                    }
+                        writer.WriteStartArray("permissibleClass"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var permissibleClassItem in category.PermissibleClass)
+                        {
+                            writer.WriteStringValue(permissibleClassItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(category.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(category.ShortName);
-                    writer.WriteStartArray("superCategory"u8);
 
-                    foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                    if (category.SuperCategory.Count > 0)
                     {
-                        writer.WriteStringValue(superCategoryItem);
-                    }
+                        writer.WriteStartArray("superCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(superCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(category.ThingPreference);
@@ -316,52 +392,71 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (category.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in category.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(category.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (category.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in category.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in category.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (category.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in category.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (category.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in category.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(category.Iid);
@@ -373,27 +468,35 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(category.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(category.Name);
-                    writer.WriteStartArray("permissibleClass"u8);
 
-                    foreach(var permissibleClassItem in category.PermissibleClass)
+                    if (category.PermissibleClass.Count > 0)
                     {
-                        writer.WriteStringValue(permissibleClassItem.ToString());
-                    }
+                        writer.WriteStartArray("permissibleClass"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var permissibleClassItem in category.PermissibleClass)
+                        {
+                            writer.WriteStringValue(permissibleClassItem.ToString());
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(category.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(category.ShortName);
-                    writer.WriteStartArray("superCategory"u8);
 
-                    foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                    if (category.SuperCategory.Count > 0)
                     {
-                        writer.WriteStringValue(superCategoryItem);
-                    }
+                        writer.WriteStartArray("superCategory"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var superCategoryItem in category.SuperCategory.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(superCategoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(category.ThingPreference);
@@ -443,17 +546,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -479,17 +581,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -497,17 +598,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -515,17 +615,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "hyperlink":
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
@@ -533,17 +632,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -641,17 +739,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("permissibleClass"u8);
-
-                    if(value is IEnumerable<object> objectListPermissibleClass)
+                    if (value is IEnumerable<object> objectListPermissibleClass && objectListPermissibleClass.Any())
                     {
-                        foreach(var permissibleClassItem in objectListPermissibleClass)
+                        writer.WriteStartArray("permissibleClass"u8);
+
+                        foreach (var permissibleClassItem in objectListPermissibleClass)
                         {
                             writer.WriteStringValue(((ClassKind)permissibleClassItem).ToString());
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
@@ -695,17 +792,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("superCategory"u8);
-
-                    if(value is IEnumerable<object> objectListSuperCategory)
+                    if (value is IEnumerable<object> objectListSuperCategory && objectListSuperCategory.Any())
                     {
+                        writer.WriteStartArray("superCategory"u8);
+
                         foreach(var superCategoryItem in objectListSuperCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(superCategoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "thingpreference":
                     if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))

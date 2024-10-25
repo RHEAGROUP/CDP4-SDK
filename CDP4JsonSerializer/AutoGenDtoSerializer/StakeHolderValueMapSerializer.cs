@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="StakeHolderValueMapSerializer.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="StakeHolderValueMapSerializer.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -77,70 +77,98 @@ namespace CDP4JsonSerializer
             {
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing StakeHolderValueMap for Version 1.1.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("goal"u8);
 
-                    foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Goal.Count > 0)
                     {
-                        writer.WriteStringValue(goalItem);
-                    }
+                        writer.WriteStartArray("goal"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(goalItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Iid);
@@ -148,113 +176,157 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(stakeHolderValueMap.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Name);
-                    writer.WriteStartArray("requirement"u8);
 
-                    foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Requirement.Count > 0)
                     {
-                        writer.WriteStringValue(requirementItem);
-                    }
+                        writer.WriteStartArray("requirement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requirementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(stakeHolderValueMap.RevisionNumber);
-                    writer.WriteStartArray("settings"u8);
 
-                    foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Settings.Count > 0)
                     {
-                        writer.WriteStringValue(settingsItem);
-                    }
+                        writer.WriteStartArray("settings"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(settingsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ShortName);
-                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.StakeholderValue.Count > 0)
                     {
-                        writer.WriteStringValue(stakeholderValueItem);
-                    }
+                        writer.WriteStartArray("stakeholderValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(stakeholderValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("valueGroup"u8);
 
-                    foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ValueGroup.Count > 0)
                     {
-                        writer.WriteStringValue(valueGroupItem);
-                    }
+                        writer.WriteStartArray("valueGroup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueGroupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing StakeHolderValueMap for Version 1.2.0");
-                    writer.WriteStartArray("alias"u8);
 
-                    foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("goal"u8);
 
-                    foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Goal.Count > 0)
                     {
-                        writer.WriteStringValue(goalItem);
-                    }
+                        writer.WriteStartArray("goal"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(goalItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Iid);
@@ -262,47 +334,63 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(stakeHolderValueMap.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Name);
-                    writer.WriteStartArray("requirement"u8);
 
-                    foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Requirement.Count > 0)
                     {
-                        writer.WriteStringValue(requirementItem);
-                    }
+                        writer.WriteStartArray("requirement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requirementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(stakeHolderValueMap.RevisionNumber);
-                    writer.WriteStartArray("settings"u8);
 
-                    foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Settings.Count > 0)
                     {
-                        writer.WriteStringValue(settingsItem);
-                    }
+                        writer.WriteStartArray("settings"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(settingsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ShortName);
-                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.StakeholderValue.Count > 0)
                     {
-                        writer.WriteStringValue(stakeholderValueItem);
-                    }
+                        writer.WriteStartArray("stakeholderValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(stakeholderValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ThingPreference);
-                    writer.WriteStartArray("valueGroup"u8);
 
-                    foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ValueGroup.Count > 0)
                     {
-                        writer.WriteStringValue(valueGroupItem);
-                    }
+                        writer.WriteStartArray("valueGroup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueGroupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 case "1.3.0":
@@ -318,70 +406,97 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Alias.Count > 0)
                     {
-                        writer.WriteStringValue(aliasItem);
-                    }
+                        writer.WriteStartArray("alias"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var aliasItem in stakeHolderValueMap.Alias.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(aliasItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("category"u8);
 
-                    foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Category.Count > 0)
                     {
-                        writer.WriteStringValue(categoryItem);
-                    }
+                        writer.WriteStartArray("category"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var categoryItem in stakeHolderValueMap.Category.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(categoryItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ClassKind.ToString());
-                    writer.WriteStartArray("definition"u8);
 
-                    foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Definition.Count > 0)
                     {
-                        writer.WriteStringValue(definitionItem);
-                    }
+                        writer.WriteStartArray("definition"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var definitionItem in stakeHolderValueMap.Definition.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(definitionItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedDomain"u8);
 
-                    foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedDomain.Count > 0)
                     {
-                        writer.WriteStringValue(excludedDomainItem);
-                    }
+                        writer.WriteStartArray("excludedDomain"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedDomainItem in stakeHolderValueMap.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedDomainItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("excludedPerson"u8);
 
-                    foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ExcludedPerson.Count > 0)
                     {
-                        writer.WriteStringValue(excludedPersonItem);
-                    }
+                        writer.WriteStartArray("excludedPerson"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var excludedPersonItem in stakeHolderValueMap.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(excludedPersonItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("goal"u8);
 
-                    foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Goal.Count > 0)
                     {
-                        writer.WriteStringValue(goalItem);
-                    }
+                        writer.WriteStartArray("goal"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var goalItem in stakeHolderValueMap.Goal.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(goalItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
-                    writer.WriteStartArray("hyperLink"u8);
 
-                    foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.HyperLink.Count > 0)
                     {
-                        writer.WriteStringValue(hyperLinkItem);
-                    }
+                        writer.WriteStartArray("hyperLink"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var hyperLinkItem in stakeHolderValueMap.HyperLink.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(hyperLinkItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Iid);
@@ -389,47 +504,63 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(stakeHolderValueMap.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(stakeHolderValueMap.Name);
-                    writer.WriteStartArray("requirement"u8);
 
-                    foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Requirement.Count > 0)
                     {
-                        writer.WriteStringValue(requirementItem);
-                    }
+                        writer.WriteStartArray("requirement"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var requirementItem in stakeHolderValueMap.Requirement.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(requirementItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(stakeHolderValueMap.RevisionNumber);
-                    writer.WriteStartArray("settings"u8);
 
-                    foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.Settings.Count > 0)
                     {
-                        writer.WriteStringValue(settingsItem);
-                    }
+                        writer.WriteStartArray("settings"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var settingsItem in stakeHolderValueMap.Settings.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(settingsItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ShortName);
-                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.StakeholderValue.Count > 0)
                     {
-                        writer.WriteStringValue(stakeholderValueItem);
-                    }
+                        writer.WriteStartArray("stakeholderValue"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var stakeholderValueItem in stakeHolderValueMap.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(stakeholderValueItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(stakeHolderValueMap.ThingPreference);
-                    writer.WriteStartArray("valueGroup"u8);
 
-                    foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    if (stakeHolderValueMap.ValueGroup.Count > 0)
                     {
-                        writer.WriteStringValue(valueGroupItem);
-                    }
+                        writer.WriteStartArray("valueGroup"u8);
 
-                    writer.WriteEndArray();
+                        foreach(var valueGroupItem in stakeHolderValueMap.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                        {
+                            writer.WriteStringValue(valueGroupItem);
+                        }
+
+                        writer.WriteEndArray();
+                    }
                     
                     break;
                 default:
@@ -477,17 +608,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("alias"u8);
-
-                    if(value is IEnumerable<object> objectListAlias)
+                    if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
+                        writer.WriteStartArray("alias"u8);
+
                         foreach(var aliasItem in objectListAlias.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(aliasItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "category":
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
@@ -495,17 +625,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("category"u8);
-
-                    if(value is IEnumerable<object> objectListCategory)
+                    if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
                     {
+                        writer.WriteStartArray("category"u8);
+
                         foreach(var categoryItem in objectListCategory.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(categoryItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "classkind":
                     if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
@@ -531,17 +660,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("definition"u8);
-
-                    if(value is IEnumerable<object> objectListDefinition)
+                    if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
+                        writer.WriteStartArray("definition"u8);
+
                         foreach(var definitionItem in objectListDefinition.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(definitionItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludeddomain":
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
@@ -549,17 +677,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedDomain"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedDomain)
+                    if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
+                        writer.WriteStartArray("excludedDomain"u8);
+
                         foreach(var excludedDomainItem in objectListExcludedDomain.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedDomainItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "excludedperson":
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
@@ -567,17 +694,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("excludedPerson"u8);
-
-                    if(value is IEnumerable<object> objectListExcludedPerson)
+                    if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
+                        writer.WriteStartArray("excludedPerson"u8);
+
                         foreach(var excludedPersonItem in objectListExcludedPerson.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(excludedPersonItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "goal":
                     if(!AllowedVersionsPerProperty["goal"].Contains(requestedVersion))
@@ -585,17 +711,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("goal"u8);
-
-                    if(value is IEnumerable<object> objectListGoal)
+                    if (value is IEnumerable<object> objectListGoal && objectListGoal.Any())
                     {
+                        writer.WriteStartArray("goal"u8);
+
                         foreach(var goalItem in objectListGoal.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(goalItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "hyperlink":
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
@@ -603,17 +728,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("hyperLink"u8);
-
-                    if(value is IEnumerable<object> objectListHyperLink)
+                    if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
                     {
+                        writer.WriteStartArray("hyperLink"u8);
+
                         foreach(var hyperLinkItem in objectListHyperLink.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(hyperLinkItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "iid":
                     if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
@@ -675,17 +799,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("requirement"u8);
-
-                    if(value is IEnumerable<object> objectListRequirement)
+                    if (value is IEnumerable<object> objectListRequirement && objectListRequirement.Any())
                     {
+                        writer.WriteStartArray("requirement"u8);
+
                         foreach(var requirementItem in objectListRequirement.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(requirementItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "revisionnumber":
                     if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
@@ -711,17 +834,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("settings"u8);
-
-                    if(value is IEnumerable<object> objectListSettings)
+                    if (value is IEnumerable<object> objectListSettings && objectListSettings.Any())
                     {
+                        writer.WriteStartArray("settings"u8);
+
                         foreach(var settingsItem in objectListSettings.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(settingsItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "shortname":
                     if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
@@ -747,17 +869,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("stakeholderValue"u8);
-
-                    if(value is IEnumerable<object> objectListStakeholderValue)
+                    if (value is IEnumerable<object> objectListStakeholderValue && objectListStakeholderValue.Any())
                     {
+                        writer.WriteStartArray("stakeholderValue"u8);
+
                         foreach(var stakeholderValueItem in objectListStakeholderValue.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(stakeholderValueItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 case "thingpreference":
                     if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
@@ -783,17 +904,16 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
-                    writer.WriteStartArray("valueGroup"u8);
-
-                    if(value is IEnumerable<object> objectListValueGroup)
+                    if (value is IEnumerable<object> objectListValueGroup && objectListValueGroup.Any())
                     {
+                        writer.WriteStartArray("valueGroup"u8);
+
                         foreach(var valueGroupItem in objectListValueGroup.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
                         {
                             writer.WriteStringValue(valueGroupItem);
                         }
+                        writer.WriteEndArray();
                     }
-                    
-                    writer.WriteEndArray();
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the StakeHolderValueMap");
