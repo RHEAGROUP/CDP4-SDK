@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of NestedElement since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -80,8 +84,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedElement.ClassKind.ToString());
 
-                    if (nestedElement.ElementUsage.Count > 0)
-                    {
+                    //if (nestedElement.ElementUsage.Count > 0)
+                    //{
                         writer.WriteStartArray("elementUsage"u8);
 
                         foreach(var elementUsageItem in nestedElement.ElementUsage.OrderBy(x => x, this.OrderedItemComparer))
@@ -90,15 +94,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(nestedElement.Iid);
                     writer.WritePropertyName("isVolatile"u8);
                     writer.WriteBooleanValue(nestedElement.IsVolatile);
 
-                    if (nestedElement.NestedParameter.Count > 0)
-                    {
+                    //if (nestedElement.NestedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("nestedParameter"u8);
 
                         foreach(var nestedParameterItem in nestedElement.NestedParameter.OrderBy(x => x, this.GuidComparer))
@@ -107,7 +111,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(nestedElement.RevisionNumber);
@@ -119,8 +123,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedElement.ClassKind.ToString());
 
-                    if (nestedElement.ElementUsage.Count > 0)
-                    {
+                    //if (nestedElement.ElementUsage.Count > 0)
+                    //{
                         writer.WriteStartArray("elementUsage"u8);
 
                         foreach(var elementUsageItem in nestedElement.ElementUsage.OrderBy(x => x, this.OrderedItemComparer))
@@ -129,11 +133,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedElement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -142,11 +146,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedElement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -155,7 +159,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(nestedElement.Iid);
@@ -164,8 +168,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(nestedElement.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (nestedElement.NestedParameter.Count > 0)
-                    {
+                    //if (nestedElement.NestedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("nestedParameter"u8);
 
                         foreach(var nestedParameterItem in nestedElement.NestedParameter.OrderBy(x => x, this.GuidComparer))
@@ -174,7 +178,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(nestedElement.RevisionNumber);
@@ -186,8 +190,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedElement.ClassKind.ToString());
 
-                    if (nestedElement.ElementUsage.Count > 0)
-                    {
+                    //if (nestedElement.ElementUsage.Count > 0)
+                    //{
                         writer.WriteStartArray("elementUsage"u8);
 
                         foreach(var elementUsageItem in nestedElement.ElementUsage.OrderBy(x => x, this.OrderedItemComparer))
@@ -196,11 +200,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedElement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -209,11 +213,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedElement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -222,7 +226,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(nestedElement.Iid);
@@ -231,8 +235,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(nestedElement.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (nestedElement.NestedParameter.Count > 0)
-                    {
+                    //if (nestedElement.NestedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("nestedParameter"u8);
 
                         foreach(var nestedParameterItem in nestedElement.NestedParameter.OrderBy(x => x, this.GuidComparer))
@@ -241,7 +245,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(nestedElement.RevisionNumber);
@@ -266,8 +270,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedElement.ClassKind.ToString());
 
-                    if (nestedElement.ElementUsage.Count > 0)
-                    {
+                    //if (nestedElement.ElementUsage.Count > 0)
+                    //{
                         writer.WriteStartArray("elementUsage"u8);
 
                         foreach(var elementUsageItem in nestedElement.ElementUsage.OrderBy(x => x, this.OrderedItemComparer))
@@ -276,11 +280,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedElement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -289,11 +293,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedElement.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedElement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedElement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -302,7 +306,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(nestedElement.Iid);
@@ -311,8 +315,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(nestedElement.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (nestedElement.NestedParameter.Count > 0)
-                    {
+                    //if (nestedElement.NestedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("nestedParameter"u8);
 
                         foreach(var nestedParameterItem in nestedElement.NestedParameter.OrderBy(x => x, this.GuidComparer))
@@ -321,7 +325,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(nestedElement.RevisionNumber);
@@ -393,6 +397,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListElementUsage && objectListElementUsage.Any())
                     {
                         writer.WriteStartArray("elementUsage"u8);
@@ -410,6 +419,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -425,6 +439,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -496,6 +515,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["nestedParameter"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListNestedParameter && objectListNestedParameter.Any())

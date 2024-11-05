@@ -28,7 +28,10 @@
 
 namespace CDP4JsonSerializer
 {
+    using System.Collections.Generic;
     using System.Text.Json;
+
+    using CDP4Common.Types;
 
     using NLog;
 

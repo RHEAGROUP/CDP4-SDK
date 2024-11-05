@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of DecompositionRule since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.0.0");
 
-                    if (decompositionRule.Alias.Count > 0)
-                    {
+                    //if (decompositionRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,13 +92,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
 
-                    if (decompositionRule.ContainedCategory.Count > 0)
-                    {
+                    //if (decompositionRule.ContainedCategory.Count > 0)
+                    //{
                         writer.WriteStartArray("containedCategory"u8);
 
                         foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
@@ -103,13 +107,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
 
-                    if (decompositionRule.Definition.Count > 0)
-                    {
+                    //if (decompositionRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -118,11 +122,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.HyperLink.Count > 0)
-                    {
+                    //if (decompositionRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -131,7 +135,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -160,8 +164,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.1.0");
 
-                    if (decompositionRule.Alias.Count > 0)
-                    {
+                    //if (decompositionRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -170,13 +174,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
 
-                    if (decompositionRule.ContainedCategory.Count > 0)
-                    {
+                    //if (decompositionRule.ContainedCategory.Count > 0)
+                    //{
                         writer.WriteStartArray("containedCategory"u8);
 
                         foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
@@ -185,13 +189,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
 
-                    if (decompositionRule.Definition.Count > 0)
-                    {
+                    //if (decompositionRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -200,11 +204,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -213,11 +217,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -226,11 +230,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.HyperLink.Count > 0)
-                    {
+                    //if (decompositionRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -239,7 +243,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -270,8 +274,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing DecompositionRule for Version 1.2.0");
 
-                    if (decompositionRule.Alias.Count > 0)
-                    {
+                    //if (decompositionRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -280,13 +284,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
 
-                    if (decompositionRule.ContainedCategory.Count > 0)
-                    {
+                    //if (decompositionRule.ContainedCategory.Count > 0)
+                    //{
                         writer.WriteStartArray("containedCategory"u8);
 
                         foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
@@ -295,13 +299,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
 
-                    if (decompositionRule.Definition.Count > 0)
-                    {
+                    //if (decompositionRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -310,11 +314,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -323,11 +327,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -336,11 +340,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.HyperLink.Count > 0)
-                    {
+                    //if (decompositionRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -349,7 +353,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -392,8 +396,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (decompositionRule.Alias.Count > 0)
-                    {
+                    //if (decompositionRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in decompositionRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -402,13 +406,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(decompositionRule.ClassKind.ToString());
 
-                    if (decompositionRule.ContainedCategory.Count > 0)
-                    {
+                    //if (decompositionRule.ContainedCategory.Count > 0)
+                    //{
                         writer.WriteStartArray("containedCategory"u8);
 
                         foreach(var containedCategoryItem in decompositionRule.ContainedCategory.OrderBy(x => x, this.GuidComparer))
@@ -417,13 +421,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("containingCategory"u8);
                     writer.WriteStringValue(decompositionRule.ContainingCategory);
 
-                    if (decompositionRule.Definition.Count > 0)
-                    {
+                    //if (decompositionRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in decompositionRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -432,11 +436,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in decompositionRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -445,11 +449,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (decompositionRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in decompositionRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -458,11 +462,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (decompositionRule.HyperLink.Count > 0)
-                    {
+                    //if (decompositionRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in decompositionRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -471,7 +475,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(decompositionRule.Iid);
@@ -546,6 +550,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -579,6 +588,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["containedCategory"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListContainedCategory && objectListContainedCategory.Any())
@@ -616,6 +630,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -631,6 +650,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
@@ -650,6 +674,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -665,6 +694,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())

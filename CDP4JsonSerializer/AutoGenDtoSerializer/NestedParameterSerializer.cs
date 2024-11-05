@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of NestedParameter since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -125,8 +129,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedParameter.ClassKind.ToString());
 
-                    if (nestedParameter.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedParameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -135,11 +139,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedParameter.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedParameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -148,7 +152,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("formula"u8);
                     writer.WriteStringValue(nestedParameter.Formula);
@@ -183,8 +187,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedParameter.ClassKind.ToString());
 
-                    if (nestedParameter.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedParameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -193,11 +197,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedParameter.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedParameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -206,7 +210,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("formula"u8);
                     writer.WriteStringValue(nestedParameter.Formula);
@@ -254,8 +258,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(nestedParameter.ClassKind.ToString());
 
-                    if (nestedParameter.ExcludedDomain.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in nestedParameter.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -264,11 +268,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (nestedParameter.ExcludedPerson.Count > 0)
-                    {
+                    //if (nestedParameter.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in nestedParameter.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -277,7 +281,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("formula"u8);
                     writer.WriteStringValue(nestedParameter.Formula);
@@ -411,6 +415,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -426,6 +435,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())

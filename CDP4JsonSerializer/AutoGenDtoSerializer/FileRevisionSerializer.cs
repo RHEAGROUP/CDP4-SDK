@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of FileRevision since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -97,8 +101,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("creator"u8);
                     writer.WriteStringValue(fileRevision.Creator);
 
-                    if (fileRevision.FileType.Count > 0)
-                    {
+                    //if (fileRevision.FileType.Count > 0)
+                    //{
                         writer.WriteStartArray("fileType"u8);
 
                         foreach(var fileTypeItem in fileRevision.FileType.OrderBy(x => x, this.OrderedItemComparer))
@@ -107,7 +111,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(fileRevision.Iid);
@@ -138,8 +142,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("creator"u8);
                     writer.WriteStringValue(fileRevision.Creator);
 
-                    if (fileRevision.ExcludedDomain.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in fileRevision.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -148,11 +152,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.ExcludedPerson.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in fileRevision.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -161,11 +165,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.FileType.Count > 0)
-                    {
+                    //if (fileRevision.FileType.Count > 0)
+                    //{
                         writer.WriteStartArray("fileType"u8);
 
                         foreach(var fileTypeItem in fileRevision.FileType.OrderBy(x => x, this.OrderedItemComparer))
@@ -174,7 +178,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(fileRevision.Iid);
@@ -207,8 +211,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("creator"u8);
                     writer.WriteStringValue(fileRevision.Creator);
 
-                    if (fileRevision.ExcludedDomain.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in fileRevision.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -217,11 +221,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.ExcludedPerson.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in fileRevision.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -230,11 +234,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.FileType.Count > 0)
-                    {
+                    //if (fileRevision.FileType.Count > 0)
+                    //{
                         writer.WriteStartArray("fileType"u8);
 
                         foreach(var fileTypeItem in fileRevision.FileType.OrderBy(x => x, this.OrderedItemComparer))
@@ -243,7 +247,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(fileRevision.Iid);
@@ -289,8 +293,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("creator"u8);
                     writer.WriteStringValue(fileRevision.Creator);
 
-                    if (fileRevision.ExcludedDomain.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in fileRevision.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -299,11 +303,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.ExcludedPerson.Count > 0)
-                    {
+                    //if (fileRevision.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in fileRevision.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -312,11 +316,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (fileRevision.FileType.Count > 0)
-                    {
+                    //if (fileRevision.FileType.Count > 0)
+                    //{
                         writer.WriteStartArray("fileType"u8);
 
                         foreach(var fileTypeItem in fileRevision.FileType.OrderBy(x => x, this.OrderedItemComparer))
@@ -325,7 +329,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(fileRevision.Iid);
@@ -473,6 +477,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -490,6 +499,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -505,6 +519,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["fileType"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListFileType && objectListFileType.Any())

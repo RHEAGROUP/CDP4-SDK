@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Definition since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing Definition for Version 1.0.0");
 
-                    if (definition.Citation.Count > 0)
-                    {
+                    //if (definition.Citation.Count > 0)
+                    //{
                         writer.WriteStartArray("citation"u8);
 
                         foreach(var citationItem in definition.Citation.OrderBy(x => x, this.GuidComparer))
@@ -88,15 +92,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(definition.ClassKind.ToString());
                     writer.WritePropertyName("content"u8);
                     writer.WriteStringValue(definition.Content);
 
-                    if (definition.Example.Count > 0)
-                    {
+                    //if (definition.Example.Count > 0)
+                    //{
                         writer.WriteStartArray("example"u8);
 
                         foreach(var exampleItem in definition.Example.OrderBy(x => x, this.OrderedItemComparer))
@@ -105,15 +109,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(definition.Iid);
                     writer.WritePropertyName("languageCode"u8);
                     writer.WriteStringValue(definition.LanguageCode);
 
-                    if (definition.Note.Count > 0)
-                    {
+                    //if (definition.Note.Count > 0)
+                    //{
                         writer.WriteStartArray("note"u8);
 
                         foreach(var noteItem in definition.Note.OrderBy(x => x, this.OrderedItemComparer))
@@ -122,7 +126,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(definition.RevisionNumber);
@@ -130,8 +134,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Definition for Version 1.1.0");
 
-                    if (definition.Citation.Count > 0)
-                    {
+                    //if (definition.Citation.Count > 0)
+                    //{
                         writer.WriteStartArray("citation"u8);
 
                         foreach(var citationItem in definition.Citation.OrderBy(x => x, this.GuidComparer))
@@ -140,15 +144,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(definition.ClassKind.ToString());
                     writer.WritePropertyName("content"u8);
                     writer.WriteStringValue(definition.Content);
 
-                    if (definition.Example.Count > 0)
-                    {
+                    //if (definition.Example.Count > 0)
+                    //{
                         writer.WriteStartArray("example"u8);
 
                         foreach(var exampleItem in definition.Example.OrderBy(x => x, this.OrderedItemComparer))
@@ -157,11 +161,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedDomain.Count > 0)
-                    {
+                    //if (definition.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in definition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -170,11 +174,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedPerson.Count > 0)
-                    {
+                    //if (definition.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in definition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -183,7 +187,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(definition.Iid);
@@ -192,8 +196,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(definition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (definition.Note.Count > 0)
-                    {
+                    //if (definition.Note.Count > 0)
+                    //{
                         writer.WriteStartArray("note"u8);
 
                         foreach(var noteItem in definition.Note.OrderBy(x => x, this.OrderedItemComparer))
@@ -202,7 +206,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(definition.RevisionNumber);
@@ -210,8 +214,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Definition for Version 1.2.0");
 
-                    if (definition.Citation.Count > 0)
-                    {
+                    //if (definition.Citation.Count > 0)
+                    //{
                         writer.WriteStartArray("citation"u8);
 
                         foreach(var citationItem in definition.Citation.OrderBy(x => x, this.GuidComparer))
@@ -220,15 +224,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(definition.ClassKind.ToString());
                     writer.WritePropertyName("content"u8);
                     writer.WriteStringValue(definition.Content);
 
-                    if (definition.Example.Count > 0)
-                    {
+                    //if (definition.Example.Count > 0)
+                    //{
                         writer.WriteStartArray("example"u8);
 
                         foreach(var exampleItem in definition.Example.OrderBy(x => x, this.OrderedItemComparer))
@@ -237,11 +241,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedDomain.Count > 0)
-                    {
+                    //if (definition.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in definition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -250,11 +254,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedPerson.Count > 0)
-                    {
+                    //if (definition.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in definition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -263,7 +267,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(definition.Iid);
@@ -272,8 +276,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(definition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (definition.Note.Count > 0)
-                    {
+                    //if (definition.Note.Count > 0)
+                    //{
                         writer.WriteStartArray("note"u8);
 
                         foreach(var noteItem in definition.Note.OrderBy(x => x, this.OrderedItemComparer))
@@ -282,7 +286,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(definition.RevisionNumber);
@@ -302,8 +306,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (definition.Citation.Count > 0)
-                    {
+                    //if (definition.Citation.Count > 0)
+                    //{
                         writer.WriteStartArray("citation"u8);
 
                         foreach(var citationItem in definition.Citation.OrderBy(x => x, this.GuidComparer))
@@ -312,15 +316,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(definition.ClassKind.ToString());
                     writer.WritePropertyName("content"u8);
                     writer.WriteStringValue(definition.Content);
 
-                    if (definition.Example.Count > 0)
-                    {
+                    //if (definition.Example.Count > 0)
+                    //{
                         writer.WriteStartArray("example"u8);
 
                         foreach(var exampleItem in definition.Example.OrderBy(x => x, this.OrderedItemComparer))
@@ -329,11 +333,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedDomain.Count > 0)
-                    {
+                    //if (definition.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in definition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -342,11 +346,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (definition.ExcludedPerson.Count > 0)
-                    {
+                    //if (definition.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in definition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -355,7 +359,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(definition.Iid);
@@ -364,8 +368,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(definition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (definition.Note.Count > 0)
-                    {
+                    //if (definition.Note.Count > 0)
+                    //{
                         writer.WriteStartArray("note"u8);
 
                         foreach(var noteItem in definition.Note.OrderBy(x => x, this.OrderedItemComparer))
@@ -374,7 +378,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(definition.RevisionNumber);
@@ -424,6 +428,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["citation"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCitation && objectListCitation.Any())
@@ -479,6 +488,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExample && objectListExample.Any())
                     {
                         writer.WriteStartArray("example"u8);
@@ -496,6 +510,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -511,6 +530,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -582,6 +606,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["note"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListNote && objectListNote.Any())

@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of BinaryRelationshipRule since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.0.0");
 
-                    if (binaryRelationshipRule.Alias.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,13 +92,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
 
-                    if (binaryRelationshipRule.Definition.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -103,13 +107,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
 
-                    if (binaryRelationshipRule.HyperLink.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -118,7 +122,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -142,8 +146,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.1.0");
 
-                    if (binaryRelationshipRule.Alias.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -152,13 +156,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
 
-                    if (binaryRelationshipRule.Definition.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -167,11 +171,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -180,11 +184,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -193,13 +197,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
 
-                    if (binaryRelationshipRule.HyperLink.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -208,7 +212,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -234,8 +238,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryRelationshipRule for Version 1.2.0");
 
-                    if (binaryRelationshipRule.Alias.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -244,13 +248,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
 
-                    if (binaryRelationshipRule.Definition.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -259,11 +263,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -272,11 +276,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -285,13 +289,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
 
-                    if (binaryRelationshipRule.HyperLink.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -300,7 +304,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -338,8 +342,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (binaryRelationshipRule.Alias.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in binaryRelationshipRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -348,13 +352,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ClassKind.ToString());
 
-                    if (binaryRelationshipRule.Definition.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in binaryRelationshipRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -363,11 +367,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in binaryRelationshipRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -376,11 +380,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (binaryRelationshipRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in binaryRelationshipRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -389,13 +393,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("forwardRelationshipName"u8);
                     writer.WriteStringValue(binaryRelationshipRule.ForwardRelationshipName);
 
-                    if (binaryRelationshipRule.HyperLink.Count > 0)
-                    {
+                    //if (binaryRelationshipRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in binaryRelationshipRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -404,7 +408,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(binaryRelationshipRule.Iid);
@@ -474,6 +478,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -509,6 +518,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -526,6 +540,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -541,6 +560,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -576,6 +600,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())

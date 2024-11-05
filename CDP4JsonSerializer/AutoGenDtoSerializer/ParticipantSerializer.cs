@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Participant since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -80,8 +84,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(participant.ClassKind.ToString());
 
-                    if (participant.Domain.Count > 0)
-                    {
+                    //if (participant.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in participant.Domain.OrderBy(x => x, this.GuidComparer))
@@ -90,7 +94,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(participant.Iid);
@@ -110,8 +114,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(participant.ClassKind.ToString());
 
-                    if (participant.Domain.Count > 0)
-                    {
+                    //if (participant.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in participant.Domain.OrderBy(x => x, this.GuidComparer))
@@ -120,11 +124,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedDomain.Count > 0)
-                    {
+                    //if (participant.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in participant.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -133,11 +137,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedPerson.Count > 0)
-                    {
+                    //if (participant.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in participant.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -146,7 +150,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(participant.Iid);
@@ -168,8 +172,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(participant.ClassKind.ToString());
 
-                    if (participant.Domain.Count > 0)
-                    {
+                    //if (participant.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in participant.Domain.OrderBy(x => x, this.GuidComparer))
@@ -178,11 +182,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedDomain.Count > 0)
-                    {
+                    //if (participant.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in participant.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -191,11 +195,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedPerson.Count > 0)
-                    {
+                    //if (participant.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in participant.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -204,7 +208,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(participant.Iid);
@@ -239,8 +243,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(participant.ClassKind.ToString());
 
-                    if (participant.Domain.Count > 0)
-                    {
+                    //if (participant.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in participant.Domain.OrderBy(x => x, this.GuidComparer))
@@ -249,11 +253,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedDomain.Count > 0)
-                    {
+                    //if (participant.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in participant.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -262,11 +266,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (participant.ExcludedPerson.Count > 0)
-                    {
+                    //if (participant.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in participant.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -275,7 +279,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(participant.Iid);
@@ -357,6 +361,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDomain && objectListDomain.Any())
                     {
                         writer.WriteStartArray("domain"u8);
@@ -374,6 +383,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -389,6 +403,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())

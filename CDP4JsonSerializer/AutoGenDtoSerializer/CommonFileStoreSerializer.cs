@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of CommonFileStore since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -82,8 +86,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (commonFileStore.File.Count > 0)
-                    {
+                    //if (commonFileStore.File.Count > 0)
+                    //{
                         writer.WriteStartArray("file"u8);
 
                         foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
@@ -92,11 +96,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.Folder.Count > 0)
-                    {
+                    //if (commonFileStore.Folder.Count > 0)
+                    //{
                         writer.WriteStartArray("folder"u8);
 
                         foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
@@ -105,7 +109,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -123,8 +127,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (commonFileStore.ExcludedDomain.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -133,11 +137,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.ExcludedPerson.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -146,11 +150,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.File.Count > 0)
-                    {
+                    //if (commonFileStore.File.Count > 0)
+                    //{
                         writer.WriteStartArray("file"u8);
 
                         foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
@@ -159,11 +163,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.Folder.Count > 0)
-                    {
+                    //if (commonFileStore.Folder.Count > 0)
+                    //{
                         writer.WriteStartArray("folder"u8);
 
                         foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
@@ -172,7 +176,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -192,8 +196,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (commonFileStore.ExcludedDomain.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -202,11 +206,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.ExcludedPerson.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -215,11 +219,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.File.Count > 0)
-                    {
+                    //if (commonFileStore.File.Count > 0)
+                    //{
                         writer.WriteStartArray("file"u8);
 
                         foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
@@ -228,11 +232,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.Folder.Count > 0)
-                    {
+                    //if (commonFileStore.Folder.Count > 0)
+                    //{
                         writer.WriteStartArray("folder"u8);
 
                         foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
@@ -241,7 +245,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -274,8 +278,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(commonFileStore.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (commonFileStore.ExcludedDomain.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in commonFileStore.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -284,11 +288,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.ExcludedPerson.Count > 0)
-                    {
+                    //if (commonFileStore.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in commonFileStore.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -297,11 +301,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.File.Count > 0)
-                    {
+                    //if (commonFileStore.File.Count > 0)
+                    //{
                         writer.WriteStartArray("file"u8);
 
                         foreach(var fileItem in commonFileStore.File.OrderBy(x => x, this.GuidComparer))
@@ -310,11 +314,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (commonFileStore.Folder.Count > 0)
-                    {
+                    //if (commonFileStore.Folder.Count > 0)
+                    //{
                         writer.WriteStartArray("folder"u8);
 
                         foreach(var folderItem in commonFileStore.Folder.OrderBy(x => x, this.GuidComparer))
@@ -323,7 +327,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(commonFileStore.Iid);
@@ -419,6 +423,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -434,6 +443,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -453,6 +467,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListFile && objectListFile.Any())
                     {
                         writer.WriteStartArray("file"u8);
@@ -468,6 +487,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["folder"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListFolder && objectListFolder.Any())

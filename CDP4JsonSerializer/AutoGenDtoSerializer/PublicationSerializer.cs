@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Publication since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -82,8 +86,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(publication.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.Domain.Count > 0)
-                    {
+                    //if (publication.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in publication.Domain.OrderBy(x => x, this.GuidComparer))
@@ -92,13 +96,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(publication.Iid);
 
-                    if (publication.PublishedParameter.Count > 0)
-                    {
+                    //if (publication.PublishedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("publishedParameter"u8);
 
                         foreach(var publishedParameterItem in publication.PublishedParameter.OrderBy(x => x, this.GuidComparer))
@@ -107,7 +111,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(publication.RevisionNumber);
@@ -119,8 +123,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(publication.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.Domain.Count > 0)
-                    {
+                    //if (publication.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in publication.Domain.OrderBy(x => x, this.GuidComparer))
@@ -129,11 +133,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedDomain.Count > 0)
-                    {
+                    //if (publication.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in publication.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -142,11 +146,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedPerson.Count > 0)
-                    {
+                    //if (publication.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in publication.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -155,15 +159,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(publication.Iid);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(publication.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.PublishedParameter.Count > 0)
-                    {
+                    //if (publication.PublishedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("publishedParameter"u8);
 
                         foreach(var publishedParameterItem in publication.PublishedParameter.OrderBy(x => x, this.GuidComparer))
@@ -172,7 +176,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(publication.RevisionNumber);
@@ -184,8 +188,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(publication.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.Domain.Count > 0)
-                    {
+                    //if (publication.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in publication.Domain.OrderBy(x => x, this.GuidComparer))
@@ -194,11 +198,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedDomain.Count > 0)
-                    {
+                    //if (publication.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in publication.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -207,11 +211,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedPerson.Count > 0)
-                    {
+                    //if (publication.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in publication.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -220,15 +224,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(publication.Iid);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(publication.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.PublishedParameter.Count > 0)
-                    {
+                    //if (publication.PublishedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("publishedParameter"u8);
 
                         foreach(var publishedParameterItem in publication.PublishedParameter.OrderBy(x => x, this.GuidComparer))
@@ -237,7 +241,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(publication.RevisionNumber);
@@ -262,8 +266,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(publication.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.Domain.Count > 0)
-                    {
+                    //if (publication.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in publication.Domain.OrderBy(x => x, this.GuidComparer))
@@ -272,11 +276,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedDomain.Count > 0)
-                    {
+                    //if (publication.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in publication.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -285,11 +289,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (publication.ExcludedPerson.Count > 0)
-                    {
+                    //if (publication.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in publication.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -298,15 +302,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(publication.Iid);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(publication.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (publication.PublishedParameter.Count > 0)
-                    {
+                    //if (publication.PublishedParameter.Count > 0)
+                    //{
                         writer.WriteStartArray("publishedParameter"u8);
 
                         foreach(var publishedParameterItem in publication.PublishedParameter.OrderBy(x => x, this.GuidComparer))
@@ -315,7 +319,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(publication.RevisionNumber);
@@ -403,6 +407,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDomain && objectListDomain.Any())
                     {
                         writer.WriteStartArray("domain"u8);
@@ -420,6 +429,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -435,6 +449,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -488,6 +507,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["publishedParameter"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListPublishedParameter && objectListPublishedParameter.Any())

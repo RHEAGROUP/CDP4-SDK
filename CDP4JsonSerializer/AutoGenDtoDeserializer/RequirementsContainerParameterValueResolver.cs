@@ -28,7 +28,10 @@
 
 namespace CDP4JsonSerializer
 {
+    using System.Collections.Generic;
     using System.Text.Json;
+
+    using CDP4Common.Types;
 
     using NLog;
 
@@ -126,9 +129,23 @@ namespace CDP4JsonSerializer
                     requirementsContainerParameterValue.ThingPreference = thingPreferenceProperty.GetString();
                 }
             }
+
             if (jsonElement.TryGetProperty("value"u8, out var valueProperty))
             {
-                requirementsContainerParameterValue.Value = SerializerHelper.ToValueArray<string>(valueProperty.GetString());
+                if(valueProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in valueProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    requirementsContainerParameterValue.Value = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    requirementsContainerParameterValue.Value = SerializerHelper.ToValueArray<string>(valueProperty.GetString());
+                }
             }
 
             return requirementsContainerParameterValue;

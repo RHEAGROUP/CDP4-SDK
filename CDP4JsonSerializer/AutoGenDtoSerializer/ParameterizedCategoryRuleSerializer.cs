@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of ParameterizedCategoryRule since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing ParameterizedCategoryRule for Version 1.0.0");
 
-                    if (parameterizedCategoryRule.Alias.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in parameterizedCategoryRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,15 +92,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("category"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Category);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.ClassKind.ToString());
 
-                    if (parameterizedCategoryRule.Definition.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in parameterizedCategoryRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -105,11 +109,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.HyperLink.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in parameterizedCategoryRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -118,7 +122,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Iid);
@@ -127,8 +131,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Name);
 
-                    if (parameterizedCategoryRule.ParameterType.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ParameterType.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterType"u8);
 
                         foreach(var parameterTypeItem in parameterizedCategoryRule.ParameterType.OrderBy(x => x, this.GuidComparer))
@@ -137,7 +141,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(parameterizedCategoryRule.RevisionNumber);
@@ -147,8 +151,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing ParameterizedCategoryRule for Version 1.1.0");
 
-                    if (parameterizedCategoryRule.Alias.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in parameterizedCategoryRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -157,15 +161,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("category"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Category);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.ClassKind.ToString());
 
-                    if (parameterizedCategoryRule.Definition.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in parameterizedCategoryRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -174,11 +178,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in parameterizedCategoryRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -187,11 +191,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in parameterizedCategoryRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -200,11 +204,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.HyperLink.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in parameterizedCategoryRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -213,7 +217,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Iid);
@@ -224,8 +228,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Name);
 
-                    if (parameterizedCategoryRule.ParameterType.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ParameterType.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterType"u8);
 
                         foreach(var parameterTypeItem in parameterizedCategoryRule.ParameterType.OrderBy(x => x, this.GuidComparer))
@@ -234,7 +238,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(parameterizedCategoryRule.RevisionNumber);
@@ -244,8 +248,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing ParameterizedCategoryRule for Version 1.2.0");
 
-                    if (parameterizedCategoryRule.Alias.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in parameterizedCategoryRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -254,15 +258,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("category"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Category);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.ClassKind.ToString());
 
-                    if (parameterizedCategoryRule.Definition.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in parameterizedCategoryRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -271,11 +275,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in parameterizedCategoryRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -284,11 +288,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in parameterizedCategoryRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -297,11 +301,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.HyperLink.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in parameterizedCategoryRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -310,7 +314,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Iid);
@@ -321,8 +325,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Name);
 
-                    if (parameterizedCategoryRule.ParameterType.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ParameterType.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterType"u8);
 
                         foreach(var parameterTypeItem in parameterizedCategoryRule.ParameterType.OrderBy(x => x, this.GuidComparer))
@@ -331,7 +335,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(parameterizedCategoryRule.RevisionNumber);
@@ -353,8 +357,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (parameterizedCategoryRule.Alias.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in parameterizedCategoryRule.Alias.OrderBy(x => x, this.GuidComparer))
@@ -363,15 +367,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("category"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Category);
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.ClassKind.ToString());
 
-                    if (parameterizedCategoryRule.Definition.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in parameterizedCategoryRule.Definition.OrderBy(x => x, this.GuidComparer))
@@ -380,11 +384,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in parameterizedCategoryRule.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -393,11 +397,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in parameterizedCategoryRule.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -406,11 +410,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (parameterizedCategoryRule.HyperLink.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in parameterizedCategoryRule.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -419,7 +423,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Iid);
@@ -430,8 +434,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(parameterizedCategoryRule.Name);
 
-                    if (parameterizedCategoryRule.ParameterType.Count > 0)
-                    {
+                    //if (parameterizedCategoryRule.ParameterType.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterType"u8);
 
                         foreach(var parameterTypeItem in parameterizedCategoryRule.ParameterType.OrderBy(x => x, this.GuidComparer))
@@ -440,7 +444,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(parameterizedCategoryRule.RevisionNumber);
@@ -492,6 +496,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["alias"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
@@ -547,6 +556,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -562,6 +576,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
@@ -581,6 +600,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -596,6 +620,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
@@ -685,6 +714,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["parameterType"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListParameterType && objectListParameterType.Any())

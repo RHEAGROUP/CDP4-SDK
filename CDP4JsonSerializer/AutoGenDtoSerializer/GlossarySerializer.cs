@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Glossary since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing Glossary for Version 1.0.0");
 
-                    if (glossary.Alias.Count > 0)
-                    {
+                    //if (glossary.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in glossary.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,11 +92,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.Category.Count > 0)
-                    {
+                    //if (glossary.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in glossary.Category.OrderBy(x => x, this.GuidComparer))
@@ -101,13 +105,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(glossary.ClassKind.ToString());
 
-                    if (glossary.Definition.Count > 0)
-                    {
+                    //if (glossary.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in glossary.Definition.OrderBy(x => x, this.GuidComparer))
@@ -116,11 +120,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.HyperLink.Count > 0)
-                    {
+                    //if (glossary.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in glossary.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -129,7 +133,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(glossary.Iid);
@@ -142,8 +146,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(glossary.ShortName);
 
-                    if (glossary.Term.Count > 0)
-                    {
+                    //if (glossary.Term.Count > 0)
+                    //{
                         writer.WriteStartArray("term"u8);
 
                         foreach(var termItem in glossary.Term.OrderBy(x => x, this.GuidComparer))
@@ -152,14 +156,14 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Glossary for Version 1.1.0");
 
-                    if (glossary.Alias.Count > 0)
-                    {
+                    //if (glossary.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in glossary.Alias.OrderBy(x => x, this.GuidComparer))
@@ -168,11 +172,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.Category.Count > 0)
-                    {
+                    //if (glossary.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in glossary.Category.OrderBy(x => x, this.GuidComparer))
@@ -181,13 +185,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(glossary.ClassKind.ToString());
 
-                    if (glossary.Definition.Count > 0)
-                    {
+                    //if (glossary.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in glossary.Definition.OrderBy(x => x, this.GuidComparer))
@@ -196,11 +200,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedDomain.Count > 0)
-                    {
+                    //if (glossary.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in glossary.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -209,11 +213,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedPerson.Count > 0)
-                    {
+                    //if (glossary.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in glossary.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -222,11 +226,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.HyperLink.Count > 0)
-                    {
+                    //if (glossary.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in glossary.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -235,7 +239,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(glossary.Iid);
@@ -250,8 +254,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(glossary.ShortName);
 
-                    if (glossary.Term.Count > 0)
-                    {
+                    //if (glossary.Term.Count > 0)
+                    //{
                         writer.WriteStartArray("term"u8);
 
                         foreach(var termItem in glossary.Term.OrderBy(x => x, this.GuidComparer))
@@ -260,14 +264,14 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Glossary for Version 1.2.0");
 
-                    if (glossary.Alias.Count > 0)
-                    {
+                    //if (glossary.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in glossary.Alias.OrderBy(x => x, this.GuidComparer))
@@ -276,11 +280,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.Category.Count > 0)
-                    {
+                    //if (glossary.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in glossary.Category.OrderBy(x => x, this.GuidComparer))
@@ -289,13 +293,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(glossary.ClassKind.ToString());
 
-                    if (glossary.Definition.Count > 0)
-                    {
+                    //if (glossary.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in glossary.Definition.OrderBy(x => x, this.GuidComparer))
@@ -304,11 +308,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedDomain.Count > 0)
-                    {
+                    //if (glossary.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in glossary.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -317,11 +321,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedPerson.Count > 0)
-                    {
+                    //if (glossary.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in glossary.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -330,11 +334,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.HyperLink.Count > 0)
-                    {
+                    //if (glossary.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in glossary.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -343,7 +347,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(glossary.Iid);
@@ -358,8 +362,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(glossary.ShortName);
 
-                    if (glossary.Term.Count > 0)
-                    {
+                    //if (glossary.Term.Count > 0)
+                    //{
                         writer.WriteStartArray("term"u8);
 
                         foreach(var termItem in glossary.Term.OrderBy(x => x, this.GuidComparer))
@@ -368,7 +372,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(glossary.ThingPreference);
@@ -386,8 +390,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (glossary.Alias.Count > 0)
-                    {
+                    //if (glossary.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in glossary.Alias.OrderBy(x => x, this.GuidComparer))
@@ -396,11 +400,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.Category.Count > 0)
-                    {
+                    //if (glossary.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in glossary.Category.OrderBy(x => x, this.GuidComparer))
@@ -409,13 +413,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(glossary.ClassKind.ToString());
 
-                    if (glossary.Definition.Count > 0)
-                    {
+                    //if (glossary.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in glossary.Definition.OrderBy(x => x, this.GuidComparer))
@@ -424,11 +428,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedDomain.Count > 0)
-                    {
+                    //if (glossary.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in glossary.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -437,11 +441,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.ExcludedPerson.Count > 0)
-                    {
+                    //if (glossary.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in glossary.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -450,11 +454,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (glossary.HyperLink.Count > 0)
-                    {
+                    //if (glossary.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in glossary.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -463,7 +467,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(glossary.Iid);
@@ -478,8 +482,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(glossary.ShortName);
 
-                    if (glossary.Term.Count > 0)
-                    {
+                    //if (glossary.Term.Count > 0)
+                    //{
                         writer.WriteStartArray("term"u8);
 
                         foreach(var termItem in glossary.Term.OrderBy(x => x, this.GuidComparer))
@@ -488,7 +492,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(glossary.ThingPreference);
@@ -538,6 +542,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -553,6 +562,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -590,6 +604,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -605,6 +624,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
@@ -624,6 +648,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -639,6 +668,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
@@ -764,6 +798,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["term"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListTerm && objectListTerm.Any())

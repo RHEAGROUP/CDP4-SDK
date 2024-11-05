@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of UserRuleVerification since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -101,8 +105,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(userRuleVerification.Status.ToString());
 
-                    if (userRuleVerification.Violation.Count > 0)
-                    {
+                    //if (userRuleVerification.Violation.Count > 0)
+                    //{
                         writer.WriteStartArray("violation"u8);
 
                         foreach(var violationItem in userRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
@@ -111,7 +115,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.1.0":
@@ -119,8 +123,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(userRuleVerification.ClassKind.ToString());
 
-                    if (userRuleVerification.ExcludedDomain.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in userRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -129,11 +133,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (userRuleVerification.ExcludedPerson.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in userRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -142,7 +146,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("executedOn"u8);
 
@@ -168,8 +172,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(userRuleVerification.Status.ToString());
 
-                    if (userRuleVerification.Violation.Count > 0)
-                    {
+                    //if (userRuleVerification.Violation.Count > 0)
+                    //{
                         writer.WriteStartArray("violation"u8);
 
                         foreach(var violationItem in userRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
@@ -178,7 +182,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.2.0":
@@ -186,8 +190,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(userRuleVerification.ClassKind.ToString());
 
-                    if (userRuleVerification.ExcludedDomain.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in userRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -196,11 +200,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (userRuleVerification.ExcludedPerson.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in userRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -209,7 +213,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("executedOn"u8);
 
@@ -237,8 +241,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(userRuleVerification.ThingPreference);
 
-                    if (userRuleVerification.Violation.Count > 0)
-                    {
+                    //if (userRuleVerification.Violation.Count > 0)
+                    //{
                         writer.WriteStartArray("violation"u8);
 
                         foreach(var violationItem in userRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
@@ -247,7 +251,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.3.0":
@@ -266,8 +270,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(userRuleVerification.ClassKind.ToString());
 
-                    if (userRuleVerification.ExcludedDomain.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in userRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -276,11 +280,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (userRuleVerification.ExcludedPerson.Count > 0)
-                    {
+                    //if (userRuleVerification.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in userRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -289,7 +293,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("executedOn"u8);
 
@@ -317,8 +321,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(userRuleVerification.ThingPreference);
 
-                    if (userRuleVerification.Violation.Count > 0)
-                    {
+                    //if (userRuleVerification.Violation.Count > 0)
+                    //{
                         writer.WriteStartArray("violation"u8);
 
                         foreach(var violationItem in userRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
@@ -327,7 +331,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 default:
@@ -393,6 +397,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -408,6 +417,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -569,6 +583,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["violation"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListViolation && objectListViolation.Any())
