@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Book since Version is below 1.1.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Book for Version 1.1.0");
 
-                    if (book.Category.Count > 0)
-                    {
+                    //if (book.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in book.Category.OrderBy(x => x, this.GuidComparer))
@@ -88,15 +92,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(book.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(book.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (book.ExcludedDomain.Count > 0)
-                    {
+                    //if (book.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in book.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -105,11 +109,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (book.ExcludedPerson.Count > 0)
-                    {
+                    //if (book.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in book.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -118,7 +122,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(book.Iid);
@@ -131,8 +135,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(book.RevisionNumber);
 
-                    if (book.Section.Count > 0)
-                    {
+                    //if (book.Section.Count > 0)
+                    //{
                         writer.WriteStartArray("section"u8);
 
                         foreach(var sectionItem in book.Section.OrderBy(x => x, this.OrderedItemComparer))
@@ -141,7 +145,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(book.ShortName);
@@ -149,8 +153,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Book for Version 1.2.0");
 
-                    if (book.Category.Count > 0)
-                    {
+                    //if (book.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in book.Category.OrderBy(x => x, this.GuidComparer))
@@ -159,15 +163,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(book.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(book.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (book.ExcludedDomain.Count > 0)
-                    {
+                    //if (book.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in book.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -176,11 +180,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (book.ExcludedPerson.Count > 0)
-                    {
+                    //if (book.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in book.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -189,7 +193,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(book.Iid);
@@ -202,8 +206,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(book.RevisionNumber);
 
-                    if (book.Section.Count > 0)
-                    {
+                    //if (book.Section.Count > 0)
+                    //{
                         writer.WriteStartArray("section"u8);
 
                         foreach(var sectionItem in book.Section.OrderBy(x => x, this.OrderedItemComparer))
@@ -212,7 +216,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(book.ShortName);
@@ -232,8 +236,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (book.Category.Count > 0)
-                    {
+                    //if (book.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in book.Category.OrderBy(x => x, this.GuidComparer))
@@ -242,15 +246,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(book.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(book.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (book.ExcludedDomain.Count > 0)
-                    {
+                    //if (book.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in book.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -259,11 +263,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (book.ExcludedPerson.Count > 0)
-                    {
+                    //if (book.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in book.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -272,7 +276,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(book.Iid);
@@ -285,8 +289,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(book.RevisionNumber);
 
-                    if (book.Section.Count > 0)
-                    {
+                    //if (book.Section.Count > 0)
+                    //{
                         writer.WriteStartArray("section"u8);
 
                         foreach(var sectionItem in book.Section.OrderBy(x => x, this.OrderedItemComparer))
@@ -295,7 +299,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(book.ShortName);
@@ -345,6 +349,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -400,6 +409,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -415,6 +429,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -522,6 +541,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["section"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListSection && objectListSection.Any())

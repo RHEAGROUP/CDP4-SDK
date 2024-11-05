@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of EngineeringModel since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -80,8 +84,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModel.ClassKind.ToString());
 
-                    if (engineeringModel.CommonFileStore.Count > 0)
-                    {
+                    //if (engineeringModel.CommonFileStore.Count > 0)
+                    //{
                         writer.WriteStartArray("commonFileStore"u8);
 
                         foreach(var commonFileStoreItem in engineeringModel.CommonFileStore.OrderBy(x => x, this.GuidComparer))
@@ -90,15 +94,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("engineeringModelSetup"u8);
                     writer.WriteStringValue(engineeringModel.EngineeringModelSetup);
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModel.Iid);
 
-                    if (engineeringModel.Iteration.Count > 0)
-                    {
+                    //if (engineeringModel.Iteration.Count > 0)
+                    //{
                         writer.WriteStartArray("iteration"u8);
 
                         foreach(var iterationItem in engineeringModel.Iteration.OrderBy(x => x, this.GuidComparer))
@@ -107,13 +111,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (engineeringModel.LogEntry.Count > 0)
-                    {
+                    //if (engineeringModel.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in engineeringModel.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -122,7 +126,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(engineeringModel.RevisionNumber);
@@ -130,8 +134,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModel for Version 1.1.0");
 
-                    if (engineeringModel.Book.Count > 0)
-                    {
+                    //if (engineeringModel.Book.Count > 0)
+                    //{
                         writer.WriteStartArray("book"u8);
 
                         foreach(var bookItem in engineeringModel.Book.OrderBy(x => x, this.OrderedItemComparer))
@@ -140,13 +144,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModel.ClassKind.ToString());
 
-                    if (engineeringModel.CommonFileStore.Count > 0)
-                    {
+                    //if (engineeringModel.CommonFileStore.Count > 0)
+                    //{
                         writer.WriteStartArray("commonFileStore"u8);
 
                         foreach(var commonFileStoreItem in engineeringModel.CommonFileStore.OrderBy(x => x, this.GuidComparer))
@@ -155,13 +159,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("engineeringModelSetup"u8);
                     writer.WriteStringValue(engineeringModel.EngineeringModelSetup);
 
-                    if (engineeringModel.ExcludedDomain.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in engineeringModel.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -170,11 +174,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ExcludedPerson.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in engineeringModel.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -183,11 +187,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.GenericNote.Count > 0)
-                    {
+                    //if (engineeringModel.GenericNote.Count > 0)
+                    //{
                         writer.WriteStartArray("genericNote"u8);
 
                         foreach(var genericNoteItem in engineeringModel.GenericNote.OrderBy(x => x, this.GuidComparer))
@@ -196,13 +200,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModel.Iid);
 
-                    if (engineeringModel.Iteration.Count > 0)
-                    {
+                    //if (engineeringModel.Iteration.Count > 0)
+                    //{
                         writer.WriteStartArray("iteration"u8);
 
                         foreach(var iterationItem in engineeringModel.Iteration.OrderBy(x => x, this.GuidComparer))
@@ -211,13 +215,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (engineeringModel.LogEntry.Count > 0)
-                    {
+                    //if (engineeringModel.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in engineeringModel.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -226,11 +230,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ModellingAnnotation.Count > 0)
-                    {
+                    //if (engineeringModel.ModellingAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("modellingAnnotation"u8);
 
                         foreach(var modellingAnnotationItem in engineeringModel.ModellingAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -239,7 +243,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -249,8 +253,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing EngineeringModel for Version 1.2.0");
 
-                    if (engineeringModel.Book.Count > 0)
-                    {
+                    //if (engineeringModel.Book.Count > 0)
+                    //{
                         writer.WriteStartArray("book"u8);
 
                         foreach(var bookItem in engineeringModel.Book.OrderBy(x => x, this.OrderedItemComparer))
@@ -259,13 +263,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModel.ClassKind.ToString());
 
-                    if (engineeringModel.CommonFileStore.Count > 0)
-                    {
+                    //if (engineeringModel.CommonFileStore.Count > 0)
+                    //{
                         writer.WriteStartArray("commonFileStore"u8);
 
                         foreach(var commonFileStoreItem in engineeringModel.CommonFileStore.OrderBy(x => x, this.GuidComparer))
@@ -274,13 +278,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("engineeringModelSetup"u8);
                     writer.WriteStringValue(engineeringModel.EngineeringModelSetup);
 
-                    if (engineeringModel.ExcludedDomain.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in engineeringModel.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -289,11 +293,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ExcludedPerson.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in engineeringModel.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -302,11 +306,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.GenericNote.Count > 0)
-                    {
+                    //if (engineeringModel.GenericNote.Count > 0)
+                    //{
                         writer.WriteStartArray("genericNote"u8);
 
                         foreach(var genericNoteItem in engineeringModel.GenericNote.OrderBy(x => x, this.GuidComparer))
@@ -315,13 +319,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModel.Iid);
 
-                    if (engineeringModel.Iteration.Count > 0)
-                    {
+                    //if (engineeringModel.Iteration.Count > 0)
+                    //{
                         writer.WriteStartArray("iteration"u8);
 
                         foreach(var iterationItem in engineeringModel.Iteration.OrderBy(x => x, this.GuidComparer))
@@ -330,13 +334,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (engineeringModel.LogEntry.Count > 0)
-                    {
+                    //if (engineeringModel.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in engineeringModel.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -345,11 +349,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ModellingAnnotation.Count > 0)
-                    {
+                    //if (engineeringModel.ModellingAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("modellingAnnotation"u8);
 
                         foreach(var modellingAnnotationItem in engineeringModel.ModellingAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -358,7 +362,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -380,8 +384,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (engineeringModel.Book.Count > 0)
-                    {
+                    //if (engineeringModel.Book.Count > 0)
+                    //{
                         writer.WriteStartArray("book"u8);
 
                         foreach(var bookItem in engineeringModel.Book.OrderBy(x => x, this.OrderedItemComparer))
@@ -390,13 +394,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(engineeringModel.ClassKind.ToString());
 
-                    if (engineeringModel.CommonFileStore.Count > 0)
-                    {
+                    //if (engineeringModel.CommonFileStore.Count > 0)
+                    //{
                         writer.WriteStartArray("commonFileStore"u8);
 
                         foreach(var commonFileStoreItem in engineeringModel.CommonFileStore.OrderBy(x => x, this.GuidComparer))
@@ -405,13 +409,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("engineeringModelSetup"u8);
                     writer.WriteStringValue(engineeringModel.EngineeringModelSetup);
 
-                    if (engineeringModel.ExcludedDomain.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in engineeringModel.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -420,11 +424,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ExcludedPerson.Count > 0)
-                    {
+                    //if (engineeringModel.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in engineeringModel.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -433,11 +437,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.GenericNote.Count > 0)
-                    {
+                    //if (engineeringModel.GenericNote.Count > 0)
+                    //{
                         writer.WriteStartArray("genericNote"u8);
 
                         foreach(var genericNoteItem in engineeringModel.GenericNote.OrderBy(x => x, this.GuidComparer))
@@ -446,13 +450,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(engineeringModel.Iid);
 
-                    if (engineeringModel.Iteration.Count > 0)
-                    {
+                    //if (engineeringModel.Iteration.Count > 0)
+                    //{
                         writer.WriteStartArray("iteration"u8);
 
                         foreach(var iterationItem in engineeringModel.Iteration.OrderBy(x => x, this.GuidComparer))
@@ -461,13 +465,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (engineeringModel.LogEntry.Count > 0)
-                    {
+                    //if (engineeringModel.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in engineeringModel.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -476,11 +480,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (engineeringModel.ModellingAnnotation.Count > 0)
-                    {
+                    //if (engineeringModel.ModellingAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("modellingAnnotation"u8);
 
                         foreach(var modellingAnnotationItem in engineeringModel.ModellingAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -489,7 +493,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(engineeringModel.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -543,6 +547,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListBook && objectListBook.Any())
                     {
                         writer.WriteStartArray("book"u8);
@@ -576,6 +585,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["commonFileStore"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCommonFileStore && objectListCommonFileStore.Any())
@@ -613,6 +627,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -630,6 +649,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -645,6 +669,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["genericNote"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListGenericNote && objectListGenericNote.Any())
@@ -682,6 +711,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListIteration && objectListIteration.Any())
                     {
                         writer.WriteStartArray("iteration"u8);
@@ -717,6 +751,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListLogEntry && objectListLogEntry.Any())
                     {
                         writer.WriteStartArray("logEntry"u8);
@@ -732,6 +771,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["modellingAnnotation"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListModellingAnnotation && objectListModellingAnnotation.Any())

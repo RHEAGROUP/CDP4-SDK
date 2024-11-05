@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of ModelLogEntry since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing ModelLogEntry for Version 1.0.0");
 
-                    if (modelLogEntry.AffectedDomainIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedDomainIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedDomainIid"u8);
 
                         foreach(var affectedDomainIidItem in modelLogEntry.AffectedDomainIid)
@@ -88,11 +92,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.AffectedItemIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedItemIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedItemIid"u8);
 
                         foreach(var affectedItemIidItem in modelLogEntry.AffectedItemIid)
@@ -101,7 +105,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
 
@@ -114,8 +118,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (modelLogEntry.Category.Count > 0)
-                    {
+                    //if (modelLogEntry.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in modelLogEntry.Category.OrderBy(x => x, this.GuidComparer))
@@ -124,7 +128,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(modelLogEntry.ClassKind.ToString());
@@ -144,8 +148,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing ModelLogEntry for Version 1.1.0");
 
-                    if (modelLogEntry.AffectedDomainIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedDomainIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedDomainIid"u8);
 
                         foreach(var affectedDomainIidItem in modelLogEntry.AffectedDomainIid)
@@ -154,11 +158,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.AffectedItemIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedItemIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedItemIid"u8);
 
                         foreach(var affectedItemIidItem in modelLogEntry.AffectedItemIid)
@@ -167,7 +171,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
 
@@ -180,8 +184,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (modelLogEntry.Category.Count > 0)
-                    {
+                    //if (modelLogEntry.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in modelLogEntry.Category.OrderBy(x => x, this.GuidComparer))
@@ -190,7 +194,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(modelLogEntry.ClassKind.ToString());
@@ -199,8 +203,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(modelLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (modelLogEntry.ExcludedDomain.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in modelLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -209,11 +213,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.ExcludedPerson.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in modelLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -222,7 +226,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(modelLogEntry.Iid);
@@ -238,8 +242,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing ModelLogEntry for Version 1.2.0");
 
-                    if (modelLogEntry.AffectedDomainIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedDomainIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedDomainIid"u8);
 
                         foreach(var affectedDomainIidItem in modelLogEntry.AffectedDomainIid)
@@ -248,11 +252,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.AffectedItemIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedItemIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedItemIid"u8);
 
                         foreach(var affectedItemIidItem in modelLogEntry.AffectedItemIid)
@@ -261,7 +265,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
 
@@ -274,8 +278,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (modelLogEntry.Category.Count > 0)
-                    {
+                    //if (modelLogEntry.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in modelLogEntry.Category.OrderBy(x => x, this.GuidComparer))
@@ -284,7 +288,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(modelLogEntry.ClassKind.ToString());
@@ -293,8 +297,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(modelLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (modelLogEntry.ExcludedDomain.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in modelLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -303,11 +307,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.ExcludedPerson.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in modelLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -316,7 +320,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(modelLogEntry.Iid);
@@ -325,8 +329,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("level"u8);
                     writer.WriteStringValue(modelLogEntry.Level.ToString());
 
-                    if (modelLogEntry.LogEntryChangelogItem.Count > 0)
-                    {
+                    //if (modelLogEntry.LogEntryChangelogItem.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntryChangelogItem"u8);
 
                         foreach(var logEntryChangelogItemItem in modelLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
@@ -335,7 +339,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(modelLogEntry.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -357,8 +361,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (modelLogEntry.AffectedDomainIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedDomainIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedDomainIid"u8);
 
                         foreach(var affectedDomainIidItem in modelLogEntry.AffectedDomainIid)
@@ -367,11 +371,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.AffectedItemIid.Count > 0)
-                    {
+                    //if (modelLogEntry.AffectedItemIid.Count > 0)
+                    //{
                         writer.WriteStartArray("affectedItemIid"u8);
 
                         foreach(var affectedItemIidItem in modelLogEntry.AffectedItemIid)
@@ -380,7 +384,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
 
@@ -393,8 +397,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (modelLogEntry.Category.Count > 0)
-                    {
+                    //if (modelLogEntry.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in modelLogEntry.Category.OrderBy(x => x, this.GuidComparer))
@@ -403,7 +407,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(modelLogEntry.ClassKind.ToString());
@@ -412,8 +416,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(modelLogEntry.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (modelLogEntry.ExcludedDomain.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in modelLogEntry.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -422,11 +426,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (modelLogEntry.ExcludedPerson.Count > 0)
-                    {
+                    //if (modelLogEntry.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in modelLogEntry.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -435,7 +439,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(modelLogEntry.Iid);
@@ -444,8 +448,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("level"u8);
                     writer.WriteStringValue(modelLogEntry.Level.ToString());
 
-                    if (modelLogEntry.LogEntryChangelogItem.Count > 0)
-                    {
+                    //if (modelLogEntry.LogEntryChangelogItem.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntryChangelogItem"u8);
 
                         foreach(var logEntryChangelogItemItem in modelLogEntry.LogEntryChangelogItem.OrderBy(x => x, this.GuidComparer))
@@ -454,7 +458,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(modelLogEntry.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
@@ -508,6 +512,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAffectedDomainIid && objectListAffectedDomainIid.Any())
                     {
                         writer.WriteStartArray("affectedDomainIid"u8);
@@ -523,6 +532,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["affectedItemIid"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListAffectedItemIid && objectListAffectedItemIid.Any())
@@ -558,6 +572,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -631,6 +650,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -646,6 +670,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -717,6 +746,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["logEntryChangelogItem"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListLogEntryChangelogItem && objectListLogEntryChangelogItem.Any())

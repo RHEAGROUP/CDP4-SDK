@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of ActualFiniteStateList since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing ActualFiniteStateList for Version 1.0.0");
 
-                    if (actualFiniteStateList.ActualState.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ActualState.Count > 0)
+                    //{
                         writer.WriteStartArray("actualState"u8);
 
                         foreach(var actualStateItem in actualFiniteStateList.ActualState.OrderBy(x => x, this.GuidComparer))
@@ -88,13 +92,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(actualFiniteStateList.ClassKind.ToString());
 
-                    if (actualFiniteStateList.ExcludeOption.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludeOption.Count > 0)
+                    //{
                         writer.WriteStartArray("excludeOption"u8);
 
                         foreach(var excludeOptionItem in actualFiniteStateList.ExcludeOption.OrderBy(x => x, this.GuidComparer))
@@ -103,15 +107,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(actualFiniteStateList.Iid);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(actualFiniteStateList.Owner);
 
-                    if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
-                    {
+                    //if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
+                    //{
                         writer.WriteStartArray("possibleFiniteStateList"u8);
 
                         foreach(var possibleFiniteStateListItem in actualFiniteStateList.PossibleFiniteStateList.OrderBy(x => x, this.OrderedItemComparer))
@@ -120,7 +124,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(actualFiniteStateList.RevisionNumber);
@@ -128,8 +132,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing ActualFiniteStateList for Version 1.1.0");
 
-                    if (actualFiniteStateList.ActualState.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ActualState.Count > 0)
+                    //{
                         writer.WriteStartArray("actualState"u8);
 
                         foreach(var actualStateItem in actualFiniteStateList.ActualState.OrderBy(x => x, this.GuidComparer))
@@ -138,13 +142,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(actualFiniteStateList.ClassKind.ToString());
 
-                    if (actualFiniteStateList.ExcludedDomain.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in actualFiniteStateList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -153,11 +157,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludedPerson.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in actualFiniteStateList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -166,11 +170,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludeOption.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludeOption.Count > 0)
+                    //{
                         writer.WriteStartArray("excludeOption"u8);
 
                         foreach(var excludeOptionItem in actualFiniteStateList.ExcludeOption.OrderBy(x => x, this.GuidComparer))
@@ -179,7 +183,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(actualFiniteStateList.Iid);
@@ -188,8 +192,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(actualFiniteStateList.Owner);
 
-                    if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
-                    {
+                    //if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
+                    //{
                         writer.WriteStartArray("possibleFiniteStateList"u8);
 
                         foreach(var possibleFiniteStateListItem in actualFiniteStateList.PossibleFiniteStateList.OrderBy(x => x, this.OrderedItemComparer))
@@ -198,7 +202,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(actualFiniteStateList.RevisionNumber);
@@ -206,8 +210,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing ActualFiniteStateList for Version 1.2.0");
 
-                    if (actualFiniteStateList.ActualState.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ActualState.Count > 0)
+                    //{
                         writer.WriteStartArray("actualState"u8);
 
                         foreach(var actualStateItem in actualFiniteStateList.ActualState.OrderBy(x => x, this.GuidComparer))
@@ -216,13 +220,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(actualFiniteStateList.ClassKind.ToString());
 
-                    if (actualFiniteStateList.ExcludedDomain.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in actualFiniteStateList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -231,11 +235,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludedPerson.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in actualFiniteStateList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -244,11 +248,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludeOption.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludeOption.Count > 0)
+                    //{
                         writer.WriteStartArray("excludeOption"u8);
 
                         foreach(var excludeOptionItem in actualFiniteStateList.ExcludeOption.OrderBy(x => x, this.GuidComparer))
@@ -257,7 +261,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(actualFiniteStateList.Iid);
@@ -266,8 +270,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(actualFiniteStateList.Owner);
 
-                    if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
-                    {
+                    //if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
+                    //{
                         writer.WriteStartArray("possibleFiniteStateList"u8);
 
                         foreach(var possibleFiniteStateListItem in actualFiniteStateList.PossibleFiniteStateList.OrderBy(x => x, this.OrderedItemComparer))
@@ -276,7 +280,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(actualFiniteStateList.RevisionNumber);
@@ -296,8 +300,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (actualFiniteStateList.ActualState.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ActualState.Count > 0)
+                    //{
                         writer.WriteStartArray("actualState"u8);
 
                         foreach(var actualStateItem in actualFiniteStateList.ActualState.OrderBy(x => x, this.GuidComparer))
@@ -306,13 +310,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(actualFiniteStateList.ClassKind.ToString());
 
-                    if (actualFiniteStateList.ExcludedDomain.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in actualFiniteStateList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -321,11 +325,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludedPerson.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in actualFiniteStateList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -334,11 +338,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (actualFiniteStateList.ExcludeOption.Count > 0)
-                    {
+                    //if (actualFiniteStateList.ExcludeOption.Count > 0)
+                    //{
                         writer.WriteStartArray("excludeOption"u8);
 
                         foreach(var excludeOptionItem in actualFiniteStateList.ExcludeOption.OrderBy(x => x, this.GuidComparer))
@@ -347,7 +351,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(actualFiniteStateList.Iid);
@@ -356,8 +360,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(actualFiniteStateList.Owner);
 
-                    if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
-                    {
+                    //if (actualFiniteStateList.PossibleFiniteStateList.Count > 0)
+                    //{
                         writer.WriteStartArray("possibleFiniteStateList"u8);
 
                         foreach(var possibleFiniteStateListItem in actualFiniteStateList.PossibleFiniteStateList.OrderBy(x => x, this.OrderedItemComparer))
@@ -366,7 +370,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(actualFiniteStateList.RevisionNumber);
@@ -418,6 +422,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListActualState && objectListActualState.Any())
                     {
                         writer.WriteStartArray("actualState"u8);
@@ -453,6 +462,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -470,6 +484,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -485,6 +504,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludeOption"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludeOption && objectListExcludeOption.Any())
@@ -556,6 +580,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["possibleFiniteStateList"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListPossibleFiniteStateList && objectListPossibleFiniteStateList.Any())

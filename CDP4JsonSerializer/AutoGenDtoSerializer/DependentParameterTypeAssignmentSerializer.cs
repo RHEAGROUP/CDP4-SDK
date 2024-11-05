@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.2.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of DependentParameterTypeAssignment since Version is below 1.2.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -80,8 +84,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(dependentParameterTypeAssignment.ClassKind.ToString());
 
-                    if (dependentParameterTypeAssignment.ExcludedDomain.Count > 0)
-                    {
+                    //if (dependentParameterTypeAssignment.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in dependentParameterTypeAssignment.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -90,11 +94,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (dependentParameterTypeAssignment.ExcludedPerson.Count > 0)
-                    {
+                    //if (dependentParameterTypeAssignment.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in dependentParameterTypeAssignment.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -103,7 +107,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(dependentParameterTypeAssignment.Iid);
@@ -143,8 +147,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(dependentParameterTypeAssignment.ClassKind.ToString());
 
-                    if (dependentParameterTypeAssignment.ExcludedDomain.Count > 0)
-                    {
+                    //if (dependentParameterTypeAssignment.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in dependentParameterTypeAssignment.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -153,11 +157,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (dependentParameterTypeAssignment.ExcludedPerson.Count > 0)
-                    {
+                    //if (dependentParameterTypeAssignment.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in dependentParameterTypeAssignment.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -166,7 +170,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(dependentParameterTypeAssignment.Iid);
@@ -253,6 +257,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -268,6 +277,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())

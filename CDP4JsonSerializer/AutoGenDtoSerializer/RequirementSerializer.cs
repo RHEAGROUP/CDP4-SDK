@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Requirement since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing Requirement for Version 1.0.0");
 
-                    if (requirement.Alias.Count > 0)
-                    {
+                    //if (requirement.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in requirement.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,11 +92,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.Category.Count > 0)
-                    {
+                    //if (requirement.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requirement.Category.OrderBy(x => x, this.GuidComparer))
@@ -101,13 +105,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirement.ClassKind.ToString());
 
-                    if (requirement.Definition.Count > 0)
-                    {
+                    //if (requirement.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in requirement.Definition.OrderBy(x => x, this.GuidComparer))
@@ -116,7 +120,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("group"u8);
 
@@ -129,8 +133,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requirement.HyperLink.Count > 0)
-                    {
+                    //if (requirement.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in requirement.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -139,7 +143,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirement.Iid);
@@ -150,8 +154,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirement.Owner);
 
-                    if (requirement.ParameterValue.Count > 0)
-                    {
+                    //if (requirement.ParameterValue.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterValue"u8);
 
                         foreach(var parameterValueItem in requirement.ParameterValue.OrderBy(x => x, this.GuidComparer))
@@ -160,11 +164,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ParametricConstraint.Count > 0)
-                    {
+                    //if (requirement.ParametricConstraint.Count > 0)
+                    //{
                         writer.WriteStartArray("parametricConstraint"u8);
 
                         foreach(var parametricConstraintItem in requirement.ParametricConstraint.OrderBy(x => x, this.OrderedItemComparer))
@@ -173,7 +177,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirement.RevisionNumber);
@@ -183,8 +187,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Requirement for Version 1.1.0");
 
-                    if (requirement.Alias.Count > 0)
-                    {
+                    //if (requirement.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in requirement.Alias.OrderBy(x => x, this.GuidComparer))
@@ -193,11 +197,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.Category.Count > 0)
-                    {
+                    //if (requirement.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requirement.Category.OrderBy(x => x, this.GuidComparer))
@@ -206,13 +210,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirement.ClassKind.ToString());
 
-                    if (requirement.Definition.Count > 0)
-                    {
+                    //if (requirement.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in requirement.Definition.OrderBy(x => x, this.GuidComparer))
@@ -221,11 +225,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedDomain.Count > 0)
-                    {
+                    //if (requirement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requirement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -234,11 +238,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedPerson.Count > 0)
-                    {
+                    //if (requirement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requirement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -247,7 +251,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("group"u8);
 
@@ -260,8 +264,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requirement.HyperLink.Count > 0)
-                    {
+                    //if (requirement.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in requirement.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -270,7 +274,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirement.Iid);
@@ -283,8 +287,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirement.Owner);
 
-                    if (requirement.ParameterValue.Count > 0)
-                    {
+                    //if (requirement.ParameterValue.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterValue"u8);
 
                         foreach(var parameterValueItem in requirement.ParameterValue.OrderBy(x => x, this.GuidComparer))
@@ -293,11 +297,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ParametricConstraint.Count > 0)
-                    {
+                    //if (requirement.ParametricConstraint.Count > 0)
+                    //{
                         writer.WriteStartArray("parametricConstraint"u8);
 
                         foreach(var parametricConstraintItem in requirement.ParametricConstraint.OrderBy(x => x, this.OrderedItemComparer))
@@ -306,7 +310,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirement.RevisionNumber);
@@ -316,8 +320,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Requirement for Version 1.2.0");
 
-                    if (requirement.Alias.Count > 0)
-                    {
+                    //if (requirement.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in requirement.Alias.OrderBy(x => x, this.GuidComparer))
@@ -326,11 +330,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.Category.Count > 0)
-                    {
+                    //if (requirement.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requirement.Category.OrderBy(x => x, this.GuidComparer))
@@ -339,13 +343,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirement.ClassKind.ToString());
 
-                    if (requirement.Definition.Count > 0)
-                    {
+                    //if (requirement.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in requirement.Definition.OrderBy(x => x, this.GuidComparer))
@@ -354,11 +358,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedDomain.Count > 0)
-                    {
+                    //if (requirement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requirement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -367,11 +371,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedPerson.Count > 0)
-                    {
+                    //if (requirement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requirement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -380,7 +384,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("group"u8);
 
@@ -393,8 +397,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requirement.HyperLink.Count > 0)
-                    {
+                    //if (requirement.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in requirement.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -403,7 +407,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirement.Iid);
@@ -416,8 +420,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirement.Owner);
 
-                    if (requirement.ParameterValue.Count > 0)
-                    {
+                    //if (requirement.ParameterValue.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterValue"u8);
 
                         foreach(var parameterValueItem in requirement.ParameterValue.OrderBy(x => x, this.GuidComparer))
@@ -426,11 +430,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ParametricConstraint.Count > 0)
-                    {
+                    //if (requirement.ParametricConstraint.Count > 0)
+                    //{
                         writer.WriteStartArray("parametricConstraint"u8);
 
                         foreach(var parametricConstraintItem in requirement.ParametricConstraint.OrderBy(x => x, this.OrderedItemComparer))
@@ -439,7 +443,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirement.RevisionNumber);
@@ -461,8 +465,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requirement.Alias.Count > 0)
-                    {
+                    //if (requirement.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in requirement.Alias.OrderBy(x => x, this.GuidComparer))
@@ -471,11 +475,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.Category.Count > 0)
-                    {
+                    //if (requirement.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requirement.Category.OrderBy(x => x, this.GuidComparer))
@@ -484,13 +488,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirement.ClassKind.ToString());
 
-                    if (requirement.Definition.Count > 0)
-                    {
+                    //if (requirement.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in requirement.Definition.OrderBy(x => x, this.GuidComparer))
@@ -499,11 +503,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedDomain.Count > 0)
-                    {
+                    //if (requirement.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requirement.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -512,11 +516,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ExcludedPerson.Count > 0)
-                    {
+                    //if (requirement.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requirement.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -525,7 +529,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("group"u8);
 
@@ -538,8 +542,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requirement.HyperLink.Count > 0)
-                    {
+                    //if (requirement.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in requirement.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -548,7 +552,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirement.Iid);
@@ -561,8 +565,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirement.Owner);
 
-                    if (requirement.ParameterValue.Count > 0)
-                    {
+                    //if (requirement.ParameterValue.Count > 0)
+                    //{
                         writer.WriteStartArray("parameterValue"u8);
 
                         foreach(var parameterValueItem in requirement.ParameterValue.OrderBy(x => x, this.GuidComparer))
@@ -571,11 +575,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requirement.ParametricConstraint.Count > 0)
-                    {
+                    //if (requirement.ParametricConstraint.Count > 0)
+                    //{
                         writer.WriteStartArray("parametricConstraint"u8);
 
                         foreach(var parametricConstraintItem in requirement.ParametricConstraint.OrderBy(x => x, this.OrderedItemComparer))
@@ -584,7 +588,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirement.RevisionNumber);
@@ -638,6 +642,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -653,6 +662,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -690,6 +704,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -707,6 +726,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -722,6 +746,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -757,6 +786,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
@@ -866,6 +900,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListParameterValue && objectListParameterValue.Any())
                     {
                         writer.WriteStartArray("parameterValue"u8);
@@ -881,6 +920,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["parametricConstraint"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListParametricConstraint && objectListParametricConstraint.Any())

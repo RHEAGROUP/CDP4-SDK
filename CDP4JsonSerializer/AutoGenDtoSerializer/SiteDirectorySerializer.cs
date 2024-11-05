@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of SiteDirectory since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -103,8 +107,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (siteDirectory.Domain.Count > 0)
-                    {
+                    //if (siteDirectory.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in siteDirectory.Domain.OrderBy(x => x, this.GuidComparer))
@@ -113,11 +117,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.DomainGroup.Count > 0)
-                    {
+                    //if (siteDirectory.DomainGroup.Count > 0)
+                    //{
                         writer.WriteStartArray("domainGroup"u8);
 
                         foreach(var domainGroupItem in siteDirectory.DomainGroup.OrderBy(x => x, this.GuidComparer))
@@ -126,15 +130,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteDirectory.Iid);
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (siteDirectory.LogEntry.Count > 0)
-                    {
+                    //if (siteDirectory.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in siteDirectory.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -143,11 +147,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Model.Count > 0)
-                    {
+                    //if (siteDirectory.Model.Count > 0)
+                    //{
                         writer.WriteStartArray("model"u8);
 
                         foreach(var modelItem in siteDirectory.Model.OrderBy(x => x, this.GuidComparer))
@@ -156,13 +160,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(siteDirectory.Name);
 
-                    if (siteDirectory.NaturalLanguage.Count > 0)
-                    {
+                    //if (siteDirectory.NaturalLanguage.Count > 0)
+                    //{
                         writer.WriteStartArray("naturalLanguage"u8);
 
                         foreach(var naturalLanguageItem in siteDirectory.NaturalLanguage.OrderBy(x => x, this.GuidComparer))
@@ -171,11 +175,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Organization.Count > 0)
-                    {
+                    //if (siteDirectory.Organization.Count > 0)
+                    //{
                         writer.WriteStartArray("organization"u8);
 
                         foreach(var organizationItem in siteDirectory.Organization.OrderBy(x => x, this.GuidComparer))
@@ -184,11 +188,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ParticipantRole.Count > 0)
-                    {
+                    //if (siteDirectory.ParticipantRole.Count > 0)
+                    //{
                         writer.WriteStartArray("participantRole"u8);
 
                         foreach(var participantRoleItem in siteDirectory.ParticipantRole.OrderBy(x => x, this.GuidComparer))
@@ -197,11 +201,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Person.Count > 0)
-                    {
+                    //if (siteDirectory.Person.Count > 0)
+                    //{
                         writer.WriteStartArray("person"u8);
 
                         foreach(var personItem in siteDirectory.Person.OrderBy(x => x, this.GuidComparer))
@@ -210,11 +214,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.PersonRole.Count > 0)
-                    {
+                    //if (siteDirectory.PersonRole.Count > 0)
+                    //{
                         writer.WriteStartArray("personRole"u8);
 
                         foreach(var personRoleItem in siteDirectory.PersonRole.OrderBy(x => x, this.GuidComparer))
@@ -223,15 +227,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(siteDirectory.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(siteDirectory.ShortName);
 
-                    if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
-                    {
+                    //if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
+                    //{
                         writer.WriteStartArray("siteReferenceDataLibrary"u8);
 
                         foreach(var siteReferenceDataLibraryItem in siteDirectory.SiteReferenceDataLibrary.OrderBy(x => x, this.GuidComparer))
@@ -240,14 +244,14 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing SiteDirectory for Version 1.1.0");
 
-                    if (siteDirectory.Annotation.Count > 0)
-                    {
+                    //if (siteDirectory.Annotation.Count > 0)
+                    //{
                         writer.WriteStartArray("annotation"u8);
 
                         foreach(var annotationItem in siteDirectory.Annotation.OrderBy(x => x, this.GuidComparer))
@@ -256,7 +260,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteDirectory.ClassKind.ToString());
@@ -284,8 +288,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (siteDirectory.Domain.Count > 0)
-                    {
+                    //if (siteDirectory.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in siteDirectory.Domain.OrderBy(x => x, this.GuidComparer))
@@ -294,11 +298,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.DomainGroup.Count > 0)
-                    {
+                    //if (siteDirectory.DomainGroup.Count > 0)
+                    //{
                         writer.WriteStartArray("domainGroup"u8);
 
                         foreach(var domainGroupItem in siteDirectory.DomainGroup.OrderBy(x => x, this.GuidComparer))
@@ -307,11 +311,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedDomain.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in siteDirectory.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -320,11 +324,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedPerson.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in siteDirectory.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -333,15 +337,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteDirectory.Iid);
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (siteDirectory.LogEntry.Count > 0)
-                    {
+                    //if (siteDirectory.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in siteDirectory.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -350,11 +354,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Model.Count > 0)
-                    {
+                    //if (siteDirectory.Model.Count > 0)
+                    //{
                         writer.WriteStartArray("model"u8);
 
                         foreach(var modelItem in siteDirectory.Model.OrderBy(x => x, this.GuidComparer))
@@ -363,15 +367,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(siteDirectory.Name);
 
-                    if (siteDirectory.NaturalLanguage.Count > 0)
-                    {
+                    //if (siteDirectory.NaturalLanguage.Count > 0)
+                    //{
                         writer.WriteStartArray("naturalLanguage"u8);
 
                         foreach(var naturalLanguageItem in siteDirectory.NaturalLanguage.OrderBy(x => x, this.GuidComparer))
@@ -380,11 +384,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Organization.Count > 0)
-                    {
+                    //if (siteDirectory.Organization.Count > 0)
+                    //{
                         writer.WriteStartArray("organization"u8);
 
                         foreach(var organizationItem in siteDirectory.Organization.OrderBy(x => x, this.GuidComparer))
@@ -393,11 +397,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ParticipantRole.Count > 0)
-                    {
+                    //if (siteDirectory.ParticipantRole.Count > 0)
+                    //{
                         writer.WriteStartArray("participantRole"u8);
 
                         foreach(var participantRoleItem in siteDirectory.ParticipantRole.OrderBy(x => x, this.GuidComparer))
@@ -406,11 +410,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Person.Count > 0)
-                    {
+                    //if (siteDirectory.Person.Count > 0)
+                    //{
                         writer.WriteStartArray("person"u8);
 
                         foreach(var personItem in siteDirectory.Person.OrderBy(x => x, this.GuidComparer))
@@ -419,11 +423,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.PersonRole.Count > 0)
-                    {
+                    //if (siteDirectory.PersonRole.Count > 0)
+                    //{
                         writer.WriteStartArray("personRole"u8);
 
                         foreach(var personRoleItem in siteDirectory.PersonRole.OrderBy(x => x, this.GuidComparer))
@@ -432,15 +436,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(siteDirectory.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(siteDirectory.ShortName);
 
-                    if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
-                    {
+                    //if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
+                    //{
                         writer.WriteStartArray("siteReferenceDataLibrary"u8);
 
                         foreach(var siteReferenceDataLibraryItem in siteDirectory.SiteReferenceDataLibrary.OrderBy(x => x, this.GuidComparer))
@@ -449,14 +453,14 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing SiteDirectory for Version 1.2.0");
 
-                    if (siteDirectory.Annotation.Count > 0)
-                    {
+                    //if (siteDirectory.Annotation.Count > 0)
+                    //{
                         writer.WriteStartArray("annotation"u8);
 
                         foreach(var annotationItem in siteDirectory.Annotation.OrderBy(x => x, this.GuidComparer))
@@ -465,7 +469,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteDirectory.ClassKind.ToString());
@@ -493,8 +497,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (siteDirectory.Domain.Count > 0)
-                    {
+                    //if (siteDirectory.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in siteDirectory.Domain.OrderBy(x => x, this.GuidComparer))
@@ -503,11 +507,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.DomainGroup.Count > 0)
-                    {
+                    //if (siteDirectory.DomainGroup.Count > 0)
+                    //{
                         writer.WriteStartArray("domainGroup"u8);
 
                         foreach(var domainGroupItem in siteDirectory.DomainGroup.OrderBy(x => x, this.GuidComparer))
@@ -516,11 +520,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedDomain.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in siteDirectory.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -529,11 +533,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedPerson.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in siteDirectory.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -542,15 +546,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteDirectory.Iid);
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (siteDirectory.LogEntry.Count > 0)
-                    {
+                    //if (siteDirectory.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in siteDirectory.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -559,11 +563,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Model.Count > 0)
-                    {
+                    //if (siteDirectory.Model.Count > 0)
+                    //{
                         writer.WriteStartArray("model"u8);
 
                         foreach(var modelItem in siteDirectory.Model.OrderBy(x => x, this.GuidComparer))
@@ -572,15 +576,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(siteDirectory.Name);
 
-                    if (siteDirectory.NaturalLanguage.Count > 0)
-                    {
+                    //if (siteDirectory.NaturalLanguage.Count > 0)
+                    //{
                         writer.WriteStartArray("naturalLanguage"u8);
 
                         foreach(var naturalLanguageItem in siteDirectory.NaturalLanguage.OrderBy(x => x, this.GuidComparer))
@@ -589,11 +593,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Organization.Count > 0)
-                    {
+                    //if (siteDirectory.Organization.Count > 0)
+                    //{
                         writer.WriteStartArray("organization"u8);
 
                         foreach(var organizationItem in siteDirectory.Organization.OrderBy(x => x, this.GuidComparer))
@@ -602,11 +606,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ParticipantRole.Count > 0)
-                    {
+                    //if (siteDirectory.ParticipantRole.Count > 0)
+                    //{
                         writer.WriteStartArray("participantRole"u8);
 
                         foreach(var participantRoleItem in siteDirectory.ParticipantRole.OrderBy(x => x, this.GuidComparer))
@@ -615,11 +619,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Person.Count > 0)
-                    {
+                    //if (siteDirectory.Person.Count > 0)
+                    //{
                         writer.WriteStartArray("person"u8);
 
                         foreach(var personItem in siteDirectory.Person.OrderBy(x => x, this.GuidComparer))
@@ -628,11 +632,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.PersonRole.Count > 0)
-                    {
+                    //if (siteDirectory.PersonRole.Count > 0)
+                    //{
                         writer.WriteStartArray("personRole"u8);
 
                         foreach(var personRoleItem in siteDirectory.PersonRole.OrderBy(x => x, this.GuidComparer))
@@ -641,15 +645,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(siteDirectory.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(siteDirectory.ShortName);
 
-                    if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
-                    {
+                    //if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
+                    //{
                         writer.WriteStartArray("siteReferenceDataLibrary"u8);
 
                         foreach(var siteReferenceDataLibraryItem in siteDirectory.SiteReferenceDataLibrary.OrderBy(x => x, this.GuidComparer))
@@ -658,7 +662,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(siteDirectory.ThingPreference);
@@ -676,8 +680,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (siteDirectory.Annotation.Count > 0)
-                    {
+                    //if (siteDirectory.Annotation.Count > 0)
+                    //{
                         writer.WriteStartArray("annotation"u8);
 
                         foreach(var annotationItem in siteDirectory.Annotation.OrderBy(x => x, this.GuidComparer))
@@ -686,7 +690,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(siteDirectory.ClassKind.ToString());
@@ -714,8 +718,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (siteDirectory.Domain.Count > 0)
-                    {
+                    //if (siteDirectory.Domain.Count > 0)
+                    //{
                         writer.WriteStartArray("domain"u8);
 
                         foreach(var domainItem in siteDirectory.Domain.OrderBy(x => x, this.GuidComparer))
@@ -724,11 +728,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.DomainGroup.Count > 0)
-                    {
+                    //if (siteDirectory.DomainGroup.Count > 0)
+                    //{
                         writer.WriteStartArray("domainGroup"u8);
 
                         foreach(var domainGroupItem in siteDirectory.DomainGroup.OrderBy(x => x, this.GuidComparer))
@@ -737,11 +741,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedDomain.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in siteDirectory.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -750,11 +754,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ExcludedPerson.Count > 0)
-                    {
+                    //if (siteDirectory.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in siteDirectory.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -763,15 +767,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(siteDirectory.Iid);
                     writer.WritePropertyName("lastModifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.LastModifiedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (siteDirectory.LogEntry.Count > 0)
-                    {
+                    //if (siteDirectory.LogEntry.Count > 0)
+                    //{
                         writer.WriteStartArray("logEntry"u8);
 
                         foreach(var logEntryItem in siteDirectory.LogEntry.OrderBy(x => x, this.GuidComparer))
@@ -780,11 +784,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Model.Count > 0)
-                    {
+                    //if (siteDirectory.Model.Count > 0)
+                    //{
                         writer.WriteStartArray("model"u8);
 
                         foreach(var modelItem in siteDirectory.Model.OrderBy(x => x, this.GuidComparer))
@@ -793,15 +797,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(siteDirectory.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(siteDirectory.Name);
 
-                    if (siteDirectory.NaturalLanguage.Count > 0)
-                    {
+                    //if (siteDirectory.NaturalLanguage.Count > 0)
+                    //{
                         writer.WriteStartArray("naturalLanguage"u8);
 
                         foreach(var naturalLanguageItem in siteDirectory.NaturalLanguage.OrderBy(x => x, this.GuidComparer))
@@ -810,11 +814,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Organization.Count > 0)
-                    {
+                    //if (siteDirectory.Organization.Count > 0)
+                    //{
                         writer.WriteStartArray("organization"u8);
 
                         foreach(var organizationItem in siteDirectory.Organization.OrderBy(x => x, this.GuidComparer))
@@ -823,11 +827,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.ParticipantRole.Count > 0)
-                    {
+                    //if (siteDirectory.ParticipantRole.Count > 0)
+                    //{
                         writer.WriteStartArray("participantRole"u8);
 
                         foreach(var participantRoleItem in siteDirectory.ParticipantRole.OrderBy(x => x, this.GuidComparer))
@@ -836,11 +840,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.Person.Count > 0)
-                    {
+                    //if (siteDirectory.Person.Count > 0)
+                    //{
                         writer.WriteStartArray("person"u8);
 
                         foreach(var personItem in siteDirectory.Person.OrderBy(x => x, this.GuidComparer))
@@ -849,11 +853,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (siteDirectory.PersonRole.Count > 0)
-                    {
+                    //if (siteDirectory.PersonRole.Count > 0)
+                    //{
                         writer.WriteStartArray("personRole"u8);
 
                         foreach(var personRoleItem in siteDirectory.PersonRole.OrderBy(x => x, this.GuidComparer))
@@ -862,15 +866,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(siteDirectory.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(siteDirectory.ShortName);
 
-                    if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
-                    {
+                    //if (siteDirectory.SiteReferenceDataLibrary.Count > 0)
+                    //{
                         writer.WriteStartArray("siteReferenceDataLibrary"u8);
 
                         foreach(var siteReferenceDataLibraryItem in siteDirectory.SiteReferenceDataLibrary.OrderBy(x => x, this.GuidComparer))
@@ -879,7 +883,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(siteDirectory.ThingPreference);
@@ -927,6 +931,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["annotation"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListAnnotation && objectListAnnotation.Any())
@@ -1018,6 +1027,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDomain && objectListDomain.Any())
                     {
                         writer.WriteStartArray("domain"u8);
@@ -1033,6 +1047,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["domainGroup"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListDomainGroup && objectListDomainGroup.Any())
@@ -1052,6 +1071,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -1067,6 +1091,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -1122,6 +1151,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListLogEntry && objectListLogEntry.Any())
                     {
                         writer.WriteStartArray("logEntry"u8);
@@ -1137,6 +1171,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["model"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListModel && objectListModel.Any())
@@ -1192,6 +1231,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListNaturalLanguage && objectListNaturalLanguage.Any())
                     {
                         writer.WriteStartArray("naturalLanguage"u8);
@@ -1207,6 +1251,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["organization"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListOrganization && objectListOrganization.Any())
@@ -1226,6 +1275,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListParticipantRole && objectListParticipantRole.Any())
                     {
                         writer.WriteStartArray("participantRole"u8);
@@ -1243,6 +1297,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListPerson && objectListPerson.Any())
                     {
                         writer.WriteStartArray("person"u8);
@@ -1258,6 +1317,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["personRole"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListPersonRole && objectListPersonRole.Any())
@@ -1311,6 +1375,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["siteReferenceDataLibrary"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListSiteReferenceDataLibrary && objectListSiteReferenceDataLibrary.Any())

@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of RuleVerificationList since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing RuleVerificationList for Version 1.0.0");
 
-                    if (ruleVerificationList.Alias.Count > 0)
-                    {
+                    //if (ruleVerificationList.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in ruleVerificationList.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,13 +92,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ruleVerificationList.ClassKind.ToString());
 
-                    if (ruleVerificationList.Definition.Count > 0)
-                    {
+                    //if (ruleVerificationList.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in ruleVerificationList.Definition.OrderBy(x => x, this.GuidComparer))
@@ -103,11 +107,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.HyperLink.Count > 0)
-                    {
+                    //if (ruleVerificationList.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in ruleVerificationList.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -116,7 +120,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleVerificationList.Iid);
@@ -127,8 +131,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleVerificationList.RevisionNumber);
 
-                    if (ruleVerificationList.RuleVerification.Count > 0)
-                    {
+                    //if (ruleVerificationList.RuleVerification.Count > 0)
+                    //{
                         writer.WriteStartArray("ruleVerification"u8);
 
                         foreach(var ruleVerificationItem in ruleVerificationList.RuleVerification.OrderBy(x => x, this.OrderedItemComparer))
@@ -137,7 +141,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(ruleVerificationList.ShortName);
@@ -145,8 +149,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing RuleVerificationList for Version 1.1.0");
 
-                    if (ruleVerificationList.Alias.Count > 0)
-                    {
+                    //if (ruleVerificationList.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in ruleVerificationList.Alias.OrderBy(x => x, this.GuidComparer))
@@ -155,13 +159,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ruleVerificationList.ClassKind.ToString());
 
-                    if (ruleVerificationList.Definition.Count > 0)
-                    {
+                    //if (ruleVerificationList.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in ruleVerificationList.Definition.OrderBy(x => x, this.GuidComparer))
@@ -170,11 +174,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedDomain.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ruleVerificationList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -183,11 +187,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedPerson.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ruleVerificationList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -196,11 +200,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.HyperLink.Count > 0)
-                    {
+                    //if (ruleVerificationList.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in ruleVerificationList.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -209,7 +213,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleVerificationList.Iid);
@@ -222,8 +226,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleVerificationList.RevisionNumber);
 
-                    if (ruleVerificationList.RuleVerification.Count > 0)
-                    {
+                    //if (ruleVerificationList.RuleVerification.Count > 0)
+                    //{
                         writer.WriteStartArray("ruleVerification"u8);
 
                         foreach(var ruleVerificationItem in ruleVerificationList.RuleVerification.OrderBy(x => x, this.OrderedItemComparer))
@@ -232,7 +236,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(ruleVerificationList.ShortName);
@@ -240,8 +244,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing RuleVerificationList for Version 1.2.0");
 
-                    if (ruleVerificationList.Alias.Count > 0)
-                    {
+                    //if (ruleVerificationList.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in ruleVerificationList.Alias.OrderBy(x => x, this.GuidComparer))
@@ -250,13 +254,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ruleVerificationList.ClassKind.ToString());
 
-                    if (ruleVerificationList.Definition.Count > 0)
-                    {
+                    //if (ruleVerificationList.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in ruleVerificationList.Definition.OrderBy(x => x, this.GuidComparer))
@@ -265,11 +269,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedDomain.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ruleVerificationList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -278,11 +282,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedPerson.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ruleVerificationList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -291,11 +295,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.HyperLink.Count > 0)
-                    {
+                    //if (ruleVerificationList.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in ruleVerificationList.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -304,7 +308,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleVerificationList.Iid);
@@ -317,8 +321,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleVerificationList.RevisionNumber);
 
-                    if (ruleVerificationList.RuleVerification.Count > 0)
-                    {
+                    //if (ruleVerificationList.RuleVerification.Count > 0)
+                    //{
                         writer.WriteStartArray("ruleVerification"u8);
 
                         foreach(var ruleVerificationItem in ruleVerificationList.RuleVerification.OrderBy(x => x, this.OrderedItemComparer))
@@ -327,7 +331,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(ruleVerificationList.ShortName);
@@ -347,8 +351,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (ruleVerificationList.Alias.Count > 0)
-                    {
+                    //if (ruleVerificationList.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in ruleVerificationList.Alias.OrderBy(x => x, this.GuidComparer))
@@ -357,13 +361,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ruleVerificationList.ClassKind.ToString());
 
-                    if (ruleVerificationList.Definition.Count > 0)
-                    {
+                    //if (ruleVerificationList.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in ruleVerificationList.Definition.OrderBy(x => x, this.GuidComparer))
@@ -372,11 +376,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedDomain.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ruleVerificationList.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -385,11 +389,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.ExcludedPerson.Count > 0)
-                    {
+                    //if (ruleVerificationList.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ruleVerificationList.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -398,11 +402,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ruleVerificationList.HyperLink.Count > 0)
-                    {
+                    //if (ruleVerificationList.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in ruleVerificationList.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -411,7 +415,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(ruleVerificationList.Iid);
@@ -424,8 +428,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(ruleVerificationList.RevisionNumber);
 
-                    if (ruleVerificationList.RuleVerification.Count > 0)
-                    {
+                    //if (ruleVerificationList.RuleVerification.Count > 0)
+                    //{
                         writer.WriteStartArray("ruleVerification"u8);
 
                         foreach(var ruleVerificationItem in ruleVerificationList.RuleVerification.OrderBy(x => x, this.OrderedItemComparer))
@@ -434,7 +438,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(ruleVerificationList.ShortName);
@@ -486,6 +490,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -521,6 +530,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -536,6 +550,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
@@ -555,6 +574,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -570,6 +594,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())
@@ -677,6 +706,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["ruleVerification"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListRuleVerification && objectListRuleVerification.Any())

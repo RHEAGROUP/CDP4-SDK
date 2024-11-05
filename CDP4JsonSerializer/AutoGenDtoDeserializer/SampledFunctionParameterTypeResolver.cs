@@ -28,7 +28,10 @@
 
 namespace CDP4JsonSerializer
 {
+    using System.Collections.Generic;
     using System.Text.Json;
+
+    using CDP4Common.Types;
 
     using NLog;
 
@@ -132,9 +135,23 @@ namespace CDP4JsonSerializer
             {
                 sampledFunctionParameterType.IndependentParameterType.AddRange(independentParameterTypeProperty.ToOrderedItemCollection());
             }
+
             if (jsonElement.TryGetProperty("interpolationPeriod"u8, out var interpolationPeriodProperty))
             {
-                sampledFunctionParameterType.InterpolationPeriod = SerializerHelper.ToValueArray<string>(interpolationPeriodProperty.GetString());
+                if(interpolationPeriodProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in interpolationPeriodProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    sampledFunctionParameterType.InterpolationPeriod = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    sampledFunctionParameterType.InterpolationPeriod = SerializerHelper.ToValueArray<string>(interpolationPeriodProperty.GetString());
+                }
             }
 
             if (jsonElement.TryGetProperty("isDeprecated"u8, out var isDeprecatedProperty))

@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of DomainOfExpertise since Version is below 1.0.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing DomainOfExpertise for Version 1.0.0");
 
-                    if (domainOfExpertise.Alias.Count > 0)
-                    {
+                    //if (domainOfExpertise.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in domainOfExpertise.Alias.OrderBy(x => x, this.GuidComparer))
@@ -88,11 +92,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.Category.Count > 0)
-                    {
+                    //if (domainOfExpertise.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in domainOfExpertise.Category.OrderBy(x => x, this.GuidComparer))
@@ -101,13 +105,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(domainOfExpertise.ClassKind.ToString());
 
-                    if (domainOfExpertise.Definition.Count > 0)
-                    {
+                    //if (domainOfExpertise.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in domainOfExpertise.Definition.OrderBy(x => x, this.GuidComparer))
@@ -116,11 +120,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.HyperLink.Count > 0)
-                    {
+                    //if (domainOfExpertise.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in domainOfExpertise.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -129,7 +133,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(domainOfExpertise.Iid);
@@ -145,8 +149,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing DomainOfExpertise for Version 1.1.0");
 
-                    if (domainOfExpertise.Alias.Count > 0)
-                    {
+                    //if (domainOfExpertise.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in domainOfExpertise.Alias.OrderBy(x => x, this.GuidComparer))
@@ -155,11 +159,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.Category.Count > 0)
-                    {
+                    //if (domainOfExpertise.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in domainOfExpertise.Category.OrderBy(x => x, this.GuidComparer))
@@ -168,13 +172,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(domainOfExpertise.ClassKind.ToString());
 
-                    if (domainOfExpertise.Definition.Count > 0)
-                    {
+                    //if (domainOfExpertise.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in domainOfExpertise.Definition.OrderBy(x => x, this.GuidComparer))
@@ -183,11 +187,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedDomain.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in domainOfExpertise.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -196,11 +200,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedPerson.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in domainOfExpertise.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -209,11 +213,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.HyperLink.Count > 0)
-                    {
+                    //if (domainOfExpertise.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in domainOfExpertise.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -222,7 +226,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(domainOfExpertise.Iid);
@@ -240,8 +244,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing DomainOfExpertise for Version 1.2.0");
 
-                    if (domainOfExpertise.Alias.Count > 0)
-                    {
+                    //if (domainOfExpertise.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in domainOfExpertise.Alias.OrderBy(x => x, this.GuidComparer))
@@ -250,11 +254,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.Category.Count > 0)
-                    {
+                    //if (domainOfExpertise.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in domainOfExpertise.Category.OrderBy(x => x, this.GuidComparer))
@@ -263,13 +267,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(domainOfExpertise.ClassKind.ToString());
 
-                    if (domainOfExpertise.Definition.Count > 0)
-                    {
+                    //if (domainOfExpertise.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in domainOfExpertise.Definition.OrderBy(x => x, this.GuidComparer))
@@ -278,11 +282,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedDomain.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in domainOfExpertise.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -291,11 +295,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedPerson.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in domainOfExpertise.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -304,11 +308,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.HyperLink.Count > 0)
-                    {
+                    //if (domainOfExpertise.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in domainOfExpertise.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -317,7 +321,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(domainOfExpertise.Iid);
@@ -347,8 +351,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (domainOfExpertise.Alias.Count > 0)
-                    {
+                    //if (domainOfExpertise.Alias.Count > 0)
+                    //{
                         writer.WriteStartArray("alias"u8);
 
                         foreach(var aliasItem in domainOfExpertise.Alias.OrderBy(x => x, this.GuidComparer))
@@ -357,11 +361,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.Category.Count > 0)
-                    {
+                    //if (domainOfExpertise.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in domainOfExpertise.Category.OrderBy(x => x, this.GuidComparer))
@@ -370,13 +374,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(domainOfExpertise.ClassKind.ToString());
 
-                    if (domainOfExpertise.Definition.Count > 0)
-                    {
+                    //if (domainOfExpertise.Definition.Count > 0)
+                    //{
                         writer.WriteStartArray("definition"u8);
 
                         foreach(var definitionItem in domainOfExpertise.Definition.OrderBy(x => x, this.GuidComparer))
@@ -385,11 +389,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedDomain.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in domainOfExpertise.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -398,11 +402,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.ExcludedPerson.Count > 0)
-                    {
+                    //if (domainOfExpertise.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in domainOfExpertise.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -411,11 +415,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (domainOfExpertise.HyperLink.Count > 0)
-                    {
+                    //if (domainOfExpertise.HyperLink.Count > 0)
+                    //{
                         writer.WriteStartArray("hyperLink"u8);
 
                         foreach(var hyperLinkItem in domainOfExpertise.HyperLink.OrderBy(x => x, this.GuidComparer))
@@ -424,7 +428,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(domainOfExpertise.Iid);
@@ -486,6 +490,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListAlias && objectListAlias.Any())
                     {
                         writer.WriteStartArray("alias"u8);
@@ -501,6 +510,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -538,6 +552,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDefinition && objectListDefinition.Any())
                     {
                         writer.WriteStartArray("definition"u8);
@@ -553,6 +572,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
@@ -572,6 +596,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
                     {
                         writer.WriteStartArray("excludedPerson"u8);
@@ -587,6 +616,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListHyperLink && objectListHyperLink.Any())

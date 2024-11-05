@@ -28,7 +28,10 @@
 
 namespace CDP4JsonSerializer
 {
+    using System.Collections.Generic;
     using System.Text.Json;
+
+    using CDP4Common.Types;
 
     using NLog;
 
@@ -78,9 +81,23 @@ namespace CDP4JsonSerializer
                     parameterSubscriptionValueSet.ExcludedPerson.Add(element.GetGuid());
                 }
             }
+
             if (jsonElement.TryGetProperty("manual"u8, out var manualProperty))
             {
-                parameterSubscriptionValueSet.Manual = SerializerHelper.ToValueArray<string>(manualProperty.GetString());
+                if(manualProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in manualProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterSubscriptionValueSet.Manual = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterSubscriptionValueSet.Manual = SerializerHelper.ToValueArray<string>(manualProperty.GetString());
+                }
             }
 
             if (jsonElement.TryGetProperty("modifiedOn"u8, out var modifiedOnProperty))

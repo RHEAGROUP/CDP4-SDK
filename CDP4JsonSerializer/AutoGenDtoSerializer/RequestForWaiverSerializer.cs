@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of RequestForWaiver since Version is below 1.1.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequestForWaiver for Version 1.1.0");
 
-                    if (requestForWaiver.ApprovedBy.Count > 0)
-                    {
+                    //if (requestForWaiver.ApprovedBy.Count > 0)
+                    //{
                         writer.WriteStartArray("approvedBy"u8);
 
                         foreach(var approvedByItem in requestForWaiver.ApprovedBy.OrderBy(x => x, this.GuidComparer))
@@ -88,13 +92,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(requestForWaiver.Author);
 
-                    if (requestForWaiver.Category.Count > 0)
-                    {
+                    //if (requestForWaiver.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requestForWaiver.Category.OrderBy(x => x, this.GuidComparer))
@@ -103,7 +107,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classification"u8);
                     writer.WriteStringValue(requestForWaiver.Classification.ToString());
@@ -114,8 +118,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(requestForWaiver.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (requestForWaiver.Discussion.Count > 0)
-                    {
+                    //if (requestForWaiver.Discussion.Count > 0)
+                    //{
                         writer.WriteStartArray("discussion"u8);
 
                         foreach(var discussionItem in requestForWaiver.Discussion.OrderBy(x => x, this.GuidComparer))
@@ -124,11 +128,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedDomain.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requestForWaiver.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -137,11 +141,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedPerson.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requestForWaiver.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -150,7 +154,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requestForWaiver.Iid);
@@ -171,8 +175,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requestForWaiver.RelatedThing.Count > 0)
-                    {
+                    //if (requestForWaiver.RelatedThing.Count > 0)
+                    //{
                         writer.WriteStartArray("relatedThing"u8);
 
                         foreach(var relatedThingItem in requestForWaiver.RelatedThing.OrderBy(x => x, this.GuidComparer))
@@ -181,15 +185,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requestForWaiver.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(requestForWaiver.ShortName);
 
-                    if (requestForWaiver.SourceAnnotation.Count > 0)
-                    {
+                    //if (requestForWaiver.SourceAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("sourceAnnotation"u8);
 
                         foreach(var sourceAnnotationItem in requestForWaiver.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -198,7 +202,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(requestForWaiver.Status.ToString());
@@ -208,8 +212,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequestForWaiver for Version 1.2.0");
 
-                    if (requestForWaiver.ApprovedBy.Count > 0)
-                    {
+                    //if (requestForWaiver.ApprovedBy.Count > 0)
+                    //{
                         writer.WriteStartArray("approvedBy"u8);
 
                         foreach(var approvedByItem in requestForWaiver.ApprovedBy.OrderBy(x => x, this.GuidComparer))
@@ -218,13 +222,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(requestForWaiver.Author);
 
-                    if (requestForWaiver.Category.Count > 0)
-                    {
+                    //if (requestForWaiver.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requestForWaiver.Category.OrderBy(x => x, this.GuidComparer))
@@ -233,7 +237,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classification"u8);
                     writer.WriteStringValue(requestForWaiver.Classification.ToString());
@@ -244,8 +248,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(requestForWaiver.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (requestForWaiver.Discussion.Count > 0)
-                    {
+                    //if (requestForWaiver.Discussion.Count > 0)
+                    //{
                         writer.WriteStartArray("discussion"u8);
 
                         foreach(var discussionItem in requestForWaiver.Discussion.OrderBy(x => x, this.GuidComparer))
@@ -254,11 +258,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedDomain.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requestForWaiver.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -267,11 +271,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedPerson.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requestForWaiver.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -280,7 +284,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requestForWaiver.Iid);
@@ -301,8 +305,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requestForWaiver.RelatedThing.Count > 0)
-                    {
+                    //if (requestForWaiver.RelatedThing.Count > 0)
+                    //{
                         writer.WriteStartArray("relatedThing"u8);
 
                         foreach(var relatedThingItem in requestForWaiver.RelatedThing.OrderBy(x => x, this.GuidComparer))
@@ -311,15 +315,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requestForWaiver.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(requestForWaiver.ShortName);
 
-                    if (requestForWaiver.SourceAnnotation.Count > 0)
-                    {
+                    //if (requestForWaiver.SourceAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("sourceAnnotation"u8);
 
                         foreach(var sourceAnnotationItem in requestForWaiver.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -328,7 +332,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(requestForWaiver.Status.ToString());
@@ -350,8 +354,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requestForWaiver.ApprovedBy.Count > 0)
-                    {
+                    //if (requestForWaiver.ApprovedBy.Count > 0)
+                    //{
                         writer.WriteStartArray("approvedBy"u8);
 
                         foreach(var approvedByItem in requestForWaiver.ApprovedBy.OrderBy(x => x, this.GuidComparer))
@@ -360,13 +364,13 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("author"u8);
                     writer.WriteStringValue(requestForWaiver.Author);
 
-                    if (requestForWaiver.Category.Count > 0)
-                    {
+                    //if (requestForWaiver.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in requestForWaiver.Category.OrderBy(x => x, this.GuidComparer))
@@ -375,7 +379,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classification"u8);
                     writer.WriteStringValue(requestForWaiver.Classification.ToString());
@@ -386,8 +390,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(requestForWaiver.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (requestForWaiver.Discussion.Count > 0)
-                    {
+                    //if (requestForWaiver.Discussion.Count > 0)
+                    //{
                         writer.WriteStartArray("discussion"u8);
 
                         foreach(var discussionItem in requestForWaiver.Discussion.OrderBy(x => x, this.GuidComparer))
@@ -396,11 +400,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedDomain.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in requestForWaiver.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -409,11 +413,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (requestForWaiver.ExcludedPerson.Count > 0)
-                    {
+                    //if (requestForWaiver.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in requestForWaiver.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -422,7 +426,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requestForWaiver.Iid);
@@ -443,8 +447,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (requestForWaiver.RelatedThing.Count > 0)
-                    {
+                    //if (requestForWaiver.RelatedThing.Count > 0)
+                    //{
                         writer.WriteStartArray("relatedThing"u8);
 
                         foreach(var relatedThingItem in requestForWaiver.RelatedThing.OrderBy(x => x, this.GuidComparer))
@@ -453,15 +457,15 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requestForWaiver.RevisionNumber);
                     writer.WritePropertyName("shortName"u8);
                     writer.WriteStringValue(requestForWaiver.ShortName);
 
-                    if (requestForWaiver.SourceAnnotation.Count > 0)
-                    {
+                    //if (requestForWaiver.SourceAnnotation.Count > 0)
+                    //{
                         writer.WriteStartArray("sourceAnnotation"u8);
 
                         foreach(var sourceAnnotationItem in requestForWaiver.SourceAnnotation.OrderBy(x => x, this.GuidComparer))
@@ -470,7 +474,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(requestForWaiver.Status.ToString());
@@ -524,6 +528,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListApprovedBy && objectListApprovedBy.Any())
                     {
                         writer.WriteStartArray("approvedBy"u8);
@@ -557,6 +566,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -648,6 +662,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListDiscussion && objectListDiscussion.Any())
                     {
                         writer.WriteStartArray("discussion"u8);
@@ -665,6 +684,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -680,6 +704,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -789,6 +818,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListRelatedThing && objectListRelatedThing.Any())
                     {
                         writer.WriteStartArray("relatedThing"u8);
@@ -840,6 +874,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["sourceAnnotation"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListSourceAnnotation && objectListSourceAnnotation.Any())

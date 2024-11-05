@@ -28,7 +28,10 @@
 
 namespace CDP4JsonSerializer
 {
+    using System.Collections.Generic;
     using System.Text.Json;
+
+    using CDP4Common.Types;
 
     using NLog;
 
@@ -86,9 +89,23 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ActualState = actualStateProperty.GetGuid();
                 }
             }
+
             if (jsonElement.TryGetProperty("computed"u8, out var computedProperty))
             {
-                parameterValueSet.Computed = SerializerHelper.ToValueArray<string>(computedProperty.GetString());
+                if(computedProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in computedProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterValueSet.Computed = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterValueSet.Computed = SerializerHelper.ToValueArray<string>(computedProperty.GetString());
+                }
             }
 
             if (jsonElement.TryGetProperty("excludedDomain"u8, out var excludedDomainProperty) && excludedDomainProperty.ValueKind != JsonValueKind.Null)
@@ -106,13 +123,41 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ExcludedPerson.Add(element.GetGuid());
                 }
             }
+
             if (jsonElement.TryGetProperty("formula"u8, out var formulaProperty))
             {
-                parameterValueSet.Formula = SerializerHelper.ToValueArray<string>(formulaProperty.GetString());
+                if(formulaProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in formulaProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterValueSet.Formula = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterValueSet.Formula = SerializerHelper.ToValueArray<string>(formulaProperty.GetString());
+                }
             }
+
             if (jsonElement.TryGetProperty("manual"u8, out var manualProperty))
             {
-                parameterValueSet.Manual = SerializerHelper.ToValueArray<string>(manualProperty.GetString());
+                if(manualProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in manualProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterValueSet.Manual = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterValueSet.Manual = SerializerHelper.ToValueArray<string>(manualProperty.GetString());
+                }
             }
 
             if (jsonElement.TryGetProperty("modifiedOn"u8, out var modifiedOnProperty))
@@ -126,13 +171,41 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ModifiedOn = modifiedOnProperty.GetDateTime();
                 }
             }
+
             if (jsonElement.TryGetProperty("published"u8, out var publishedProperty))
             {
-                parameterValueSet.Published = SerializerHelper.ToValueArray<string>(publishedProperty.GetString());
+                if(publishedProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in publishedProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterValueSet.Published = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterValueSet.Published = SerializerHelper.ToValueArray<string>(publishedProperty.GetString());
+                }
             }
+
             if (jsonElement.TryGetProperty("reference"u8, out var referenceProperty))
             {
-                parameterValueSet.Reference = SerializerHelper.ToValueArray<string>(referenceProperty.GetString());
+                if(referenceProperty.ValueKind == JsonValueKind.Array)
+                {
+                    var newValueArrayItems = new List<string>();
+
+                    foreach(var element in referenceProperty.EnumerateArray())
+                    {
+                        newValueArrayItems.Add(element.GetString());
+                    }
+                    parameterValueSet.Reference = new ValueArray<string>(newValueArrayItems);
+                }
+                else
+                {
+                    parameterValueSet.Reference = SerializerHelper.ToValueArray<string>(referenceProperty.GetString());
+                }
             }
 
             if (jsonElement.TryGetProperty("thingPreference"u8, out var thingPreferenceProperty))

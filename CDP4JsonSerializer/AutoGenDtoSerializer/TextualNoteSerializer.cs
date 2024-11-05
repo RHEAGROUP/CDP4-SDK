@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of TextualNote since Version is below 1.1.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -78,8 +82,8 @@ namespace CDP4JsonSerializer
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing TextualNote for Version 1.1.0");
 
-                    if (textualNote.Category.Count > 0)
-                    {
+                    //if (textualNote.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in textualNote.Category.OrderBy(x => x, this.GuidComparer))
@@ -88,7 +92,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(textualNote.ClassKind.ToString());
@@ -97,8 +101,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(textualNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (textualNote.ExcludedDomain.Count > 0)
-                    {
+                    //if (textualNote.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in textualNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -107,11 +111,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (textualNote.ExcludedPerson.Count > 0)
-                    {
+                    //if (textualNote.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in textualNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -120,7 +124,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(textualNote.Iid);
@@ -140,8 +144,8 @@ namespace CDP4JsonSerializer
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing TextualNote for Version 1.2.0");
 
-                    if (textualNote.Category.Count > 0)
-                    {
+                    //if (textualNote.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in textualNote.Category.OrderBy(x => x, this.GuidComparer))
@@ -150,7 +154,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(textualNote.ClassKind.ToString());
@@ -159,8 +163,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(textualNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (textualNote.ExcludedDomain.Count > 0)
-                    {
+                    //if (textualNote.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in textualNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -169,11 +173,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (textualNote.ExcludedPerson.Count > 0)
-                    {
+                    //if (textualNote.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in textualNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -182,7 +186,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(textualNote.Iid);
@@ -214,8 +218,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (textualNote.Category.Count > 0)
-                    {
+                    //if (textualNote.Category.Count > 0)
+                    //{
                         writer.WriteStartArray("category"u8);
 
                         foreach(var categoryItem in textualNote.Category.OrderBy(x => x, this.GuidComparer))
@@ -224,7 +228,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(textualNote.ClassKind.ToString());
@@ -233,8 +237,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(textualNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
 
-                    if (textualNote.ExcludedDomain.Count > 0)
-                    {
+                    //if (textualNote.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in textualNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -243,11 +247,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (textualNote.ExcludedPerson.Count > 0)
-                    {
+                    //if (textualNote.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in textualNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -256,7 +260,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(textualNote.Iid);
@@ -318,6 +322,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListCategory && objectListCategory.Any())
@@ -391,6 +400,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -406,6 +420,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())

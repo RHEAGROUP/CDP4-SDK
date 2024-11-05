@@ -68,6 +68,10 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of OwnedStyle since Version is below 1.1.0");
+                
+                writer.WriteStartObject();
+                writer.WriteEndObject();
+
                 return;
             }
 
@@ -80,8 +84,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ownedStyle.ClassKind.ToString());
 
-                    if (ownedStyle.ExcludedDomain.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ownedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -90,11 +94,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ownedStyle.ExcludedPerson.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ownedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -103,7 +107,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("fillColor"u8);
 
@@ -236,8 +240,8 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    if (ownedStyle.UsedColor.Count > 0)
-                    {
+                    //if (ownedStyle.UsedColor.Count > 0)
+                    //{
                         writer.WriteStartArray("usedColor"u8);
 
                         foreach(var usedColorItem in ownedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
@@ -246,7 +250,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.2.0":
@@ -254,8 +258,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ownedStyle.ClassKind.ToString());
 
-                    if (ownedStyle.ExcludedDomain.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ownedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -264,11 +268,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ownedStyle.ExcludedPerson.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ownedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -277,7 +281,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("fillColor"u8);
 
@@ -413,8 +417,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(ownedStyle.ThingPreference);
 
-                    if (ownedStyle.UsedColor.Count > 0)
-                    {
+                    //if (ownedStyle.UsedColor.Count > 0)
+                    //{
                         writer.WriteStartArray("usedColor"u8);
 
                         foreach(var usedColorItem in ownedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
@@ -423,7 +427,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 case "1.3.0":
@@ -442,8 +446,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(ownedStyle.ClassKind.ToString());
 
-                    if (ownedStyle.ExcludedDomain.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedDomain.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedDomain"u8);
 
                         foreach(var excludedDomainItem in ownedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
@@ -452,11 +456,11 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
 
-                    if (ownedStyle.ExcludedPerson.Count > 0)
-                    {
+                    //if (ownedStyle.ExcludedPerson.Count > 0)
+                    //{
                         writer.WriteStartArray("excludedPerson"u8);
 
                         foreach(var excludedPersonItem in ownedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
@@ -465,7 +469,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     writer.WritePropertyName("fillColor"u8);
 
@@ -601,8 +605,8 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(ownedStyle.ThingPreference);
 
-                    if (ownedStyle.UsedColor.Count > 0)
-                    {
+                    //if (ownedStyle.UsedColor.Count > 0)
+                    //{
                         writer.WriteStartArray("usedColor"u8);
 
                         foreach(var usedColorItem in ownedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
@@ -611,7 +615,7 @@ namespace CDP4JsonSerializer
                         }
 
                         writer.WriteEndArray();
-                    }
+                    //}
                     
                     break;
                 default:
@@ -677,6 +681,11 @@ namespace CDP4JsonSerializer
                         return;
                     }
 
+                    if (value == null)
+                    {
+                        break;
+                    }
+
                     if (value is IEnumerable<object> objectListExcludedDomain && objectListExcludedDomain.Any())
                     {
                         writer.WriteStartArray("excludedDomain"u8);
@@ -692,6 +701,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListExcludedPerson && objectListExcludedPerson.Any())
@@ -1015,6 +1029,11 @@ namespace CDP4JsonSerializer
                     if(!AllowedVersionsPerProperty["usedColor"].Contains(requestedVersion))
                     {
                         return;
+                    }
+
+                    if (value == null)
+                    {
+                        break;
                     }
 
                     if (value is IEnumerable<object> objectListUsedColor && objectListUsedColor.Any())
