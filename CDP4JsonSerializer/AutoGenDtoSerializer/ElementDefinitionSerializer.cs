@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of ElementDefinition since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -81,72 +77,52 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing ElementDefinition for Version 1.0.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (elementDefinition.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (elementDefinition.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(elementDefinition.ClassKind.ToString());
+                    writer.WriteStartArray("containedElement"u8);
 
-                    //if (elementDefinition.ContainedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("containedElement"u8);
+                    foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(containedElementItem);
+                    }
 
-                        foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(containedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (elementDefinition.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (elementDefinition.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(elementDefinition.Iid);
@@ -154,44 +130,32 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(elementDefinition.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(elementDefinition.Owner);
+                    writer.WriteStartArray("parameter"u8);
 
-                    //if (elementDefinition.Parameter.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameter"u8);
+                    foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterItem);
+                    }
 
-                        foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("parameterGroup"u8);
 
-                    //if (elementDefinition.ParameterGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterGroup"u8);
+                    foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterGroupItem);
+                    }
 
-                        foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterGroupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("referencedElement"u8);
 
-                    //if (elementDefinition.ReferencedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("referencedElement"u8);
+                    foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(referencedElementItem);
+                    }
 
-                        foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(referencedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(elementDefinition.RevisionNumber);
@@ -200,98 +164,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing ElementDefinition for Version 1.1.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (elementDefinition.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (elementDefinition.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(elementDefinition.ClassKind.ToString());
+                    writer.WriteStartArray("containedElement"u8);
 
-                    //if (elementDefinition.ContainedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("containedElement"u8);
+                    foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(containedElementItem);
+                    }
 
-                        foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(containedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (elementDefinition.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (elementDefinition.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (elementDefinition.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (elementDefinition.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(elementDefinition.Iid);
@@ -301,44 +237,32 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(elementDefinition.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(elementDefinition.Owner);
+                    writer.WriteStartArray("parameter"u8);
 
-                    //if (elementDefinition.Parameter.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameter"u8);
+                    foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterItem);
+                    }
 
-                        foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("parameterGroup"u8);
 
-                    //if (elementDefinition.ParameterGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterGroup"u8);
+                    foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterGroupItem);
+                    }
 
-                        foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterGroupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("referencedElement"u8);
 
-                    //if (elementDefinition.ReferencedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("referencedElement"u8);
+                    foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(referencedElementItem);
+                    }
 
-                        foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(referencedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(elementDefinition.RevisionNumber);
@@ -347,98 +271,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing ElementDefinition for Version 1.2.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (elementDefinition.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (elementDefinition.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(elementDefinition.ClassKind.ToString());
+                    writer.WriteStartArray("containedElement"u8);
 
-                    //if (elementDefinition.ContainedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("containedElement"u8);
+                    foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(containedElementItem);
+                    }
 
-                        foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(containedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (elementDefinition.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (elementDefinition.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (elementDefinition.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (elementDefinition.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(elementDefinition.Iid);
@@ -446,59 +342,43 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(elementDefinition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(elementDefinition.Name);
+                    writer.WriteStartArray("organizationalParticipant"u8);
 
-                    //if (elementDefinition.OrganizationalParticipant.Count > 0)
-                    //{
-                        writer.WriteStartArray("organizationalParticipant"u8);
+                    foreach(var organizationalParticipantItem in elementDefinition.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(organizationalParticipantItem);
+                    }
 
-                        foreach(var organizationalParticipantItem in elementDefinition.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(organizationalParticipantItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(elementDefinition.Owner);
+                    writer.WriteStartArray("parameter"u8);
 
-                    //if (elementDefinition.Parameter.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameter"u8);
+                    foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterItem);
+                    }
 
-                        foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("parameterGroup"u8);
 
-                    //if (elementDefinition.ParameterGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterGroup"u8);
+                    foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterGroupItem);
+                    }
 
-                        foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterGroupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("referencedElement"u8);
 
-                    //if (elementDefinition.ReferencedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("referencedElement"u8);
+                    foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(referencedElementItem);
+                    }
 
-                        foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(referencedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(elementDefinition.RevisionNumber);
@@ -509,108 +389,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing ElementDefinition for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
+                    writer.WriteStartArray("alias"u8);
 
-                    if(elementDefinition.Actor.HasValue)
+                    foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
                     {
-                        writer.WriteStringValue(elementDefinition.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
+                        writer.WriteStringValue(aliasItem);
                     }
 
-                    //if (elementDefinition.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
-
-                        foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (elementDefinition.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(elementDefinition.ClassKind.ToString());
+                    writer.WriteStartArray("containedElement"u8);
 
-                    //if (elementDefinition.ContainedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("containedElement"u8);
+                    foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(containedElementItem);
+                    }
 
-                        foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(containedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (elementDefinition.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (elementDefinition.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (elementDefinition.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (elementDefinition.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(elementDefinition.Iid);
@@ -618,59 +460,43 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(elementDefinition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("name"u8);
                     writer.WriteStringValue(elementDefinition.Name);
+                    writer.WriteStartArray("organizationalParticipant"u8);
 
-                    //if (elementDefinition.OrganizationalParticipant.Count > 0)
-                    //{
-                        writer.WriteStartArray("organizationalParticipant"u8);
+                    foreach(var organizationalParticipantItem in elementDefinition.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(organizationalParticipantItem);
+                    }
 
-                        foreach(var organizationalParticipantItem in elementDefinition.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(organizationalParticipantItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(elementDefinition.Owner);
+                    writer.WriteStartArray("parameter"u8);
 
-                    //if (elementDefinition.Parameter.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameter"u8);
+                    foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterItem);
+                    }
 
-                        foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("parameterGroup"u8);
 
-                    //if (elementDefinition.ParameterGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterGroup"u8);
+                    foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterGroupItem);
+                    }
 
-                        foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterGroupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("referencedElement"u8);
 
-                    //if (elementDefinition.ReferencedElement.Count > 0)
-                    //{
-                        writer.WriteStartArray("referencedElement"u8);
+                    foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(referencedElementItem);
+                    }
 
-                        foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(referencedElementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(elementDefinition.RevisionNumber);
@@ -687,6 +513,150 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="ElementDefinition" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not ElementDefinition elementDefinition)
+            {
+                throw new ArgumentException("The thing shall be a ElementDefinition", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WriteStartArray("alias"u8);
+
+                foreach(var aliasItem in elementDefinition.Alias.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(aliasItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("category"u8);
+
+                foreach(var categoryItem in elementDefinition.Category.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(categoryItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(elementDefinition.ClassKind.ToString());
+
+                writer.WriteStartArray("containedElement"u8);
+
+                foreach(var containedElementItem in elementDefinition.ContainedElement.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(containedElementItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("definition"u8);
+
+                foreach(var definitionItem in elementDefinition.Definition.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(definitionItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in elementDefinition.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in elementDefinition.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("hyperLink"u8);
+
+                foreach(var hyperLinkItem in elementDefinition.HyperLink.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(hyperLinkItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(elementDefinition.Iid);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(elementDefinition.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(elementDefinition.Name);
+
+                writer.WriteStartArray("organizationalParticipant"u8);
+
+                foreach(var organizationalParticipantItem in elementDefinition.OrganizationalParticipant.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(organizationalParticipantItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("owner"u8);
+                writer.WriteStringValue(elementDefinition.Owner);
+
+                writer.WriteStartArray("parameter"u8);
+
+                foreach(var parameterItem in elementDefinition.Parameter.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(parameterItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("parameterGroup"u8);
+
+                foreach(var parameterGroupItem in elementDefinition.ParameterGroup.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(parameterGroupItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("referencedElement"u8);
+
+                foreach(var referencedElementItem in elementDefinition.ReferencedElement.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(referencedElementItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(elementDefinition.RevisionNumber);
+                writer.WritePropertyName("shortName"u8);
+                writer.WriteStringValue(elementDefinition.ShortName);
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(elementDefinition.ThingPreference);
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="ElementDefinition"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -698,32 +668,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="ElementDefinition"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "alias":
-                    if(!AllowedVersionsPerProperty["alias"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -741,11 +705,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "category":
-                    if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -763,11 +722,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -781,11 +735,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "containedelement":
-                    if(!AllowedVersionsPerProperty["containedElement"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -803,11 +752,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "definition":
-                    if(!AllowedVersionsPerProperty["definition"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -825,11 +769,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -847,11 +786,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -869,11 +803,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "hyperlink":
-                    if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -891,11 +820,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -909,11 +833,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -927,11 +846,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "name":
-                    if(!AllowedVersionsPerProperty["name"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("name"u8);
                     
                     if(value != null)
@@ -945,11 +859,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "organizationalparticipant":
-                    if(!AllowedVersionsPerProperty["organizationalParticipant"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -967,11 +876,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "owner":
-                    if(!AllowedVersionsPerProperty["owner"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("owner"u8);
                     
                     if(value != null)
@@ -985,11 +889,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "parameter":
-                    if(!AllowedVersionsPerProperty["parameter"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1007,11 +906,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "parametergroup":
-                    if(!AllowedVersionsPerProperty["parameterGroup"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1029,11 +923,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "referencedelement":
-                    if(!AllowedVersionsPerProperty["referencedElement"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1051,11 +940,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -1069,11 +953,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "shortname":
-                    if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("shortName"u8);
                     
                     if(value != null)
@@ -1087,11 +966,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)

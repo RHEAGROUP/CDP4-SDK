@@ -42,8 +42,23 @@ namespace CDP4JsonSerializer
         /// <param name="propertyName">The name of the property to serialize</param>
         /// <param name="value">The object value to serialize</param>
         /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer);
+
+        /// <summary>
+        /// Serialize a value for a <see cref="ActionItem"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
         /// <param name="requestedDataModelVersion">The <see cref="Version" /> that has been requested for the serialization</param>
         void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer, Version requestedDataModelVersion);
+
+        /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter"/>
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing"/> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter"/></param>
+        void Serialize(Thing thing, Utf8JsonWriter writer);
 
         /// <summary>
         /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter"/>

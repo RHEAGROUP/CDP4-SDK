@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Iteration since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -81,24 +77,20 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing Iteration for Version 1.0.0");
+                    writer.WriteStartArray("actualFiniteStateList"u8);
 
-                    //if (iteration.ActualFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("actualFiniteStateList"u8);
+                    foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(actualFiniteStateListItem);
+                    }
 
-                        foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(actualFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(iteration.ClassKind.ToString());
                     writer.WritePropertyName("defaultOption"u8);
 
-                    if(iteration.DefaultOption.HasValue)
+                    if (iteration.DefaultOption.HasValue)
                     {
                         writer.WriteStringValue(iteration.DefaultOption.Value);
                     }
@@ -107,131 +99,96 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.DomainFileStore.Count > 0)
-                    //{
-                        writer.WriteStartArray("domainFileStore"u8);
+                    writer.WriteStartArray("domainFileStore"u8);
 
-                        foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(domainFileStoreItem);
-                        }
+                    foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(domainFileStoreItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("element"u8);
 
-                    //if (iteration.Element.Count > 0)
-                    //{
-                        writer.WriteStartArray("element"u8);
+                    foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(elementItem);
+                    }
 
-                        foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(elementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("externalIdentifierMap"u8);
 
-                    //if (iteration.ExternalIdentifierMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("externalIdentifierMap"u8);
+                    foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(externalIdentifierMapItem);
+                    }
 
-                        foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(externalIdentifierMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(iteration.Iid);
                     writer.WritePropertyName("iterationSetup"u8);
                     writer.WriteStringValue(iteration.IterationSetup);
+                    writer.WriteStartArray("option"u8);
 
-                    //if (iteration.Option.Count > 0)
-                    //{
-                        writer.WriteStartArray("option"u8);
-
-                        foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
-                        {
+                    foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
+                    {
                         writer.WriteOrderedItem(optionItem);
-                        }
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("possibleFiniteStateList"u8);
 
-                    //if (iteration.PossibleFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("possibleFiniteStateList"u8);
+                    foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(possibleFiniteStateListItem);
+                    }
 
-                        foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(possibleFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("publication"u8);
 
-                    //if (iteration.Publication.Count > 0)
-                    //{
-                        writer.WriteStartArray("publication"u8);
+                    foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(publicationItem);
+                    }
 
-                        foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(publicationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("relationship"u8);
 
-                    //if (iteration.Relationship.Count > 0)
-                    //{
-                        writer.WriteStartArray("relationship"u8);
+                    foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(relationshipItem);
+                    }
 
-                        foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(relationshipItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("requirementsSpecification"u8);
 
-                    //if (iteration.RequirementsSpecification.Count > 0)
-                    //{
-                        writer.WriteStartArray("requirementsSpecification"u8);
+                    foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(requirementsSpecificationItem);
+                    }
 
-                        foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(requirementsSpecificationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(iteration.RevisionNumber);
+                    writer.WriteStartArray("ruleVerificationList"u8);
 
-                    //if (iteration.RuleVerificationList.Count > 0)
-                    //{
-                        writer.WriteStartArray("ruleVerificationList"u8);
+                    foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(ruleVerificationListItem);
+                    }
 
-                        foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(ruleVerificationListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("sourceIterationIid"u8);
 
-                    if(iteration.SourceIterationIid.HasValue)
+                    if (iteration.SourceIterationIid.HasValue)
                     {
                         writer.WriteStringValue(iteration.SourceIterationIid.Value);
                     }
@@ -242,7 +199,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("topElement"u8);
 
-                    if(iteration.TopElement.HasValue)
+                    if (iteration.TopElement.HasValue)
                     {
                         writer.WriteStringValue(iteration.TopElement.Value);
                     }
@@ -254,24 +211,20 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing Iteration for Version 1.1.0");
+                    writer.WriteStartArray("actualFiniteStateList"u8);
 
-                    //if (iteration.ActualFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("actualFiniteStateList"u8);
+                    foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(actualFiniteStateListItem);
+                    }
 
-                        foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(actualFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(iteration.ClassKind.ToString());
                     writer.WritePropertyName("defaultOption"u8);
 
-                    if(iteration.DefaultOption.HasValue)
+                    if (iteration.DefaultOption.HasValue)
                     {
                         writer.WriteStringValue(iteration.DefaultOption.Value);
                     }
@@ -280,95 +233,68 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.DiagramCanvas.Count > 0)
-                    //{
-                        writer.WriteStartArray("diagramCanvas"u8);
+                    writer.WriteStartArray("diagramCanvas"u8);
 
-                        foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(diagramCanvasItem);
-                        }
+                    foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(diagramCanvasItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("domainFileStore"u8);
 
-                    //if (iteration.DomainFileStore.Count > 0)
-                    //{
-                        writer.WriteStartArray("domainFileStore"u8);
+                    foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(domainFileStoreItem);
+                    }
 
-                        foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(domainFileStoreItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("element"u8);
 
-                    //if (iteration.Element.Count > 0)
-                    //{
-                        writer.WriteStartArray("element"u8);
+                    foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(elementItem);
+                    }
 
-                        foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(elementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iteration.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iteration.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("externalIdentifierMap"u8);
 
-                    //if (iteration.ExternalIdentifierMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("externalIdentifierMap"u8);
+                    foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(externalIdentifierMapItem);
+                    }
 
-                        foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(externalIdentifierMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("goal"u8);
 
-                    //if (iteration.Goal.Count > 0)
-                    //{
-                        writer.WriteStartArray("goal"u8);
+                    foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(goalItem);
+                    }
 
-                        foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(goalItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(iteration.Iid);
@@ -376,102 +302,74 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iteration.IterationSetup);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(iteration.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("option"u8);
 
-                    //if (iteration.Option.Count > 0)
-                    //{
-                        writer.WriteStartArray("option"u8);
-
-                        foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
-                        {
+                    foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
+                    {
                         writer.WriteOrderedItem(optionItem);
-                        }
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("possibleFiniteStateList"u8);
 
-                    //if (iteration.PossibleFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("possibleFiniteStateList"u8);
+                    foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(possibleFiniteStateListItem);
+                    }
 
-                        foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(possibleFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("publication"u8);
 
-                    //if (iteration.Publication.Count > 0)
-                    //{
-                        writer.WriteStartArray("publication"u8);
+                    foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(publicationItem);
+                    }
 
-                        foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(publicationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("relationship"u8);
 
-                    //if (iteration.Relationship.Count > 0)
-                    //{
-                        writer.WriteStartArray("relationship"u8);
+                    foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(relationshipItem);
+                    }
 
-                        foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(relationshipItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("requirementsSpecification"u8);
 
-                    //if (iteration.RequirementsSpecification.Count > 0)
-                    //{
-                        writer.WriteStartArray("requirementsSpecification"u8);
+                    foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(requirementsSpecificationItem);
+                    }
 
-                        foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(requirementsSpecificationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(iteration.RevisionNumber);
+                    writer.WriteStartArray("ruleVerificationList"u8);
 
-                    //if (iteration.RuleVerificationList.Count > 0)
-                    //{
-                        writer.WriteStartArray("ruleVerificationList"u8);
+                    foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(ruleVerificationListItem);
+                    }
 
-                        foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(ruleVerificationListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("sharedDiagramStyle"u8);
 
-                    //if (iteration.SharedDiagramStyle.Count > 0)
-                    //{
-                        writer.WriteStartArray("sharedDiagramStyle"u8);
+                    foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(sharedDiagramStyleItem);
+                    }
 
-                        foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(sharedDiagramStyleItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("sourceIterationIid"u8);
 
-                    if(iteration.SourceIterationIid.HasValue)
+                    if (iteration.SourceIterationIid.HasValue)
                     {
                         writer.WriteStringValue(iteration.SourceIterationIid.Value);
                     }
@@ -480,47 +378,36 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.Stakeholder.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholder"u8);
+                    writer.WriteStartArray("stakeholder"u8);
 
-                        foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderItem);
-                        }
+                    foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    //if (iteration.StakeholderValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValue"u8);
+                    foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueItem);
+                    }
 
-                        foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValueMap"u8);
 
-                    //if (iteration.StakeholderValueMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValueMap"u8);
+                    foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueMapItem);
+                    }
 
-                        foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("topElement"u8);
 
-                    if(iteration.TopElement.HasValue)
+                    if (iteration.TopElement.HasValue)
                     {
                         writer.WriteStringValue(iteration.TopElement.Value);
                     }
@@ -529,39 +416,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.ValueGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("valueGroup"u8);
+                    writer.WriteStartArray("valueGroup"u8);
 
-                        foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(valueGroupItem);
-                        }
+                    foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(valueGroupItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing Iteration for Version 1.2.0");
+                    writer.WriteStartArray("actualFiniteStateList"u8);
 
-                    //if (iteration.ActualFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("actualFiniteStateList"u8);
+                    foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(actualFiniteStateListItem);
+                    }
 
-                        foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(actualFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(iteration.ClassKind.ToString());
                     writer.WritePropertyName("defaultOption"u8);
 
-                    if(iteration.DefaultOption.HasValue)
+                    if (iteration.DefaultOption.HasValue)
                     {
                         writer.WriteStringValue(iteration.DefaultOption.Value);
                     }
@@ -570,95 +450,68 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.DiagramCanvas.Count > 0)
-                    //{
-                        writer.WriteStartArray("diagramCanvas"u8);
+                    writer.WriteStartArray("diagramCanvas"u8);
 
-                        foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(diagramCanvasItem);
-                        }
+                    foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(diagramCanvasItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("domainFileStore"u8);
 
-                    //if (iteration.DomainFileStore.Count > 0)
-                    //{
-                        writer.WriteStartArray("domainFileStore"u8);
+                    foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(domainFileStoreItem);
+                    }
 
-                        foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(domainFileStoreItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("element"u8);
 
-                    //if (iteration.Element.Count > 0)
-                    //{
-                        writer.WriteStartArray("element"u8);
+                    foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(elementItem);
+                    }
 
-                        foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(elementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iteration.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iteration.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("externalIdentifierMap"u8);
 
-                    //if (iteration.ExternalIdentifierMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("externalIdentifierMap"u8);
+                    foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(externalIdentifierMapItem);
+                    }
 
-                        foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(externalIdentifierMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("goal"u8);
 
-                    //if (iteration.Goal.Count > 0)
-                    //{
-                        writer.WriteStartArray("goal"u8);
+                    foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(goalItem);
+                    }
 
-                        foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(goalItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(iteration.Iid);
@@ -666,102 +519,74 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iteration.IterationSetup);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(iteration.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("option"u8);
 
-                    //if (iteration.Option.Count > 0)
-                    //{
-                        writer.WriteStartArray("option"u8);
-
-                        foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
-                        {
+                    foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
+                    {
                         writer.WriteOrderedItem(optionItem);
-                        }
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("possibleFiniteStateList"u8);
 
-                    //if (iteration.PossibleFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("possibleFiniteStateList"u8);
+                    foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(possibleFiniteStateListItem);
+                    }
 
-                        foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(possibleFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("publication"u8);
 
-                    //if (iteration.Publication.Count > 0)
-                    //{
-                        writer.WriteStartArray("publication"u8);
+                    foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(publicationItem);
+                    }
 
-                        foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(publicationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("relationship"u8);
 
-                    //if (iteration.Relationship.Count > 0)
-                    //{
-                        writer.WriteStartArray("relationship"u8);
+                    foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(relationshipItem);
+                    }
 
-                        foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(relationshipItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("requirementsSpecification"u8);
 
-                    //if (iteration.RequirementsSpecification.Count > 0)
-                    //{
-                        writer.WriteStartArray("requirementsSpecification"u8);
+                    foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(requirementsSpecificationItem);
+                    }
 
-                        foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(requirementsSpecificationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(iteration.RevisionNumber);
+                    writer.WriteStartArray("ruleVerificationList"u8);
 
-                    //if (iteration.RuleVerificationList.Count > 0)
-                    //{
-                        writer.WriteStartArray("ruleVerificationList"u8);
+                    foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(ruleVerificationListItem);
+                    }
 
-                        foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(ruleVerificationListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("sharedDiagramStyle"u8);
 
-                    //if (iteration.SharedDiagramStyle.Count > 0)
-                    //{
-                        writer.WriteStartArray("sharedDiagramStyle"u8);
+                    foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(sharedDiagramStyleItem);
+                    }
 
-                        foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(sharedDiagramStyleItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("sourceIterationIid"u8);
 
-                    if(iteration.SourceIterationIid.HasValue)
+                    if (iteration.SourceIterationIid.HasValue)
                     {
                         writer.WriteStringValue(iteration.SourceIterationIid.Value);
                     }
@@ -770,49 +595,38 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.Stakeholder.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholder"u8);
+                    writer.WriteStartArray("stakeholder"u8);
 
-                        foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderItem);
-                        }
+                    foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    //if (iteration.StakeholderValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValue"u8);
+                    foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueItem);
+                    }
 
-                        foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValueMap"u8);
 
-                    //if (iteration.StakeholderValueMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValueMap"u8);
+                    foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueMapItem);
+                    }
 
-                        foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(iteration.ThingPreference);
                     writer.WritePropertyName("topElement"u8);
 
-                    if(iteration.TopElement.HasValue)
+                    if (iteration.TopElement.HasValue)
                     {
                         writer.WriteStringValue(iteration.TopElement.Value);
                     }
@@ -821,49 +635,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.ValueGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("valueGroup"u8);
+                    writer.WriteStartArray("valueGroup"u8);
 
-                        foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(valueGroupItem);
-                        }
+                    foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(valueGroupItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing Iteration for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
+                    writer.WriteStartArray("actualFiniteStateList"u8);
 
-                    if(iteration.Actor.HasValue)
+                    foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
                     {
-                        writer.WriteStringValue(iteration.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
+                        writer.WriteStringValue(actualFiniteStateListItem);
                     }
 
-                    //if (iteration.ActualFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("actualFiniteStateList"u8);
-
-                        foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(actualFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(iteration.ClassKind.ToString());
                     writer.WritePropertyName("defaultOption"u8);
 
-                    if(iteration.DefaultOption.HasValue)
+                    if (iteration.DefaultOption.HasValue)
                     {
                         writer.WriteStringValue(iteration.DefaultOption.Value);
                     }
@@ -872,95 +669,68 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.DiagramCanvas.Count > 0)
-                    //{
-                        writer.WriteStartArray("diagramCanvas"u8);
+                    writer.WriteStartArray("diagramCanvas"u8);
 
-                        foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(diagramCanvasItem);
-                        }
+                    foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(diagramCanvasItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("domainFileStore"u8);
 
-                    //if (iteration.DomainFileStore.Count > 0)
-                    //{
-                        writer.WriteStartArray("domainFileStore"u8);
+                    foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(domainFileStoreItem);
+                    }
 
-                        foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(domainFileStoreItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("element"u8);
 
-                    //if (iteration.Element.Count > 0)
-                    //{
-                        writer.WriteStartArray("element"u8);
+                    foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(elementItem);
+                    }
 
-                        foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(elementItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iteration.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iteration.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("externalIdentifierMap"u8);
 
-                    //if (iteration.ExternalIdentifierMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("externalIdentifierMap"u8);
+                    foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(externalIdentifierMapItem);
+                    }
 
-                        foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(externalIdentifierMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("goal"u8);
 
-                    //if (iteration.Goal.Count > 0)
-                    //{
-                        writer.WriteStartArray("goal"u8);
+                    foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(goalItem);
+                    }
 
-                        foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(goalItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(iteration.Iid);
@@ -968,102 +738,74 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iteration.IterationSetup);
                     writer.WritePropertyName("modifiedOn"u8);
                     writer.WriteStringValue(iteration.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("option"u8);
 
-                    //if (iteration.Option.Count > 0)
-                    //{
-                        writer.WriteStartArray("option"u8);
-
-                        foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
-                        {
+                    foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
+                    {
                         writer.WriteOrderedItem(optionItem);
-                        }
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("possibleFiniteStateList"u8);
 
-                    //if (iteration.PossibleFiniteStateList.Count > 0)
-                    //{
-                        writer.WriteStartArray("possibleFiniteStateList"u8);
+                    foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(possibleFiniteStateListItem);
+                    }
 
-                        foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(possibleFiniteStateListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("publication"u8);
 
-                    //if (iteration.Publication.Count > 0)
-                    //{
-                        writer.WriteStartArray("publication"u8);
+                    foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(publicationItem);
+                    }
 
-                        foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(publicationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("relationship"u8);
 
-                    //if (iteration.Relationship.Count > 0)
-                    //{
-                        writer.WriteStartArray("relationship"u8);
+                    foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(relationshipItem);
+                    }
 
-                        foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(relationshipItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("requirementsSpecification"u8);
 
-                    //if (iteration.RequirementsSpecification.Count > 0)
-                    //{
-                        writer.WriteStartArray("requirementsSpecification"u8);
+                    foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(requirementsSpecificationItem);
+                    }
 
-                        foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(requirementsSpecificationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(iteration.RevisionNumber);
+                    writer.WriteStartArray("ruleVerificationList"u8);
 
-                    //if (iteration.RuleVerificationList.Count > 0)
-                    //{
-                        writer.WriteStartArray("ruleVerificationList"u8);
+                    foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(ruleVerificationListItem);
+                    }
 
-                        foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(ruleVerificationListItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("sharedDiagramStyle"u8);
 
-                    //if (iteration.SharedDiagramStyle.Count > 0)
-                    //{
-                        writer.WriteStartArray("sharedDiagramStyle"u8);
+                    foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(sharedDiagramStyleItem);
+                    }
 
-                        foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(sharedDiagramStyleItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("sourceIterationIid"u8);
 
-                    if(iteration.SourceIterationIid.HasValue)
+                    if (iteration.SourceIterationIid.HasValue)
                     {
                         writer.WriteStringValue(iteration.SourceIterationIid.Value);
                     }
@@ -1072,49 +814,38 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.Stakeholder.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholder"u8);
+                    writer.WriteStartArray("stakeholder"u8);
 
-                        foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderItem);
-                        }
+                    foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValue"u8);
 
-                    //if (iteration.StakeholderValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValue"u8);
+                    foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueItem);
+                    }
 
-                        foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("stakeholderValueMap"u8);
 
-                    //if (iteration.StakeholderValueMap.Count > 0)
-                    //{
-                        writer.WriteStartArray("stakeholderValueMap"u8);
+                    foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(stakeholderValueMapItem);
+                    }
 
-                        foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(stakeholderValueMapItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(iteration.ThingPreference);
                     writer.WritePropertyName("topElement"u8);
 
-                    if(iteration.TopElement.HasValue)
+                    if (iteration.TopElement.HasValue)
                     {
                         writer.WriteStringValue(iteration.TopElement.Value);
                     }
@@ -1123,22 +854,269 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (iteration.ValueGroup.Count > 0)
-                    //{
-                        writer.WriteStartArray("valueGroup"u8);
+                    writer.WriteStartArray("valueGroup"u8);
 
-                        foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(valueGroupItem);
-                        }
+                    foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(valueGroupItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 default:
                     throw new NotSupportedException($"The provided version {requestedDataModelVersion.ToString(3)} is not supported");
             }
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="Iteration" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not Iteration iteration)
+            {
+                throw new ArgumentException("The thing shall be a Iteration", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WriteStartArray("actualFiniteStateList"u8);
+
+                foreach(var actualFiniteStateListItem in iteration.ActualFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(actualFiniteStateListItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(iteration.ClassKind.ToString());
+                writer.WritePropertyName("defaultOption"u8);
+
+                if (iteration.DefaultOption.HasValue)
+                {
+                    writer.WriteStringValue(iteration.DefaultOption.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WriteStartArray("diagramCanvas"u8);
+
+                foreach(var diagramCanvasItem in iteration.DiagramCanvas.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(diagramCanvasItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("domainFileStore"u8);
+
+                foreach(var domainFileStoreItem in iteration.DomainFileStore.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(domainFileStoreItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("element"u8);
+
+                foreach(var elementItem in iteration.Element.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(elementItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in iteration.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in iteration.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("externalIdentifierMap"u8);
+
+                foreach(var externalIdentifierMapItem in iteration.ExternalIdentifierMap.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(externalIdentifierMapItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("goal"u8);
+
+                foreach(var goalItem in iteration.Goal.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(goalItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(iteration.Iid);
+                writer.WritePropertyName("iterationSetup"u8);
+                writer.WriteStringValue(iteration.IterationSetup);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(iteration.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+
+                writer.WriteStartArray("option"u8);
+
+                foreach(var optionItem in iteration.Option.OrderBy(x => x, this.OrderedItemComparer))
+                {
+                    writer.WriteOrderedItem(optionItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("possibleFiniteStateList"u8);
+
+                foreach(var possibleFiniteStateListItem in iteration.PossibleFiniteStateList.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(possibleFiniteStateListItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("publication"u8);
+
+                foreach(var publicationItem in iteration.Publication.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(publicationItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("relationship"u8);
+
+                foreach(var relationshipItem in iteration.Relationship.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(relationshipItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("requirementsSpecification"u8);
+
+                foreach(var requirementsSpecificationItem in iteration.RequirementsSpecification.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(requirementsSpecificationItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(iteration.RevisionNumber);
+
+                writer.WriteStartArray("ruleVerificationList"u8);
+
+                foreach(var ruleVerificationListItem in iteration.RuleVerificationList.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(ruleVerificationListItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("sharedDiagramStyle"u8);
+
+                foreach(var sharedDiagramStyleItem in iteration.SharedDiagramStyle.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(sharedDiagramStyleItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("sourceIterationIid"u8);
+
+                if (iteration.SourceIterationIid.HasValue)
+                {
+                    writer.WriteStringValue(iteration.SourceIterationIid.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WriteStartArray("stakeholder"u8);
+
+                foreach(var stakeholderItem in iteration.Stakeholder.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(stakeholderItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("stakeholderValue"u8);
+
+                foreach(var stakeholderValueItem in iteration.StakeholderValue.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(stakeholderValueItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("stakeholderValueMap"u8);
+
+                foreach(var stakeholderValueMapItem in iteration.StakeholderValueMap.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(stakeholderValueMapItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(iteration.ThingPreference);
+                writer.WritePropertyName("topElement"u8);
+
+                if (iteration.TopElement.HasValue)
+                {
+                    writer.WriteStringValue(iteration.TopElement.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WriteStartArray("valueGroup"u8);
+
+                foreach(var valueGroupItem in iteration.ValueGroup.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(valueGroupItem);
+                }
+
+                writer.WriteEndArray();
+                
 
             writer.WriteEndObject();
         }
@@ -1155,32 +1133,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="Iteration"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "actualfinitestatelist":
-                    if(!AllowedVersionsPerProperty["actualFiniteStateList"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1198,11 +1170,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -1216,11 +1183,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "defaultoption":
-                    if(!AllowedVersionsPerProperty["defaultOption"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("defaultOption"u8);
                     
                     if(value != null)
@@ -1234,11 +1196,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "diagramcanvas":
-                    if(!AllowedVersionsPerProperty["diagramCanvas"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1256,11 +1213,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "domainfilestore":
-                    if(!AllowedVersionsPerProperty["domainFileStore"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1278,11 +1230,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "element":
-                    if(!AllowedVersionsPerProperty["element"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1300,11 +1247,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1322,11 +1264,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1344,11 +1281,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "externalidentifiermap":
-                    if(!AllowedVersionsPerProperty["externalIdentifierMap"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1366,11 +1298,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "goal":
-                    if(!AllowedVersionsPerProperty["goal"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1388,11 +1315,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -1406,11 +1328,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iterationsetup":
-                    if(!AllowedVersionsPerProperty["iterationSetup"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iterationSetup"u8);
                     
                     if(value != null)
@@ -1424,11 +1341,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -1442,11 +1354,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "option":
-                    if(!AllowedVersionsPerProperty["option"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1464,11 +1371,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "possiblefinitestatelist":
-                    if(!AllowedVersionsPerProperty["possibleFiniteStateList"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1486,11 +1388,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "publication":
-                    if(!AllowedVersionsPerProperty["publication"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1508,11 +1405,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "relationship":
-                    if(!AllowedVersionsPerProperty["relationship"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1530,11 +1422,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "requirementsspecification":
-                    if(!AllowedVersionsPerProperty["requirementsSpecification"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1552,11 +1439,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -1570,11 +1452,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "ruleverificationlist":
-                    if(!AllowedVersionsPerProperty["ruleVerificationList"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1592,11 +1469,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "shareddiagramstyle":
-                    if(!AllowedVersionsPerProperty["sharedDiagramStyle"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1614,11 +1486,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "sourceiterationiid":
-                    if(!AllowedVersionsPerProperty["sourceIterationIid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("sourceIterationIid"u8);
                     
                     if(value != null)
@@ -1632,11 +1499,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "stakeholder":
-                    if(!AllowedVersionsPerProperty["stakeholder"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1654,11 +1516,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "stakeholdervalue":
-                    if(!AllowedVersionsPerProperty["stakeholderValue"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1676,11 +1533,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "stakeholdervaluemap":
-                    if(!AllowedVersionsPerProperty["stakeholderValueMap"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1698,11 +1550,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
@@ -1716,11 +1563,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "topelement":
-                    if(!AllowedVersionsPerProperty["topElement"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("topElement"u8);
                     
                     if(value != null)
@@ -1734,11 +1576,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "valuegroup":
-                    if(!AllowedVersionsPerProperty["valueGroup"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;

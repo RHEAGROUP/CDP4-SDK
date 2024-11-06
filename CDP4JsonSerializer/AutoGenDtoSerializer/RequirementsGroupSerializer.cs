@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of RequirementsGroup since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -81,59 +77,43 @@ namespace CDP4JsonSerializer
             {
                 case "1.0.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequirementsGroup for Version 1.0.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (requirementsGroup.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirementsGroup.ClassKind.ToString());
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (requirementsGroup.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("group"u8);
 
-                    //if (requirementsGroup.Group.Count > 0)
-                    //{
-                        writer.WriteStartArray("group"u8);
+                    foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(groupItem);
+                    }
 
-                        foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(groupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (requirementsGroup.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirementsGroup.Iid);
@@ -148,98 +128,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequirementsGroup for Version 1.1.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (requirementsGroup.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (requirementsGroup.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirementsGroup.ClassKind.ToString());
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (requirementsGroup.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (requirementsGroup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (requirementsGroup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("group"u8);
 
-                    //if (requirementsGroup.Group.Count > 0)
-                    //{
-                        writer.WriteStartArray("group"u8);
+                    foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(groupItem);
+                    }
 
-                        foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(groupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (requirementsGroup.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirementsGroup.Iid);
@@ -249,18 +201,14 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(requirementsGroup.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirementsGroup.Owner);
+                    writer.WriteStartArray("parameterValue"u8);
 
-                    //if (requirementsGroup.ParameterValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterValue"u8);
+                    foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterValueItem);
+                    }
 
-                        foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirementsGroup.RevisionNumber);
@@ -269,98 +217,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequirementsGroup for Version 1.2.0");
+                    writer.WriteStartArray("alias"u8);
 
-                    //if (requirementsGroup.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
+                    foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(aliasItem);
+                    }
 
-                        foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (requirementsGroup.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirementsGroup.ClassKind.ToString());
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (requirementsGroup.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (requirementsGroup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (requirementsGroup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("group"u8);
 
-                    //if (requirementsGroup.Group.Count > 0)
-                    //{
-                        writer.WriteStartArray("group"u8);
+                    foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(groupItem);
+                    }
 
-                        foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(groupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (requirementsGroup.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirementsGroup.Iid);
@@ -370,18 +290,14 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(requirementsGroup.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirementsGroup.Owner);
+                    writer.WriteStartArray("parameterValue"u8);
 
-                    //if (requirementsGroup.ParameterValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterValue"u8);
+                    foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterValueItem);
+                    }
 
-                        foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirementsGroup.RevisionNumber);
@@ -392,108 +308,70 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing RequirementsGroup for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
+                    writer.WriteStartArray("alias"u8);
 
-                    if(requirementsGroup.Actor.HasValue)
+                    foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
                     {
-                        writer.WriteStringValue(requirementsGroup.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
+                        writer.WriteStringValue(aliasItem);
                     }
 
-                    //if (requirementsGroup.Alias.Count > 0)
-                    //{
-                        writer.WriteStartArray("alias"u8);
-
-                        foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(aliasItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("category"u8);
 
-                    //if (requirementsGroup.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(requirementsGroup.ClassKind.ToString());
+                    writer.WriteStartArray("definition"u8);
 
-                    //if (requirementsGroup.Definition.Count > 0)
-                    //{
-                        writer.WriteStartArray("definition"u8);
+                    foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(definitionItem);
+                    }
 
-                        foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(definitionItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (requirementsGroup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (requirementsGroup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("group"u8);
 
-                    //if (requirementsGroup.Group.Count > 0)
-                    //{
-                        writer.WriteStartArray("group"u8);
+                    foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(groupItem);
+                    }
 
-                        foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(groupItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("hyperLink"u8);
 
-                    //if (requirementsGroup.HyperLink.Count > 0)
-                    //{
-                        writer.WriteStartArray("hyperLink"u8);
+                    foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(hyperLinkItem);
+                    }
 
-                        foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(hyperLinkItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(requirementsGroup.Iid);
@@ -503,18 +381,14 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(requirementsGroup.Name);
                     writer.WritePropertyName("owner"u8);
                     writer.WriteStringValue(requirementsGroup.Owner);
+                    writer.WriteStartArray("parameterValue"u8);
 
-                    //if (requirementsGroup.ParameterValue.Count > 0)
-                    //{
-                        writer.WriteStartArray("parameterValue"u8);
+                    foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(parameterValueItem);
+                    }
 
-                        foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(parameterValueItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("revisionNumber"u8);
                     writer.WriteNumberValue(requirementsGroup.RevisionNumber);
@@ -531,6 +405,120 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="RequirementsGroup" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not RequirementsGroup requirementsGroup)
+            {
+                throw new ArgumentException("The thing shall be a RequirementsGroup", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WriteStartArray("alias"u8);
+
+                foreach(var aliasItem in requirementsGroup.Alias.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(aliasItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("category"u8);
+
+                foreach(var categoryItem in requirementsGroup.Category.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(categoryItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(requirementsGroup.ClassKind.ToString());
+
+                writer.WriteStartArray("definition"u8);
+
+                foreach(var definitionItem in requirementsGroup.Definition.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(definitionItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in requirementsGroup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in requirementsGroup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("group"u8);
+
+                foreach(var groupItem in requirementsGroup.Group.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(groupItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("hyperLink"u8);
+
+                foreach(var hyperLinkItem in requirementsGroup.HyperLink.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(hyperLinkItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(requirementsGroup.Iid);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(requirementsGroup.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(requirementsGroup.Name);
+                writer.WritePropertyName("owner"u8);
+                writer.WriteStringValue(requirementsGroup.Owner);
+
+                writer.WriteStartArray("parameterValue"u8);
+
+                foreach(var parameterValueItem in requirementsGroup.ParameterValue.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(parameterValueItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(requirementsGroup.RevisionNumber);
+                writer.WritePropertyName("shortName"u8);
+                writer.WriteStringValue(requirementsGroup.ShortName);
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(requirementsGroup.ThingPreference);
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="RequirementsGroup"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -542,32 +530,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="RequirementsGroup"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "alias":
-                    if(!AllowedVersionsPerProperty["alias"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -585,11 +567,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "category":
-                    if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -607,11 +584,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -625,11 +597,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "definition":
-                    if(!AllowedVersionsPerProperty["definition"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -647,11 +614,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -669,11 +631,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -691,11 +648,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "group":
-                    if(!AllowedVersionsPerProperty["group"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -713,11 +665,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "hyperlink":
-                    if(!AllowedVersionsPerProperty["hyperLink"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -735,11 +682,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -753,11 +695,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -771,11 +708,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "name":
-                    if(!AllowedVersionsPerProperty["name"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("name"u8);
                     
                     if(value != null)
@@ -789,11 +721,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "owner":
-                    if(!AllowedVersionsPerProperty["owner"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("owner"u8);
                     
                     if(value != null)
@@ -807,11 +734,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "parametervalue":
-                    if(!AllowedVersionsPerProperty["parameterValue"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -829,11 +751,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -847,11 +764,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "shortname":
-                    if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("shortName"u8);
                     
                     if(value != null)
@@ -865,11 +777,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)

@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="MappingToReferenceScaleResolver.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
-// 
+// <copyright file="MappingToReferenceScaleResolver.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
+//
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
 //    This file is part of CDP4-COMET SDK Community Edition

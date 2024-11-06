@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SampledFunctionParameterTypeResolver.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
-// 
+// <copyright file="SampledFunctionParameterTypeResolver.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
+//
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
 //    This file is part of CDP4-COMET SDK Community Edition
@@ -135,10 +135,9 @@ namespace CDP4JsonSerializer
             {
                 sampledFunctionParameterType.IndependentParameterType.AddRange(independentParameterTypeProperty.ToOrderedItemCollection());
             }
-
             if (jsonElement.TryGetProperty("interpolationPeriod"u8, out var interpolationPeriodProperty))
             {
-                if(interpolationPeriodProperty.ValueKind == JsonValueKind.Array)
+                if (interpolationPeriodProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 

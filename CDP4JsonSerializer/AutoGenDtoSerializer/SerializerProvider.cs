@@ -1,6 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SerializerProvider.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
+// <copyright file="SerializerProvider.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
@@ -30,6 +30,8 @@ namespace CDP4JsonSerializer
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
     using System.Text.Json;
     
     using CDP4Common;
@@ -233,6 +235,63 @@ namespace CDP4JsonSerializer
             }
 
             writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serialize a <see cref="Thing"/> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing"/></param>
+        /// <returns>A json representation of the <see cref="Thing"/></returns>
+        public static string ToJsonString(this Thing thing)
+        {
+            if(!SerializerMap.TryGetValue(thing.ClassKind.ToString(), out var serializer))
+            {
+                throw new NotSupportedException($"The {thing.ClassKind} class is not registered");
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new Utf8JsonWriter(stream))
+                {
+                    serializer.Serialize(thing, writer);
+                    writer.Flush();
+                    stream.Flush();
+                    return Encoding.UTF8.GetString(stream.ToArray());
+                }
+            }
+        }
+
+        /// <summary>
+        /// Serialize a <see cref="ClasslessDTO"/> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="classlessDto">The <see cref="ClasslessDTO"/></param>
+        /// <returns>A json representation of the <see cref="ClasslessDTO"/></returns>
+        public static string ToJsonString(this ClasslessDTO classlessDto)
+        {
+            if(!SerializerMap.TryGetValue(classlessDto["ClassKind"].ToString(), out var serializer))
+            {
+                throw new NotSupportedException($"The {classlessDto["ClassKind"]} class is not registered");
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new Utf8JsonWriter(stream))
+                {
+                    writer.WriteStartObject();
+
+                    foreach (var keyValue in classlessDto)
+                    {
+                        var key = Utils.LowercaseFirstLetter(keyValue.Key);
+                        serializer.SerializeProperty(key, keyValue.Value, writer);
+                    }
+
+                    writer.WriteEndObject();
+
+                    writer.Flush();
+                    stream.Flush();
+                    return Encoding.UTF8.GetString(stream.ToArray());
+                }
+            }
         }
     }
 }

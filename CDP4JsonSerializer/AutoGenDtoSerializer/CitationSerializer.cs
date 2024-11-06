@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Citation since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -102,31 +98,23 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing Citation for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(citation.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (citation.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (citation.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(citation.Iid);
@@ -149,31 +137,23 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing Citation for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(citation.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (citation.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (citation.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(citation.Iid);
@@ -196,44 +176,25 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing Citation for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(citation.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(citation.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(citation.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (citation.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (citation.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("iid"u8);
                     writer.WriteStringValue(citation.Iid);
@@ -262,6 +223,65 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="Citation" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not Citation citation)
+            {
+                throw new ArgumentException("The thing shall be a Citation", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(citation.ClassKind.ToString());
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in citation.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in citation.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(citation.Iid);
+                writer.WritePropertyName("isAdaptation"u8);
+                writer.WriteBooleanValue(citation.IsAdaptation);
+                writer.WritePropertyName("location"u8);
+                writer.WriteStringValue(citation.Location);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(citation.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("remark"u8);
+                writer.WriteStringValue(citation.Remark);
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(citation.RevisionNumber);
+                writer.WritePropertyName("shortName"u8);
+                writer.WriteStringValue(citation.ShortName);
+                writer.WritePropertyName("source"u8);
+                writer.WriteStringValue(citation.Source);
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(citation.ThingPreference);
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="Citation"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -273,32 +293,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="Citation"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -312,11 +326,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -334,11 +343,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -356,11 +360,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -374,11 +373,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "isadaptation":
-                    if(!AllowedVersionsPerProperty["isAdaptation"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("isAdaptation"u8);
                     
                     if(value != null)
@@ -392,11 +386,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "location":
-                    if(!AllowedVersionsPerProperty["location"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("location"u8);
                     
                     if(value != null)
@@ -410,11 +399,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -428,11 +412,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "remark":
-                    if(!AllowedVersionsPerProperty["remark"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("remark"u8);
                     
                     if(value != null)
@@ -446,11 +425,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -464,11 +438,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "shortname":
-                    if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("shortName"u8);
                     
                     if(value != null)
@@ -482,11 +451,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "source":
-                    if(!AllowedVersionsPerProperty["source"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("source"u8);
                     
                     if(value != null)
@@ -500,11 +464,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
