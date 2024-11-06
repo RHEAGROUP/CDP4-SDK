@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of BuiltInRuleVerification since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -85,7 +81,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(builtInRuleVerification.ClassKind.ToString());
                     writer.WritePropertyName("executedOn"u8);
 
-                    if(builtInRuleVerification.ExecutedOn.HasValue)
+                    if (builtInRuleVerification.ExecutedOn.HasValue)
                     {
                         writer.WriteStringValue(builtInRuleVerification.ExecutedOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -104,53 +100,32 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(builtInRuleVerification.RevisionNumber);
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(builtInRuleVerification.Status.ToString());
-
-                    //if (builtInRuleVerification.Violation.Count > 0)
-                    //{
-                        writer.WriteStartArray("violation"u8);
-
-                        foreach(var violationItem in builtInRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(violationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
-                    
                     break;
                 case "1.1.0":
                     Logger.Log(LogLevel.Trace, "Serializing BuiltInRuleVerification for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(builtInRuleVerification.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (builtInRuleVerification.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (builtInRuleVerification.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("executedOn"u8);
 
-                    if(builtInRuleVerification.ExecutedOn.HasValue)
+                    if (builtInRuleVerification.ExecutedOn.HasValue)
                     {
                         writer.WriteStringValue(builtInRuleVerification.ExecutedOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -171,53 +146,32 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(builtInRuleVerification.RevisionNumber);
                     writer.WritePropertyName("status"u8);
                     writer.WriteStringValue(builtInRuleVerification.Status.ToString());
-
-                    //if (builtInRuleVerification.Violation.Count > 0)
-                    //{
-                        writer.WriteStartArray("violation"u8);
-
-                        foreach(var violationItem in builtInRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(violationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
-                    
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing BuiltInRuleVerification for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(builtInRuleVerification.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (builtInRuleVerification.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (builtInRuleVerification.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("executedOn"u8);
 
-                    if(builtInRuleVerification.ExecutedOn.HasValue)
+                    if (builtInRuleVerification.ExecutedOn.HasValue)
                     {
                         writer.WriteStringValue(builtInRuleVerification.ExecutedOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -240,64 +194,32 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(builtInRuleVerification.Status.ToString());
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(builtInRuleVerification.ThingPreference);
-
-                    //if (builtInRuleVerification.Violation.Count > 0)
-                    //{
-                        writer.WriteStartArray("violation"u8);
-
-                        foreach(var violationItem in builtInRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(violationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
-                    
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing BuiltInRuleVerification for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(builtInRuleVerification.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(builtInRuleVerification.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(builtInRuleVerification.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (builtInRuleVerification.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (builtInRuleVerification.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("executedOn"u8);
 
-                    if(builtInRuleVerification.ExecutedOn.HasValue)
+                    if (builtInRuleVerification.ExecutedOn.HasValue)
                     {
                         writer.WriteStringValue(builtInRuleVerification.ExecutedOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -320,23 +242,76 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(builtInRuleVerification.Status.ToString());
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(builtInRuleVerification.ThingPreference);
-
-                    //if (builtInRuleVerification.Violation.Count > 0)
-                    //{
-                        writer.WriteStartArray("violation"u8);
-
-                        foreach(var violationItem in builtInRuleVerification.Violation.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(violationItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
-                    
                     break;
                 default:
                     throw new NotSupportedException($"The provided version {requestedDataModelVersion.ToString(3)} is not supported");
             }
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="BuiltInRuleVerification" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not BuiltInRuleVerification builtInRuleVerification)
+            {
+                throw new ArgumentException("The thing shall be a BuiltInRuleVerification", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(builtInRuleVerification.ClassKind.ToString());
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in builtInRuleVerification.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in builtInRuleVerification.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("executedOn"u8);
+
+                if (builtInRuleVerification.ExecutedOn.HasValue)
+                {
+                    writer.WriteStringValue(builtInRuleVerification.ExecutedOn.Value.ToString(SerializerHelper.DateTimeFormat));
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(builtInRuleVerification.Iid);
+                writer.WritePropertyName("isActive"u8);
+                writer.WriteBooleanValue(builtInRuleVerification.IsActive);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(builtInRuleVerification.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(builtInRuleVerification.Name);
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(builtInRuleVerification.RevisionNumber);
+                writer.WritePropertyName("status"u8);
+                writer.WriteStringValue(builtInRuleVerification.Status.ToString());
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(builtInRuleVerification.ThingPreference);
 
             writer.WriteEndObject();
         }
@@ -353,32 +328,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="BuiltInRuleVerification"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -392,11 +361,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -414,11 +378,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -436,11 +395,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "executedon":
-                    if(!AllowedVersionsPerProperty["executedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("executedOn"u8);
                     
                     if(value != null)
@@ -454,11 +408,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -472,11 +421,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "isactive":
-                    if(!AllowedVersionsPerProperty["isActive"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("isActive"u8);
                     
                     if(value != null)
@@ -490,11 +434,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -508,11 +447,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "name":
-                    if(!AllowedVersionsPerProperty["name"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("name"u8);
                     
                     if(value != null)
@@ -526,11 +460,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -544,11 +473,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "status":
-                    if(!AllowedVersionsPerProperty["status"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("status"u8);
                     
                     if(value != null)
@@ -562,11 +486,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
@@ -578,28 +497,6 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    break;
-                case "violation":
-                    if(!AllowedVersionsPerProperty["violation"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    if (value == null)
-                    {
-                        break;
-                    }
-
-                    if (value is IEnumerable<object> objectListViolation && objectListViolation.Any())
-                    {
-                        writer.WriteStartArray("violation"u8);
-
-                        foreach(var violationItem in objectListViolation.OfType<Guid>().OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(violationItem);
-                        }
-                        writer.WriteEndArray();
-                    }
                     break;
                 default:
                     throw new ArgumentException($"The requested property {propertyName} does not exist on the BuiltInRuleVerification");

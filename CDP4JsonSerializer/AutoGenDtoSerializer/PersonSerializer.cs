@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Person since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -85,7 +81,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ClassKind.ToString());
                     writer.WritePropertyName("defaultDomain"u8);
 
-                    if(person.DefaultDomain.HasValue)
+                    if (person.DefaultDomain.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultDomain.Value);
                     }
@@ -96,7 +92,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultEmailAddress"u8);
 
-                    if(person.DefaultEmailAddress.HasValue)
+                    if (person.DefaultEmailAddress.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultEmailAddress.Value);
                     }
@@ -107,7 +103,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultTelephoneNumber"u8);
 
-                    if(person.DefaultTelephoneNumber.HasValue)
+                    if (person.DefaultTelephoneNumber.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultTelephoneNumber.Value);
                     }
@@ -116,17 +112,14 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (person.EmailAddress.Count > 0)
-                    //{
-                        writer.WriteStartArray("emailAddress"u8);
+                    writer.WriteStartArray("emailAddress"u8);
 
-                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(emailAddressItem);
-                        }
+                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(emailAddressItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -138,7 +131,7 @@ namespace CDP4JsonSerializer
                     writer.WriteBooleanValue(person.IsDeprecated);
                     writer.WritePropertyName("organization"u8);
 
-                    if(person.Organization.HasValue)
+                    if (person.Organization.HasValue)
                     {
                         writer.WriteStringValue(person.Organization.Value);
                     }
@@ -155,7 +148,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(person.RevisionNumber);
                     writer.WritePropertyName("role"u8);
 
-                    if(person.Role.HasValue)
+                    if (person.Role.HasValue)
                     {
                         writer.WriteStringValue(person.Role.Value);
                     }
@@ -168,31 +161,23 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
+                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    //if (person.TelephoneNumber.Count > 0)
-                    //{
-                        writer.WriteStartArray("telephoneNumber"u8);
+                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(telephoneNumberItem);
+                    }
 
-                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(telephoneNumberItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("userPreference"u8);
 
-                    //if (person.UserPreference.Count > 0)
-                    //{
-                        writer.WriteStartArray("userPreference"u8);
+                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(userPreferenceItem);
+                    }
 
-                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(userPreferenceItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.1.0":
@@ -201,7 +186,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ClassKind.ToString());
                     writer.WritePropertyName("defaultDomain"u8);
 
-                    if(person.DefaultDomain.HasValue)
+                    if (person.DefaultDomain.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultDomain.Value);
                     }
@@ -212,7 +197,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultEmailAddress"u8);
 
-                    if(person.DefaultEmailAddress.HasValue)
+                    if (person.DefaultEmailAddress.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultEmailAddress.Value);
                     }
@@ -223,7 +208,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultTelephoneNumber"u8);
 
-                    if(person.DefaultTelephoneNumber.HasValue)
+                    if (person.DefaultTelephoneNumber.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultTelephoneNumber.Value);
                     }
@@ -232,43 +217,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (person.EmailAddress.Count > 0)
-                    //{
-                        writer.WriteStartArray("emailAddress"u8);
+                    writer.WriteStartArray("emailAddress"u8);
 
-                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(emailAddressItem);
-                        }
+                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(emailAddressItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (person.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (person.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -282,7 +256,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("organization"u8);
 
-                    if(person.Organization.HasValue)
+                    if (person.Organization.HasValue)
                     {
                         writer.WriteStringValue(person.Organization.Value);
                     }
@@ -299,7 +273,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(person.RevisionNumber);
                     writer.WritePropertyName("role"u8);
 
-                    if(person.Role.HasValue)
+                    if (person.Role.HasValue)
                     {
                         writer.WriteStringValue(person.Role.Value);
                     }
@@ -312,31 +286,23 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
+                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    //if (person.TelephoneNumber.Count > 0)
-                    //{
-                        writer.WriteStartArray("telephoneNumber"u8);
+                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(telephoneNumberItem);
+                    }
 
-                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(telephoneNumberItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("userPreference"u8);
 
-                    //if (person.UserPreference.Count > 0)
-                    //{
-                        writer.WriteStartArray("userPreference"u8);
+                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(userPreferenceItem);
+                    }
 
-                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(userPreferenceItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.2.0":
@@ -345,7 +311,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ClassKind.ToString());
                     writer.WritePropertyName("defaultDomain"u8);
 
-                    if(person.DefaultDomain.HasValue)
+                    if (person.DefaultDomain.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultDomain.Value);
                     }
@@ -356,7 +322,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultEmailAddress"u8);
 
-                    if(person.DefaultEmailAddress.HasValue)
+                    if (person.DefaultEmailAddress.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultEmailAddress.Value);
                     }
@@ -367,7 +333,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultTelephoneNumber"u8);
 
-                    if(person.DefaultTelephoneNumber.HasValue)
+                    if (person.DefaultTelephoneNumber.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultTelephoneNumber.Value);
                     }
@@ -376,43 +342,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (person.EmailAddress.Count > 0)
-                    //{
-                        writer.WriteStartArray("emailAddress"u8);
+                    writer.WriteStartArray("emailAddress"u8);
 
-                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(emailAddressItem);
-                        }
+                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(emailAddressItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (person.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (person.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -426,7 +381,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("organization"u8);
 
-                    if(person.Organization.HasValue)
+                    if (person.Organization.HasValue)
                     {
                         writer.WriteStringValue(person.Organization.Value);
                     }
@@ -443,7 +398,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(person.RevisionNumber);
                     writer.WritePropertyName("role"u8);
 
-                    if(person.Role.HasValue)
+                    if (person.Role.HasValue)
                     {
                         writer.WriteStringValue(person.Role.Value);
                     }
@@ -456,53 +411,34 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
+                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    //if (person.TelephoneNumber.Count > 0)
-                    //{
-                        writer.WriteStartArray("telephoneNumber"u8);
+                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(telephoneNumberItem);
+                    }
 
-                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(telephoneNumberItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(person.ThingPreference);
+                    writer.WriteStartArray("userPreference"u8);
 
-                    //if (person.UserPreference.Count > 0)
-                    //{
-                        writer.WriteStartArray("userPreference"u8);
+                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(userPreferenceItem);
+                    }
 
-                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(userPreferenceItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing Person for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(person.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(person.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(person.ClassKind.ToString());
                     writer.WritePropertyName("defaultDomain"u8);
 
-                    if(person.DefaultDomain.HasValue)
+                    if (person.DefaultDomain.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultDomain.Value);
                     }
@@ -513,7 +449,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultEmailAddress"u8);
 
-                    if(person.DefaultEmailAddress.HasValue)
+                    if (person.DefaultEmailAddress.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultEmailAddress.Value);
                     }
@@ -524,7 +460,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("defaultTelephoneNumber"u8);
 
-                    if(person.DefaultTelephoneNumber.HasValue)
+                    if (person.DefaultTelephoneNumber.HasValue)
                     {
                         writer.WriteStringValue(person.DefaultTelephoneNumber.Value);
                     }
@@ -533,43 +469,32 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (person.EmailAddress.Count > 0)
-                    //{
-                        writer.WriteStartArray("emailAddress"u8);
+                    writer.WriteStartArray("emailAddress"u8);
 
-                        foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(emailAddressItem);
-                        }
+                    foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(emailAddressItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (person.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (person.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("givenName"u8);
                     writer.WriteStringValue(person.GivenName);
@@ -583,7 +508,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("organization"u8);
 
-                    if(person.Organization.HasValue)
+                    if (person.Organization.HasValue)
                     {
                         writer.WriteStringValue(person.Organization.Value);
                     }
@@ -600,7 +525,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(person.RevisionNumber);
                     writer.WritePropertyName("role"u8);
 
-                    if(person.Role.HasValue)
+                    if (person.Role.HasValue)
                     {
                         writer.WriteStringValue(person.Role.Value);
                     }
@@ -613,38 +538,177 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(person.ShortName);
                     writer.WritePropertyName("surname"u8);
                     writer.WriteStringValue(person.Surname);
+                    writer.WriteStartArray("telephoneNumber"u8);
 
-                    //if (person.TelephoneNumber.Count > 0)
-                    //{
-                        writer.WriteStartArray("telephoneNumber"u8);
+                    foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(telephoneNumberItem);
+                    }
 
-                        foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(telephoneNumberItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(person.ThingPreference);
+                    writer.WriteStartArray("userPreference"u8);
 
-                    //if (person.UserPreference.Count > 0)
-                    //{
-                        writer.WriteStartArray("userPreference"u8);
+                    foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(userPreferenceItem);
+                    }
 
-                        foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(userPreferenceItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 default:
                     throw new NotSupportedException($"The provided version {requestedDataModelVersion.ToString(3)} is not supported");
             }
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="Person" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not Person person)
+            {
+                throw new ArgumentException("The thing shall be a Person", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(person.ClassKind.ToString());
+                writer.WritePropertyName("defaultDomain"u8);
+
+                if (person.DefaultDomain.HasValue)
+                {
+                    writer.WriteStringValue(person.DefaultDomain.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("defaultEmailAddress"u8);
+
+                if (person.DefaultEmailAddress.HasValue)
+                {
+                    writer.WriteStringValue(person.DefaultEmailAddress.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("defaultTelephoneNumber"u8);
+
+                if (person.DefaultTelephoneNumber.HasValue)
+                {
+                    writer.WriteStringValue(person.DefaultTelephoneNumber.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WriteStartArray("emailAddress"u8);
+
+                foreach(var emailAddressItem in person.EmailAddress.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(emailAddressItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in person.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in person.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("givenName"u8);
+                writer.WriteStringValue(person.GivenName);
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(person.Iid);
+                writer.WritePropertyName("isActive"u8);
+                writer.WriteBooleanValue(person.IsActive);
+                writer.WritePropertyName("isDeprecated"u8);
+                writer.WriteBooleanValue(person.IsDeprecated);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(person.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("organization"u8);
+
+                if (person.Organization.HasValue)
+                {
+                    writer.WriteStringValue(person.Organization.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("organizationalUnit"u8);
+                writer.WriteStringValue(person.OrganizationalUnit);
+                writer.WritePropertyName("password"u8);
+                writer.WriteStringValue(person.Password);
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(person.RevisionNumber);
+                writer.WritePropertyName("role"u8);
+
+                if (person.Role.HasValue)
+                {
+                    writer.WriteStringValue(person.Role.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("shortName"u8);
+                writer.WriteStringValue(person.ShortName);
+                writer.WritePropertyName("surname"u8);
+                writer.WriteStringValue(person.Surname);
+
+                writer.WriteStartArray("telephoneNumber"u8);
+
+                foreach(var telephoneNumberItem in person.TelephoneNumber.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(telephoneNumberItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(person.ThingPreference);
+
+                writer.WriteStartArray("userPreference"u8);
+
+                foreach(var userPreferenceItem in person.UserPreference.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(userPreferenceItem);
+                }
+
+                writer.WriteEndArray();
+                
 
             writer.WriteEndObject();
         }
@@ -661,32 +725,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="Person"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -700,11 +758,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "defaultdomain":
-                    if(!AllowedVersionsPerProperty["defaultDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("defaultDomain"u8);
                     
                     if(value != null)
@@ -718,11 +771,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "defaultemailaddress":
-                    if(!AllowedVersionsPerProperty["defaultEmailAddress"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("defaultEmailAddress"u8);
                     
                     if(value != null)
@@ -736,11 +784,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "defaulttelephonenumber":
-                    if(!AllowedVersionsPerProperty["defaultTelephoneNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("defaultTelephoneNumber"u8);
                     
                     if(value != null)
@@ -754,11 +797,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "emailaddress":
-                    if(!AllowedVersionsPerProperty["emailAddress"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -776,11 +814,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -798,11 +831,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -820,11 +848,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "givenname":
-                    if(!AllowedVersionsPerProperty["givenName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("givenName"u8);
                     
                     if(value != null)
@@ -838,11 +861,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -856,11 +874,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "isactive":
-                    if(!AllowedVersionsPerProperty["isActive"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("isActive"u8);
                     
                     if(value != null)
@@ -874,11 +887,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "isdeprecated":
-                    if(!AllowedVersionsPerProperty["isDeprecated"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("isDeprecated"u8);
                     
                     if(value != null)
@@ -892,11 +900,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -910,11 +913,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "organization":
-                    if(!AllowedVersionsPerProperty["organization"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("organization"u8);
                     
                     if(value != null)
@@ -928,11 +926,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "organizationalunit":
-                    if(!AllowedVersionsPerProperty["organizationalUnit"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("organizationalUnit"u8);
                     
                     if(value != null)
@@ -946,11 +939,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "password":
-                    if(!AllowedVersionsPerProperty["password"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("password"u8);
                     
                     if(value != null)
@@ -964,11 +952,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -982,11 +965,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "role":
-                    if(!AllowedVersionsPerProperty["role"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("role"u8);
                     
                     if(value != null)
@@ -1000,11 +978,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "shortname":
-                    if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("shortName"u8);
                     
                     if(value != null)
@@ -1018,11 +991,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "surname":
-                    if(!AllowedVersionsPerProperty["surname"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("surname"u8);
                     
                     if(value != null)
@@ -1036,11 +1004,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "telephonenumber":
-                    if(!AllowedVersionsPerProperty["telephoneNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -1058,11 +1021,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
@@ -1076,11 +1034,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "userpreference":
-                    if(!AllowedVersionsPerProperty["userPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;

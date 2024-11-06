@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of SharedStyle since Version is below 1.1.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -83,35 +79,27 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing SharedStyle for Version 1.1.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(sharedStyle.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (sharedStyle.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (sharedStyle.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fillColor"u8);
 
-                    if(sharedStyle.FillColor.HasValue)
+                    if (sharedStyle.FillColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FillColor.Value);
                     }
@@ -122,7 +110,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fillOpacity"u8);
 
-                    if(sharedStyle.FillOpacity.HasValue)
+                    if (sharedStyle.FillOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FillOpacity.Value);
                     }
@@ -133,7 +121,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontBold"u8);
 
-                    if(sharedStyle.FontBold.HasValue)
+                    if (sharedStyle.FontBold.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontBold.Value);
                     }
@@ -144,7 +132,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontColor"u8);
 
-                    if(sharedStyle.FontColor.HasValue)
+                    if (sharedStyle.FontColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FontColor.Value);
                     }
@@ -155,7 +143,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontItalic"u8);
 
-                    if(sharedStyle.FontItalic.HasValue)
+                    if (sharedStyle.FontItalic.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontItalic.Value);
                     }
@@ -168,7 +156,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(sharedStyle.FontName);
                     writer.WritePropertyName("fontSize"u8);
 
-                    if(sharedStyle.FontSize.HasValue)
+                    if (sharedStyle.FontSize.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FontSize.Value);
                     }
@@ -179,7 +167,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontStrokeThrough"u8);
 
-                    if(sharedStyle.FontStrokeThrough.HasValue)
+                    if (sharedStyle.FontStrokeThrough.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontStrokeThrough.Value);
                     }
@@ -190,7 +178,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontUnderline"u8);
 
-                    if(sharedStyle.FontUnderline.HasValue)
+                    if (sharedStyle.FontUnderline.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontUnderline.Value);
                     }
@@ -209,7 +197,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(sharedStyle.RevisionNumber);
                     writer.WritePropertyName("strokeColor"u8);
 
-                    if(sharedStyle.StrokeColor.HasValue)
+                    if (sharedStyle.StrokeColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.StrokeColor.Value);
                     }
@@ -220,7 +208,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeOpacity"u8);
 
-                    if(sharedStyle.StrokeOpacity.HasValue)
+                    if (sharedStyle.StrokeOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeOpacity.Value);
                     }
@@ -231,7 +219,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeWidth"u8);
 
-                    if(sharedStyle.StrokeWidth.HasValue)
+                    if (sharedStyle.StrokeWidth.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeWidth.Value);
                     }
@@ -240,52 +228,41 @@ namespace CDP4JsonSerializer
                         writer.WriteNullValue();
                     }
 
-                    //if (sharedStyle.UsedColor.Count > 0)
-                    //{
-                        writer.WriteStartArray("usedColor"u8);
+                    writer.WriteStartArray("usedColor"u8);
 
-                        foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(usedColorItem);
-                        }
+                    foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(usedColorItem);
+                    }
 
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.2.0":
                     Logger.Log(LogLevel.Trace, "Serializing SharedStyle for Version 1.2.0");
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(sharedStyle.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (sharedStyle.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (sharedStyle.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fillColor"u8);
 
-                    if(sharedStyle.FillColor.HasValue)
+                    if (sharedStyle.FillColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FillColor.Value);
                     }
@@ -296,7 +273,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fillOpacity"u8);
 
-                    if(sharedStyle.FillOpacity.HasValue)
+                    if (sharedStyle.FillOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FillOpacity.Value);
                     }
@@ -307,7 +284,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontBold"u8);
 
-                    if(sharedStyle.FontBold.HasValue)
+                    if (sharedStyle.FontBold.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontBold.Value);
                     }
@@ -318,7 +295,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontColor"u8);
 
-                    if(sharedStyle.FontColor.HasValue)
+                    if (sharedStyle.FontColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FontColor.Value);
                     }
@@ -329,7 +306,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontItalic"u8);
 
-                    if(sharedStyle.FontItalic.HasValue)
+                    if (sharedStyle.FontItalic.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontItalic.Value);
                     }
@@ -342,7 +319,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(sharedStyle.FontName);
                     writer.WritePropertyName("fontSize"u8);
 
-                    if(sharedStyle.FontSize.HasValue)
+                    if (sharedStyle.FontSize.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FontSize.Value);
                     }
@@ -353,7 +330,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontStrokeThrough"u8);
 
-                    if(sharedStyle.FontStrokeThrough.HasValue)
+                    if (sharedStyle.FontStrokeThrough.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontStrokeThrough.Value);
                     }
@@ -364,7 +341,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontUnderline"u8);
 
-                    if(sharedStyle.FontUnderline.HasValue)
+                    if (sharedStyle.FontUnderline.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontUnderline.Value);
                     }
@@ -383,7 +360,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(sharedStyle.RevisionNumber);
                     writer.WritePropertyName("strokeColor"u8);
 
-                    if(sharedStyle.StrokeColor.HasValue)
+                    if (sharedStyle.StrokeColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.StrokeColor.Value);
                     }
@@ -394,7 +371,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeOpacity"u8);
 
-                    if(sharedStyle.StrokeOpacity.HasValue)
+                    if (sharedStyle.StrokeOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeOpacity.Value);
                     }
@@ -405,7 +382,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeWidth"u8);
 
-                    if(sharedStyle.StrokeWidth.HasValue)
+                    if (sharedStyle.StrokeWidth.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeWidth.Value);
                     }
@@ -416,64 +393,41 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(sharedStyle.ThingPreference);
+                    writer.WriteStartArray("usedColor"u8);
 
-                    //if (sharedStyle.UsedColor.Count > 0)
-                    //{
-                        writer.WriteStartArray("usedColor"u8);
+                    foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(usedColorItem);
+                    }
 
-                        foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(usedColorItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing SharedStyle for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(sharedStyle.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(sharedStyle.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(sharedStyle.ClassKind.ToString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (sharedStyle.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (sharedStyle.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fillColor"u8);
 
-                    if(sharedStyle.FillColor.HasValue)
+                    if (sharedStyle.FillColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FillColor.Value);
                     }
@@ -484,7 +438,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fillOpacity"u8);
 
-                    if(sharedStyle.FillOpacity.HasValue)
+                    if (sharedStyle.FillOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FillOpacity.Value);
                     }
@@ -495,7 +449,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontBold"u8);
 
-                    if(sharedStyle.FontBold.HasValue)
+                    if (sharedStyle.FontBold.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontBold.Value);
                     }
@@ -506,7 +460,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontColor"u8);
 
-                    if(sharedStyle.FontColor.HasValue)
+                    if (sharedStyle.FontColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.FontColor.Value);
                     }
@@ -517,7 +471,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontItalic"u8);
 
-                    if(sharedStyle.FontItalic.HasValue)
+                    if (sharedStyle.FontItalic.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontItalic.Value);
                     }
@@ -530,7 +484,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(sharedStyle.FontName);
                     writer.WritePropertyName("fontSize"u8);
 
-                    if(sharedStyle.FontSize.HasValue)
+                    if (sharedStyle.FontSize.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.FontSize.Value);
                     }
@@ -541,7 +495,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontStrokeThrough"u8);
 
-                    if(sharedStyle.FontStrokeThrough.HasValue)
+                    if (sharedStyle.FontStrokeThrough.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontStrokeThrough.Value);
                     }
@@ -552,7 +506,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("fontUnderline"u8);
 
-                    if(sharedStyle.FontUnderline.HasValue)
+                    if (sharedStyle.FontUnderline.HasValue)
                     {
                         writer.WriteBooleanValue(sharedStyle.FontUnderline.Value);
                     }
@@ -571,7 +525,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(sharedStyle.RevisionNumber);
                     writer.WritePropertyName("strokeColor"u8);
 
-                    if(sharedStyle.StrokeColor.HasValue)
+                    if (sharedStyle.StrokeColor.HasValue)
                     {
                         writer.WriteStringValue(sharedStyle.StrokeColor.Value);
                     }
@@ -582,7 +536,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeOpacity"u8);
 
-                    if(sharedStyle.StrokeOpacity.HasValue)
+                    if (sharedStyle.StrokeOpacity.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeOpacity.Value);
                     }
@@ -593,7 +547,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("strokeWidth"u8);
 
-                    if(sharedStyle.StrokeWidth.HasValue)
+                    if (sharedStyle.StrokeWidth.HasValue)
                     {
                         writer.WriteNumberValue(sharedStyle.StrokeWidth.Value);
                     }
@@ -604,23 +558,203 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("thingPreference"u8);
                     writer.WriteStringValue(sharedStyle.ThingPreference);
+                    writer.WriteStartArray("usedColor"u8);
 
-                    //if (sharedStyle.UsedColor.Count > 0)
-                    //{
-                        writer.WriteStartArray("usedColor"u8);
+                    foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(usedColorItem);
+                    }
 
-                        foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(usedColorItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     break;
                 default:
                     throw new NotSupportedException($"The provided version {requestedDataModelVersion.ToString(3)} is not supported");
             }
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="SharedStyle" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not SharedStyle sharedStyle)
+            {
+                throw new ArgumentException("The thing shall be a SharedStyle", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(sharedStyle.ClassKind.ToString());
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in sharedStyle.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in sharedStyle.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("fillColor"u8);
+
+                if (sharedStyle.FillColor.HasValue)
+                {
+                    writer.WriteStringValue(sharedStyle.FillColor.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fillOpacity"u8);
+
+                if (sharedStyle.FillOpacity.HasValue)
+                {
+                    writer.WriteNumberValue(sharedStyle.FillOpacity.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontBold"u8);
+
+                if (sharedStyle.FontBold.HasValue)
+                {
+                    writer.WriteBooleanValue(sharedStyle.FontBold.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontColor"u8);
+
+                if (sharedStyle.FontColor.HasValue)
+                {
+                    writer.WriteStringValue(sharedStyle.FontColor.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontItalic"u8);
+
+                if (sharedStyle.FontItalic.HasValue)
+                {
+                    writer.WriteBooleanValue(sharedStyle.FontItalic.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontName"u8);
+                writer.WriteStringValue(sharedStyle.FontName);
+                writer.WritePropertyName("fontSize"u8);
+
+                if (sharedStyle.FontSize.HasValue)
+                {
+                    writer.WriteNumberValue(sharedStyle.FontSize.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontStrokeThrough"u8);
+
+                if (sharedStyle.FontStrokeThrough.HasValue)
+                {
+                    writer.WriteBooleanValue(sharedStyle.FontStrokeThrough.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("fontUnderline"u8);
+
+                if (sharedStyle.FontUnderline.HasValue)
+                {
+                    writer.WriteBooleanValue(sharedStyle.FontUnderline.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(sharedStyle.Iid);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(sharedStyle.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(sharedStyle.Name);
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(sharedStyle.RevisionNumber);
+                writer.WritePropertyName("strokeColor"u8);
+
+                if (sharedStyle.StrokeColor.HasValue)
+                {
+                    writer.WriteStringValue(sharedStyle.StrokeColor.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("strokeOpacity"u8);
+
+                if (sharedStyle.StrokeOpacity.HasValue)
+                {
+                    writer.WriteNumberValue(sharedStyle.StrokeOpacity.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("strokeWidth"u8);
+
+                if (sharedStyle.StrokeWidth.HasValue)
+                {
+                    writer.WriteNumberValue(sharedStyle.StrokeWidth.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(sharedStyle.ThingPreference);
+
+                writer.WriteStartArray("usedColor"u8);
+
+                foreach(var usedColorItem in sharedStyle.UsedColor.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(usedColorItem);
+                }
+
+                writer.WriteEndArray();
+                
 
             writer.WriteEndObject();
         }
@@ -637,32 +771,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="SharedStyle"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -676,11 +804,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -698,11 +821,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -720,11 +838,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "fillcolor":
-                    if(!AllowedVersionsPerProperty["fillColor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fillColor"u8);
                     
                     if(value != null)
@@ -738,11 +851,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fillopacity":
-                    if(!AllowedVersionsPerProperty["fillOpacity"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fillOpacity"u8);
                     
                     if(value != null)
@@ -756,11 +864,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontbold":
-                    if(!AllowedVersionsPerProperty["fontBold"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontBold"u8);
                     
                     if(value != null)
@@ -774,11 +877,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontcolor":
-                    if(!AllowedVersionsPerProperty["fontColor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontColor"u8);
                     
                     if(value != null)
@@ -792,11 +890,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontitalic":
-                    if(!AllowedVersionsPerProperty["fontItalic"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontItalic"u8);
                     
                     if(value != null)
@@ -810,11 +903,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontname":
-                    if(!AllowedVersionsPerProperty["fontName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontName"u8);
                     
                     if(value != null)
@@ -828,11 +916,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontsize":
-                    if(!AllowedVersionsPerProperty["fontSize"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontSize"u8);
                     
                     if(value != null)
@@ -846,11 +929,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontstrokethrough":
-                    if(!AllowedVersionsPerProperty["fontStrokeThrough"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontStrokeThrough"u8);
                     
                     if(value != null)
@@ -864,11 +942,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "fontunderline":
-                    if(!AllowedVersionsPerProperty["fontUnderline"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fontUnderline"u8);
                     
                     if(value != null)
@@ -882,11 +955,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -900,11 +968,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -918,11 +981,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "name":
-                    if(!AllowedVersionsPerProperty["name"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("name"u8);
                     
                     if(value != null)
@@ -936,11 +994,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -954,11 +1007,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "strokecolor":
-                    if(!AllowedVersionsPerProperty["strokeColor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("strokeColor"u8);
                     
                     if(value != null)
@@ -972,11 +1020,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "strokeopacity":
-                    if(!AllowedVersionsPerProperty["strokeOpacity"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("strokeOpacity"u8);
                     
                     if(value != null)
@@ -990,11 +1033,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "strokewidth":
-                    if(!AllowedVersionsPerProperty["strokeWidth"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("strokeWidth"u8);
                     
                     if(value != null)
@@ -1008,11 +1046,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
@@ -1026,11 +1059,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "usedcolor":
-                    if(!AllowedVersionsPerProperty["usedColor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;

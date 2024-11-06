@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.1.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of BinaryNote since Version is below 1.1.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -83,48 +79,36 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing BinaryNote for Version 1.1.0");
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
+                    writer.WriteStartArray("category"u8);
 
-                    //if (binaryNote.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (binaryNote.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (binaryNote.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -145,48 +129,36 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing BinaryNote for Version 1.2.0");
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
+                    writer.WriteStartArray("category"u8);
 
-                    //if (binaryNote.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (binaryNote.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (binaryNote.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -207,61 +179,38 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing BinaryNote for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(binaryNote.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(binaryNote.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("caption"u8);
                     writer.WriteStringValue(binaryNote.Caption);
+                    writer.WriteStartArray("category"u8);
 
-                    //if (binaryNote.Category.Count > 0)
-                    //{
-                        writer.WriteStartArray("category"u8);
+                    foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(categoryItem);
+                    }
 
-                        foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(categoryItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(binaryNote.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (binaryNote.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (binaryNote.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("fileType"u8);
                     writer.WriteStringValue(binaryNote.FileType);
@@ -288,6 +237,77 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="BinaryNote" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not BinaryNote binaryNote)
+            {
+                throw new ArgumentException("The thing shall be a BinaryNote", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("caption"u8);
+                writer.WriteStringValue(binaryNote.Caption);
+
+                writer.WriteStartArray("category"u8);
+
+                foreach(var categoryItem in binaryNote.Category.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(categoryItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(binaryNote.ClassKind.ToString());
+                writer.WritePropertyName("createdOn"u8);
+                writer.WriteStringValue(binaryNote.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in binaryNote.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in binaryNote.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("fileType"u8);
+                writer.WriteStringValue(binaryNote.FileType);
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(binaryNote.Iid);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(binaryNote.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("name"u8);
+                writer.WriteStringValue(binaryNote.Name);
+                writer.WritePropertyName("owner"u8);
+                writer.WriteStringValue(binaryNote.Owner);
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(binaryNote.RevisionNumber);
+                writer.WritePropertyName("shortName"u8);
+                writer.WriteStringValue(binaryNote.ShortName);
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(binaryNote.ThingPreference);
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="BinaryNote"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -299,32 +319,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="BinaryNote"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "caption":
-                    if(!AllowedVersionsPerProperty["caption"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("caption"u8);
                     
                     if(value != null)
@@ -338,11 +352,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "category":
-                    if(!AllowedVersionsPerProperty["category"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -360,11 +369,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -378,11 +382,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "createdon":
-                    if(!AllowedVersionsPerProperty["createdOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("createdOn"u8);
                     
                     if(value != null)
@@ -396,11 +395,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -418,11 +412,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -440,11 +429,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "filetype":
-                    if(!AllowedVersionsPerProperty["fileType"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("fileType"u8);
                     
                     if(value != null)
@@ -458,11 +442,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -476,11 +455,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -494,11 +468,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "name":
-                    if(!AllowedVersionsPerProperty["name"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("name"u8);
                     
                     if(value != null)
@@ -512,11 +481,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "owner":
-                    if(!AllowedVersionsPerProperty["owner"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("owner"u8);
                     
                     if(value != null)
@@ -530,11 +494,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -548,11 +507,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "shortname":
-                    if(!AllowedVersionsPerProperty["shortName"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("shortName"u8);
                     
                     if(value != null)
@@ -566,11 +520,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)

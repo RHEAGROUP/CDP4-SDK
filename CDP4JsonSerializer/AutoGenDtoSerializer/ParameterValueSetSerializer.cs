@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of ParameterValueSet since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -83,7 +79,7 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing ParameterValueSet for Version 1.0.0");
                     writer.WritePropertyName("actualOption"u8);
 
-                    if(parameterValueSet.ActualOption.HasValue)
+                    if (parameterValueSet.ActualOption.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualOption.Value);
                     }
@@ -94,7 +90,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("actualState"u8);
 
-                    if(parameterValueSet.ActualState.HasValue)
+                    if (parameterValueSet.ActualState.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualState.Value);
                     }
@@ -121,7 +117,7 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing ParameterValueSet for Version 1.1.0");
                     writer.WritePropertyName("actualOption"u8);
 
-                    if(parameterValueSet.ActualOption.HasValue)
+                    if (parameterValueSet.ActualOption.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualOption.Value);
                     }
@@ -132,7 +128,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("actualState"u8);
 
-                    if(parameterValueSet.ActualState.HasValue)
+                    if (parameterValueSet.ActualState.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualState.Value);
                     }
@@ -144,31 +140,23 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterValueSet.ClassKind.ToString());
                     writer.WriteString("computed"u8, parameterValueSet.Computed.ToJsonString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (parameterValueSet.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (parameterValueSet.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WriteString("formula"u8, parameterValueSet.Formula.ToJsonString());
                     writer.WritePropertyName("iid"u8);
@@ -187,7 +175,7 @@ namespace CDP4JsonSerializer
                     Logger.Log(LogLevel.Trace, "Serializing ParameterValueSet for Version 1.2.0");
                     writer.WritePropertyName("actualOption"u8);
 
-                    if(parameterValueSet.ActualOption.HasValue)
+                    if (parameterValueSet.ActualOption.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualOption.Value);
                     }
@@ -198,7 +186,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("actualState"u8);
 
-                    if(parameterValueSet.ActualState.HasValue)
+                    if (parameterValueSet.ActualState.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualState.Value);
                     }
@@ -210,31 +198,23 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterValueSet.ClassKind.ToString());
                     writer.WriteString("computed"u8, parameterValueSet.Computed.ToJsonString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (parameterValueSet.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (parameterValueSet.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WriteString("formula"u8, parameterValueSet.Formula.ToJsonString());
                     writer.WritePropertyName("iid"u8);
@@ -253,20 +233,9 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing ParameterValueSet for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(parameterValueSet.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(parameterValueSet.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("actualOption"u8);
 
-                    if(parameterValueSet.ActualOption.HasValue)
+                    if (parameterValueSet.ActualOption.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualOption.Value);
                     }
@@ -277,7 +246,7 @@ namespace CDP4JsonSerializer
 
                     writer.WritePropertyName("actualState"u8);
 
-                    if(parameterValueSet.ActualState.HasValue)
+                    if (parameterValueSet.ActualState.HasValue)
                     {
                         writer.WriteStringValue(parameterValueSet.ActualState.Value);
                     }
@@ -289,31 +258,23 @@ namespace CDP4JsonSerializer
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(parameterValueSet.ClassKind.ToString());
                     writer.WriteString("computed"u8, parameterValueSet.Computed.ToJsonString());
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (parameterValueSet.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (parameterValueSet.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WriteString("formula"u8, parameterValueSet.Formula.ToJsonString());
                     writer.WritePropertyName("iid"u8);
@@ -338,6 +299,84 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="ParameterValueSet" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not ParameterValueSet parameterValueSet)
+            {
+                throw new ArgumentException("The thing shall be a ParameterValueSet", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("actualOption"u8);
+
+                if (parameterValueSet.ActualOption.HasValue)
+                {
+                    writer.WriteStringValue(parameterValueSet.ActualOption.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("actualState"u8);
+
+                if (parameterValueSet.ActualState.HasValue)
+                {
+                    writer.WriteStringValue(parameterValueSet.ActualState.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(parameterValueSet.ClassKind.ToString());
+                writer.WriteString("computed"u8, parameterValueSet.Computed.ToJsonString());
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in parameterValueSet.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in parameterValueSet.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WriteString("formula"u8, parameterValueSet.Formula.ToJsonString());
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(parameterValueSet.Iid);
+                writer.WriteString("manual"u8, parameterValueSet.Manual.ToJsonString());
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(parameterValueSet.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WriteString("published"u8, parameterValueSet.Published.ToJsonString());
+                writer.WriteString("reference"u8, parameterValueSet.Reference.ToJsonString());
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(parameterValueSet.RevisionNumber);
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(parameterValueSet.ThingPreference);
+                writer.WritePropertyName("valueSwitch"u8);
+                writer.WriteStringValue(parameterValueSet.ValueSwitch.ToString());
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="ParameterValueSet"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -349,32 +388,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="ParameterValueSet"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "actualoption":
-                    if(!AllowedVersionsPerProperty["actualOption"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("actualOption"u8);
                     
                     if(value != null)
@@ -388,11 +421,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "actualstate":
-                    if(!AllowedVersionsPerProperty["actualState"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("actualState"u8);
                     
                     if(value != null)
@@ -406,11 +434,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -424,19 +447,9 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "computed":
-                    if(!AllowedVersionsPerProperty["computed"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WriteString("computed"u8, ((ValueArray<string>)value).ToJsonString());
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -454,11 +467,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -476,19 +484,9 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "formula":
-                    if(!AllowedVersionsPerProperty["formula"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WriteString("formula"u8, ((ValueArray<string>)value).ToJsonString());
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -502,19 +500,9 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "manual":
-                    if(!AllowedVersionsPerProperty["manual"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WriteString("manual"u8, ((ValueArray<string>)value).ToJsonString());
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -528,27 +516,12 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "published":
-                    if(!AllowedVersionsPerProperty["published"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WriteString("published"u8, ((ValueArray<string>)value).ToJsonString());
                     break;
                 case "reference":
-                    if(!AllowedVersionsPerProperty["reference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WriteString("reference"u8, ((ValueArray<string>)value).ToJsonString());
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -562,11 +535,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)
@@ -580,11 +548,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "valueswitch":
-                    if(!AllowedVersionsPerProperty["valueSwitch"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("valueSwitch"u8);
                     
                     if(value != null)

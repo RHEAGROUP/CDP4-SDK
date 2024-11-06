@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="ParameterValueSetResolver.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
-// 
+// <copyright file="ParameterValueSetResolver.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
+//
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
 //    This file is part of CDP4-COMET SDK Community Edition
@@ -89,10 +89,9 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ActualState = actualStateProperty.GetGuid();
                 }
             }
-
             if (jsonElement.TryGetProperty("computed"u8, out var computedProperty))
             {
-                if(computedProperty.ValueKind == JsonValueKind.Array)
+                if (computedProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 
@@ -123,10 +122,9 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ExcludedPerson.Add(element.GetGuid());
                 }
             }
-
             if (jsonElement.TryGetProperty("formula"u8, out var formulaProperty))
             {
-                if(formulaProperty.ValueKind == JsonValueKind.Array)
+                if (formulaProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 
@@ -141,10 +139,9 @@ namespace CDP4JsonSerializer
                     parameterValueSet.Formula = SerializerHelper.ToValueArray<string>(formulaProperty.GetString());
                 }
             }
-
             if (jsonElement.TryGetProperty("manual"u8, out var manualProperty))
             {
-                if(manualProperty.ValueKind == JsonValueKind.Array)
+                if (manualProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 
@@ -171,10 +168,9 @@ namespace CDP4JsonSerializer
                     parameterValueSet.ModifiedOn = modifiedOnProperty.GetDateTime();
                 }
             }
-
             if (jsonElement.TryGetProperty("published"u8, out var publishedProperty))
             {
-                if(publishedProperty.ValueKind == JsonValueKind.Array)
+                if (publishedProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 
@@ -189,10 +185,9 @@ namespace CDP4JsonSerializer
                     parameterValueSet.Published = SerializerHelper.ToValueArray<string>(publishedProperty.GetString());
                 }
             }
-
             if (jsonElement.TryGetProperty("reference"u8, out var referenceProperty))
             {
-                if(referenceProperty.ValueKind == JsonValueKind.Array)
+                if (referenceProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 

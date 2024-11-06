@@ -68,10 +68,6 @@ namespace CDP4JsonSerializer
             if (requestedDataModelVersion < Version.Parse("1.0.0"))
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of IterationSetup since Version is below 1.0.0");
-                
-                writer.WriteStartObject();
-                writer.WriteEndObject();
-
                 return;
             }
 
@@ -89,7 +85,7 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iterationSetup.Description);
                     writer.WritePropertyName("frozenOn"u8);
 
-                    if(iterationSetup.FrozenOn.HasValue)
+                    if (iterationSetup.FrozenOn.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.FrozenOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -110,7 +106,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(iterationSetup.RevisionNumber);
                     writer.WritePropertyName("sourceIterationSetup"u8);
 
-                    if(iterationSetup.SourceIterationSetup.HasValue)
+                    if (iterationSetup.SourceIterationSetup.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.SourceIterationSetup.Value);
                     }
@@ -128,35 +124,27 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iterationSetup.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(iterationSetup.Description);
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iterationSetup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iterationSetup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("frozenOn"u8);
 
-                    if(iterationSetup.FrozenOn.HasValue)
+                    if (iterationSetup.FrozenOn.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.FrozenOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -179,7 +167,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(iterationSetup.RevisionNumber);
                     writer.WritePropertyName("sourceIterationSetup"u8);
 
-                    if(iterationSetup.SourceIterationSetup.HasValue)
+                    if (iterationSetup.SourceIterationSetup.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.SourceIterationSetup.Value);
                     }
@@ -197,35 +185,27 @@ namespace CDP4JsonSerializer
                     writer.WriteStringValue(iterationSetup.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(iterationSetup.Description);
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iterationSetup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iterationSetup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("frozenOn"u8);
 
-                    if(iterationSetup.FrozenOn.HasValue)
+                    if (iterationSetup.FrozenOn.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.FrozenOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -248,7 +228,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(iterationSetup.RevisionNumber);
                     writer.WritePropertyName("sourceIterationSetup"u8);
 
-                    if(iterationSetup.SourceIterationSetup.HasValue)
+                    if (iterationSetup.SourceIterationSetup.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.SourceIterationSetup.Value);
                     }
@@ -262,52 +242,33 @@ namespace CDP4JsonSerializer
                     break;
                 case "1.3.0":
                     Logger.Log(LogLevel.Trace, "Serializing IterationSetup for Version 1.3.0");
-                    writer.WritePropertyName("actor"u8);
-
-                    if(iterationSetup.Actor.HasValue)
-                    {
-                        writer.WriteStringValue(iterationSetup.Actor.Value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     writer.WriteStringValue(iterationSetup.ClassKind.ToString());
                     writer.WritePropertyName("createdOn"u8);
                     writer.WriteStringValue(iterationSetup.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
                     writer.WritePropertyName("description"u8);
                     writer.WriteStringValue(iterationSetup.Description);
+                    writer.WriteStartArray("excludedDomain"u8);
 
-                    //if (iterationSetup.ExcludedDomain.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedDomain"u8);
+                    foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedDomainItem);
+                    }
 
-                        foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedDomainItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
+                    writer.WriteStartArray("excludedPerson"u8);
 
-                    //if (iterationSetup.ExcludedPerson.Count > 0)
-                    //{
-                        writer.WriteStartArray("excludedPerson"u8);
+                    foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                    {
+                        writer.WriteStringValue(excludedPersonItem);
+                    }
 
-                        foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
-                        {
-                            writer.WriteStringValue(excludedPersonItem);
-                        }
-
-                        writer.WriteEndArray();
-                    //}
+                    writer.WriteEndArray();
                     
                     writer.WritePropertyName("frozenOn"u8);
 
-                    if(iterationSetup.FrozenOn.HasValue)
+                    if (iterationSetup.FrozenOn.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.FrozenOn.Value.ToString(SerializerHelper.DateTimeFormat));
                     }
@@ -330,7 +291,7 @@ namespace CDP4JsonSerializer
                     writer.WriteNumberValue(iterationSetup.RevisionNumber);
                     writer.WritePropertyName("sourceIterationSetup"u8);
 
-                    if(iterationSetup.SourceIterationSetup.HasValue)
+                    if (iterationSetup.SourceIterationSetup.HasValue)
                     {
                         writer.WriteStringValue(iterationSetup.SourceIterationSetup.Value);
                     }
@@ -350,6 +311,87 @@ namespace CDP4JsonSerializer
         }
 
         /// <summary>
+        /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <exception cref="ArgumentException">If the provided <paramref name="thing" /> is not an <see cref="IterationSetup" /></exception>
+        public void Serialize(Thing thing, Utf8JsonWriter writer)
+        {
+            if (thing is not IterationSetup iterationSetup)
+            {
+                throw new ArgumentException("The thing shall be a IterationSetup", nameof(thing));
+            }
+
+            writer.WriteStartObject();
+
+                writer.WritePropertyName("classKind"u8);
+                writer.WriteStringValue(iterationSetup.ClassKind.ToString());
+                writer.WritePropertyName("createdOn"u8);
+                writer.WriteStringValue(iterationSetup.CreatedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("description"u8);
+                writer.WriteStringValue(iterationSetup.Description);
+
+                writer.WriteStartArray("excludedDomain"u8);
+
+                foreach(var excludedDomainItem in iterationSetup.ExcludedDomain.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedDomainItem);
+                }
+
+                writer.WriteEndArray();
+                
+
+                writer.WriteStartArray("excludedPerson"u8);
+
+                foreach(var excludedPersonItem in iterationSetup.ExcludedPerson.OrderBy(x => x, this.GuidComparer))
+                {
+                    writer.WriteStringValue(excludedPersonItem);
+                }
+
+                writer.WriteEndArray();
+                
+                writer.WritePropertyName("frozenOn"u8);
+
+                if (iterationSetup.FrozenOn.HasValue)
+                {
+                    writer.WriteStringValue(iterationSetup.FrozenOn.Value.ToString(SerializerHelper.DateTimeFormat));
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("iid"u8);
+                writer.WriteStringValue(iterationSetup.Iid);
+                writer.WritePropertyName("isDeleted"u8);
+                writer.WriteBooleanValue(iterationSetup.IsDeleted);
+                writer.WritePropertyName("iterationIid"u8);
+                writer.WriteStringValue(iterationSetup.IterationIid);
+                writer.WritePropertyName("iterationNumber"u8);
+                writer.WriteNumberValue(iterationSetup.IterationNumber);
+                writer.WritePropertyName("modifiedOn"u8);
+                writer.WriteStringValue(iterationSetup.ModifiedOn.ToString(SerializerHelper.DateTimeFormat));
+                writer.WritePropertyName("revisionNumber"u8);
+                writer.WriteNumberValue(iterationSetup.RevisionNumber);
+                writer.WritePropertyName("sourceIterationSetup"u8);
+
+                if (iterationSetup.SourceIterationSetup.HasValue)
+                {
+                    writer.WriteStringValue(iterationSetup.SourceIterationSetup.Value);
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+                writer.WritePropertyName("thingPreference"u8);
+                writer.WriteStringValue(iterationSetup.ThingPreference);
+
+            writer.WriteEndObject();
+        }
+
+        /// <summary>
         /// Serialize a value for a <see cref="IterationSetup"/> property into a <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="propertyName">The name of the property to serialize</param>
@@ -361,32 +403,26 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
+            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            {
+                return;
+            }
+
+            this.SerializeProperty(propertyName, value, writer);
+        }
+
+        /// <summary>
+        /// Serialize a value for a <see cref="IterationSetup"/> property into a <see cref="Utf8JsonWriter" />
+        /// </summary>
+        /// <param name="propertyName">The name of the property to serialize</param>
+        /// <param name="value">The object value to serialize</param>
+        /// <param name="writer">The <see cref="Utf8JsonWriter" /></param>
+        /// <remarks>This method should only be used in the scope of serializing a <see cref="ClasslessDTO" /></remarks>
+        public void SerializeProperty(string propertyName, object value, Utf8JsonWriter writer)
+        {
             switch(propertyName.ToLower())
             {
-                case "actor":
-                    if(!AllowedVersionsPerProperty["actor"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
-                    writer.WritePropertyName("actor"u8);
-                    
-                    if(value != null)
-                    {
-                        writer.WriteStringValue((Guid)value);
-                    }
-                    else
-                    {
-                        writer.WriteNullValue();
-                    }
-
-                    break;
                 case "classkind":
-                    if(!AllowedVersionsPerProperty["classKind"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("classKind"u8);
                     
                     if(value != null)
@@ -400,11 +436,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "createdon":
-                    if(!AllowedVersionsPerProperty["createdOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("createdOn"u8);
                     
                     if(value != null)
@@ -418,11 +449,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "description":
-                    if(!AllowedVersionsPerProperty["description"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("description"u8);
                     
                     if(value != null)
@@ -436,11 +462,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "excludeddomain":
-                    if(!AllowedVersionsPerProperty["excludedDomain"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -458,11 +479,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "excludedperson":
-                    if(!AllowedVersionsPerProperty["excludedPerson"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     if (value == null)
                     {
                         break;
@@ -480,11 +496,6 @@ namespace CDP4JsonSerializer
                     }
                     break;
                 case "frozenon":
-                    if(!AllowedVersionsPerProperty["frozenOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("frozenOn"u8);
                     
                     if(value != null)
@@ -498,11 +509,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iid":
-                    if(!AllowedVersionsPerProperty["iid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iid"u8);
                     
                     if(value != null)
@@ -516,11 +522,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "isdeleted":
-                    if(!AllowedVersionsPerProperty["isDeleted"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("isDeleted"u8);
                     
                     if(value != null)
@@ -534,11 +535,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iterationiid":
-                    if(!AllowedVersionsPerProperty["iterationIid"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iterationIid"u8);
                     
                     if(value != null)
@@ -552,11 +548,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "iterationnumber":
-                    if(!AllowedVersionsPerProperty["iterationNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("iterationNumber"u8);
                     
                     if(value != null)
@@ -570,11 +561,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "modifiedon":
-                    if(!AllowedVersionsPerProperty["modifiedOn"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("modifiedOn"u8);
                     
                     if(value != null)
@@ -588,11 +574,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "revisionnumber":
-                    if(!AllowedVersionsPerProperty["revisionNumber"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("revisionNumber"u8);
                     
                     if(value != null)
@@ -606,11 +587,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "sourceiterationsetup":
-                    if(!AllowedVersionsPerProperty["sourceIterationSetup"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("sourceIterationSetup"u8);
                     
                     if(value != null)
@@ -624,11 +600,6 @@ namespace CDP4JsonSerializer
 
                     break;
                 case "thingpreference":
-                    if(!AllowedVersionsPerProperty["thingPreference"].Contains(requestedVersion))
-                    {
-                        return;
-                    }
-
                     writer.WritePropertyName("thingPreference"u8);
                     
                     if(value != null)

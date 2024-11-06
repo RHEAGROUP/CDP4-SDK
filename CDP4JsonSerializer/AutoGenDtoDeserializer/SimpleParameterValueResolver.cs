@@ -1,7 +1,7 @@
 // -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SimpleParameterValueResolver.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
-// 
+// <copyright file="SimpleParameterValueResolver.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
+//
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
 // 
 //    This file is part of CDP4-COMET SDK Community Edition
@@ -129,10 +129,9 @@ namespace CDP4JsonSerializer
                     simpleParameterValue.ThingPreference = thingPreferenceProperty.GetString();
                 }
             }
-
             if (jsonElement.TryGetProperty("value"u8, out var valueProperty))
             {
-                if(valueProperty.ValueKind == JsonValueKind.Array)
+                if (valueProperty.ValueKind == JsonValueKind.Array)
                 {
                     var newValueArrayItems = new List<string>();
 
