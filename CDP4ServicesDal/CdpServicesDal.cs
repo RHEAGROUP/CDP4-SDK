@@ -97,8 +97,16 @@ namespace CDP4ServicesDal
         /// <summary>
         /// Initializes a new instance of the <see cref="CdpServicesDal"/> class.
         /// </summary>
+        public CdpServicesDal(): this(true)
+        {
+            // Default constructor
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CdpServicesDal"/> class.
+        /// </summary>
         /// <param name="isMessagePackSupported">Asserts that the MessagePack deserialization should be used or not. Supported by default</param>
-        public CdpServicesDal(bool isMessagePackSupported = true)
+        public CdpServicesDal(bool isMessagePackSupported)
         {
             this.Cdp4JsonSerializer = new Cdp4DalJsonSerializer(this.MetaDataProvider, this.DalVersion, false);
             this.MessagePackSerializer = new MessagePackSerializer();
