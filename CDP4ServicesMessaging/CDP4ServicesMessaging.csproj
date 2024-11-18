@@ -20,11 +20,7 @@
     <PackageTags>CDP COMET ECSS-E-TM-10-25</PackageTags>
     <PackageLicenseExpression>LGPL-3.0-only</PackageLicenseExpression>
     <PackageReleaseNotes>
-        [BUMP] To CDP4Common 27.4.2
-        [Update] Microsoft.Extensions.Configuration.Abstractions to 9.0.1
-        [Update] Microsoft.Extensions.Configuration.Binder to 9.0.1
-        [Update] Microsoft.Extensions.Hosting.Abstractions to 9.0.1
-        [Update] Polly to 8.5.1
+      [Refactor] Newtonsoft to System.Text.Json
     </PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <LangVersion>latest</LangVersion>
