@@ -290,7 +290,7 @@ namespace CDP4JsonSerializer
         {
             var requestedVersion = requestedDataModelVersion.ToString(3);
 
-            if(!AllowedVersionsPerProperty[""].Contains(requestedVersion))
+            if(!AllowedVersionsPerProperty[propertyName].Contains(requestedVersion))
             {
                 return;
             }
