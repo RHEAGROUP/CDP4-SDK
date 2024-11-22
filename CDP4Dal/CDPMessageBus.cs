@@ -57,7 +57,7 @@ namespace CDP4Dal
         /// <summary>
         /// The <see cref="Dictionary{TKey,TValue}"/> holding the subscriptions.
         /// </summary>
-        private readonly ConcurrentDictionary<EventTypeTarget, CDPEventSubject> messageBus = new ConcurrentDictionary<EventTypeTarget, CDPEventSubject>();
+        private readonly ConcurrentDictionary<EventTypeTarget, Lazy<CDPEventSubject>> messageBus = new ConcurrentDictionary<EventTypeTarget, Lazy<CDPEventSubject>>();
 
         /// <summary>
         /// Number of currently active Observables in the <see cref="messageBus"/>
@@ -124,7 +124,7 @@ namespace CDP4Dal
         {
             var cdpEventSubject = this.messageBus.GetOrAdd(
                 eventTypeTarget,
-                this.ComposeEventSubject<T>(eventTypeTarget));
+                arg => new Lazy<CDPEventSubject>(() => this.ComposeEventSubject<T>(eventTypeTarget))).Value;
 
             return (IObservable<T>)cdpEventSubject.Observable;
         }
@@ -201,7 +201,7 @@ namespace CDP4Dal
 
             if (getObservable)
             {
-                ((Subject<T>)cdpEventSubject.Subject).OnNext(message);
+                ((Subject<T>)cdpEventSubject.Value.Subject).OnNext(message);
             }
         }
 
