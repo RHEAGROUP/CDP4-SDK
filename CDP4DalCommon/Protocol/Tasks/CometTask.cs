@@ -71,7 +71,7 @@ namespace CDP4DalCommon.Protocol.Tasks
         /// <remarks>
         /// A value of -1 is returned when the task is still running or not completed with success
         /// </remarks>
-        public readonly int Duration => ComputeDuration();
+        public readonly int Duration => this.ComputeDuration();
 
         /// <summary>
         /// Gets or sets the <see cref="DateTime" /> at which the <see cref="CometTask" /> was started
@@ -107,12 +107,12 @@ namespace CDP4DalCommon.Protocol.Tasks
         /// <returns>The computated duration</returns>
         private readonly int ComputeDuration()
         {
-            if (!FinishedAt.HasValue || !StartedAt.HasValue)
+            if (!this.FinishedAt.HasValue || !this.StartedAt.HasValue)
             {
                 return -1;
             }
 
-            var timeSpan = FinishedAt.Value - StartedAt.Value;
+            var timeSpan = this.FinishedAt.Value - this.StartedAt.Value;
             return (int)timeSpan.TotalSeconds;
         }
     }
