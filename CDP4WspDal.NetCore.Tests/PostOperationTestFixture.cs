@@ -39,7 +39,7 @@ namespace CDP4WspDal.Tests
 
     using CDP4DalCommon.Protocol.Operations;
 
-    using CDP4DalJsonSerializer;
+    using CDP4JsonSerializer;
 
     using CDP4WspDal.Tests.Helper;
 

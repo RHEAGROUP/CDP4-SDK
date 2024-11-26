@@ -22,7 +22,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------------------
 
-namespace CDP4DalJsonSerializer.JsonConverter
+namespace CDP4JsonSerializer.JsonConverter
 {
     using System;
     using System.IO;
@@ -31,15 +31,14 @@ namespace CDP4DalJsonSerializer.JsonConverter
     using System.Text.Json.Serialization;
 
     using CDP4Common.Polyfills;
-
     using CDP4DalCommon.Protocol.Operations;
 
-    using CDP4DalJsonSerializer.Extensions;
+    using CDP4JsonSerializer.Extensions;
 
     using NLog;
 
     /// <summary>
-    /// The <see cref="JsonConverter" /> for <see cref="PostOperation" />s
+    /// The <see cref="System.Text.Json.Serialization.JsonConverter" /> for <see cref="CDP4DalCommon.Protocol.Operations.PostOperation" />s
     /// </summary>
     public class PostOperationJsonConverter: JsonConverter<PostOperation>
     {
@@ -49,14 +48,14 @@ namespace CDP4DalJsonSerializer.JsonConverter
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         /// <summary>
-        /// Asserts that the <see cref="PostOperation.Copy"/> have to be ignored
+        /// Asserts that the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation.Copy"/> have to be ignored
         /// </summary>
         private readonly bool ignoreCopyProperty;
 
         /// <summary>
         /// Initializes a new <see cref="PostOperationJsonConverter" /> instance.
         /// </summary>
-        /// <param name="ignoreCopyProperty">Asserts that the <see cref="PostOperation.Copy"/> have to be ignored</param>
+        /// <param name="ignoreCopyProperty">Asserts that the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation.Copy"/> have to be ignored</param>
         public PostOperationJsonConverter(bool ignoreCopyProperty)
         {
             this.ignoreCopyProperty = ignoreCopyProperty;
@@ -76,7 +75,7 @@ namespace CDP4DalJsonSerializer.JsonConverter
             return typeof(PostOperation).QueryIsAssignableFrom(typeToConvert);
         }
 
-        /// <summary>Reads and converts the JSON to type <see cref="PostOperation"/>.</summary>
+        /// <summary>Reads and converts the JSON to type <see cref="CDP4DalCommon.Protocol.Operations.PostOperation"/>.</summary>
         /// <param name="reader">The reader.</param>
         /// <param name="typeToConvert">The type to convert.</param>
         /// <param name="options">An object that specifies serialization options to use.</param>

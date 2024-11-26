@@ -44,6 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CDP4Common\CDP4Common.csproj" />
+    <ProjectReference Include="..\CDP4DalCommon\CDP4DalCommon.csproj" />
   </ItemGroup>
 
 </Project>

@@ -22,26 +22,22 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------------------
 
-namespace CDP4DalJsonSerializer
+namespace CDP4JsonSerializer
 {
     using System;
 
     using CDP4Common.MetaInfo;
 
-    using CDP4DalCommon.Protocol.Operations;
-
-    using CDP4DalJsonSerializer.JsonConverter;
-
-    using CDP4JsonSerializer;
+    using CDP4JsonSerializer.JsonConverter;
 
     /// <summary>
-    /// The <see cref="Cdp4DalJsonSerializer" /> is a <see cref="Cdp4JsonSerializer" /> that also supports (de)serialization of
-    /// <see cref="PostOperation" />
+    /// The <see cref="Cdp4DalJsonSerializer" /> is a <see cref="CDP4JsonSerializer.Cdp4JsonSerializer" /> that also supports (de)serialization of
+    /// <see cref="CDP4DalCommon.Protocol.Operations.PostOperation" />
     /// </summary>
     public class Cdp4DalJsonSerializer : Cdp4JsonSerializer
     {
         /// <summary>
-        /// Asserts that the <see cref="PostOperation.Copy"/> have to be ignored
+        /// Asserts that the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation.Copy"/> have to be ignored
         /// </summary>
         private readonly bool ignorePostOperationCopyProperty;
 
@@ -54,7 +50,7 @@ namespace CDP4DalJsonSerializer
         /// <param name="supportedVersion">
         /// The supported version of the data-model
         /// </param>
-        /// <param name="ignorePostOperationCopyProperty">Asserts that the <see cref="PostOperation.Copy"/> have to be ignored</param>
+        /// <param name="ignorePostOperationCopyProperty">Asserts that the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation.Copy"/> have to be ignored</param>
         public Cdp4DalJsonSerializer(IMetaDataProvider metaInfoProvider, Version supportedVersion, bool ignorePostOperationCopyProperty)
         {
             this.ignorePostOperationCopyProperty = ignorePostOperationCopyProperty;
@@ -62,16 +58,16 @@ namespace CDP4DalJsonSerializer
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Cdp4JsonSerializer" /> class.
+        /// Initializes a new instance of the <see cref="CDP4JsonSerializer.Cdp4JsonSerializer" /> class.
         /// </summary>
-        /// <param name="ignorePostOperationCopyProperty">Asserts that the <see cref="PostOperation.Copy"/> have to be ignored</param>
+        /// <param name="ignorePostOperationCopyProperty">Asserts that the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation.Copy"/> have to be ignored</param>
         public Cdp4DalJsonSerializer(bool ignorePostOperationCopyProperty)
         {
             this.ignorePostOperationCopyProperty = ignorePostOperationCopyProperty;
         }
 
         /// <summary>
-        /// Initialize the <see cref="Cdp4JsonSerializer.JsonSerializerOptions" /> property
+        /// Initialize the <see cref="CDP4JsonSerializer.Cdp4JsonSerializer.JsonSerializerOptions" /> property
         /// </summary>
         public override void InitializeJsonSerializerOptions()
         {

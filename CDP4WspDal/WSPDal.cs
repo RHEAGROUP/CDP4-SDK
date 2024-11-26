@@ -52,7 +52,7 @@ namespace CDP4WspDal
     using CDP4DalCommon.Protocol.Operations;
     using CDP4DalCommon.Protocol.Tasks;
 
-    using CDP4DalJsonSerializer;
+    using CDP4JsonSerializer;
 
     using NLog;
 
@@ -83,13 +83,13 @@ namespace CDP4WspDal
         /// </summary>
         public WspDal()
         {
-            this.Serializer = new Cdp4DalJsonSerializer(this.MetaDataProvider, this.DalVersion, true);
+            this.Cdp4DalJsonSerializer = new Cdp4DalJsonSerializer(this.MetaDataProvider, this.DalVersion, true);
         }
 
         /// <summary>
-        /// Gets or sets the <see cref="Cdp4DalJsonSerializer"/>
+        /// Gets or sets the <see cref="CDP4JsonSerializer.Cdp4DalJsonSerializer"/>
         /// </summary>
-        public Cdp4DalJsonSerializer Serializer { get; private set; }
+        public Cdp4DalJsonSerializer Cdp4DalJsonSerializer { get; private set; }
 
         /// <summary>
         /// Gets the value indicating whether this <see cref="IDal"/> is read only
@@ -131,7 +131,7 @@ namespace CDP4WspDal
 
             var watch = Stopwatch.StartNew();
 
-            var hasCopyValuesOperations = operationContainer.Operations.Any(op => OperationKindExtensions.IsCopyKeepOriginalValuesOperation(op.OperationKind));
+            var hasCopyValuesOperations = operationContainer.Operations.Any(op => op.OperationKind.IsCopyKeepOriginalValuesOperation());
 
             var modifier = new OperationModifier(this.Session);
             var copyHandler = new CopyOperationHandler(this.Session);
@@ -184,7 +184,7 @@ namespace CDP4WspDal
 
                 using (var resultStream = await httpResponseMessage.Content.ReadAsStreamAsync())
                 {
-                    result.AddRange(this.Serializer.Deserialize(resultStream));
+                    result.AddRange(this.Cdp4DalJsonSerializer.Deserialize(resultStream));
 
                     Guid iterationId;
 
@@ -408,7 +408,7 @@ namespace CDP4WspDal
 
                 using (var resultStream = await httpResponseMessage.Content.ReadAsStreamAsync())
                 {
-                    var returned = this.Serializer.Deserialize(resultStream);
+                    var returned = this.Cdp4DalJsonSerializer.Deserialize(resultStream);
 
                     Guid iterationId;
 
@@ -563,7 +563,7 @@ namespace CDP4WspDal
 
                 using (var resultStream = await httpResponseMessage.Content.ReadAsStreamAsync())
                 {
-                    var returned = this.Serializer.Deserialize(resultStream);
+                    var returned = this.Cdp4DalJsonSerializer.Deserialize(resultStream);
 
                     watch.Stop();
                     Logger.Info("JSON Deserializer completed in {0} [ms]", watch.ElapsedMilliseconds);
@@ -706,7 +706,7 @@ namespace CDP4WspDal
                 postOperation.ConstructFromOperation(operation);
             }
 
-            this.Serializer.SerializeToStream(postOperation, outputStream);
+            this.Cdp4DalJsonSerializer.SerializeToStream(postOperation, outputStream);
             outputStream.Position = 0;
 
             if (Logger.IsTraceEnabled)
