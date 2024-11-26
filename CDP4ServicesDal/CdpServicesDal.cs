@@ -54,7 +54,7 @@ namespace CDP4ServicesDal
     using CDP4DalCommon.Protocol.Operations;
     using CDP4DalCommon.Protocol.Tasks;
 
-    using CDP4DalJsonSerializer;
+    using CDP4JsonSerializer;
 
     using CDP4MessagePackSerializer;
 
@@ -108,7 +108,7 @@ namespace CDP4ServicesDal
         /// <param name="isMessagePackSupported">Asserts that the MessagePack deserialization should be used or not. Supported by default</param>
         public CdpServicesDal(bool isMessagePackSupported)
         {
-            this.Cdp4JsonSerializer = new Cdp4DalJsonSerializer(this.MetaDataProvider, this.DalVersion, false);
+            this.Cdp4DalJsonSerializer = new Cdp4DalJsonSerializer(this.MetaDataProvider, this.DalVersion, false);
             this.MessagePackSerializer = new MessagePackSerializer();
 
             this.isMessagePackSupported = isMessagePackSupported;
@@ -132,9 +132,9 @@ namespace CDP4ServicesDal
         }
 
         /// <summary>
-        /// Gets the <see cref="Cdp4DalJsonSerializer"/>
+        /// Gets the <see cref="CDP4JsonSerializer.Cdp4DalJsonSerializer"/>
         /// </summary>
-        public Cdp4DalJsonSerializer Cdp4JsonSerializer { get; private set; }
+        public Cdp4DalJsonSerializer Cdp4DalJsonSerializer { get; private set; }
 
         /// <summary>
         /// Gets the <see cref="MessagePackSerializer"/>
@@ -225,7 +225,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            result.AddRange(this.Cdp4JsonSerializer.Deserialize(resultStream));
+                            result.AddRange(this.Cdp4DalJsonSerializer.Deserialize(resultStream));
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -517,7 +517,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            returned = this.Cdp4JsonSerializer.Deserialize(resultStream);
+                            returned = this.Cdp4DalJsonSerializer.Deserialize(resultStream);
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -678,7 +678,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            returned = this.Cdp4JsonSerializer.Deserialize(resultStream);
+                            returned = this.Cdp4DalJsonSerializer.Deserialize(resultStream);
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -746,7 +746,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            returned = this.Cdp4JsonSerializer.Deserialize<CometTask>(resultStream);
+                            returned = this.Cdp4DalJsonSerializer.Deserialize<CometTask>(resultStream);
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -807,7 +807,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            returned = this.Cdp4JsonSerializer.Deserialize<IEnumerable<CometTask>>(resultStream);
+                            returned = this.Cdp4DalJsonSerializer.Deserialize<IEnumerable<CometTask>>(resultStream);
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -951,7 +951,7 @@ namespace CDP4ServicesDal
                     {
                         case ContentTypeKind.JSON:
                             Logger.Info("Deserializing JSON response");
-                            returned = this.Cdp4JsonSerializer.Deserialize(resultStream);
+                            returned = this.Cdp4DalJsonSerializer.Deserialize(resultStream);
                             Logger.Info("JSON Deserializer completed in {0} [ms]", deserializationWatch.ElapsedMilliseconds);
                             break;
                         case ContentTypeKind.MESSAGEPACK:
@@ -1195,7 +1195,7 @@ namespace CDP4ServicesDal
                 postOperation.ConstructFromOperation(operation);
             }
 
-            this.Cdp4JsonSerializer.SerializeToStream(postOperation, outputStream);
+            this.Cdp4DalJsonSerializer.SerializeToStream(postOperation, outputStream);
             outputStream.Position = 0;
 
             if (Logger.IsTraceEnabled)
@@ -1425,8 +1425,8 @@ namespace CDP4ServicesDal
                 stream.Position = 0;
 
                 return firstChar == '['
-                    ? new LongRunningTaskResult(this.Cdp4JsonSerializer.Deserialize(stream))
-                    : new LongRunningTaskResult(this.Cdp4JsonSerializer.Deserialize<CometTask>(stream));
+                    ? new LongRunningTaskResult(this.Cdp4DalJsonSerializer.Deserialize(stream))
+                    : new LongRunningTaskResult(this.Cdp4DalJsonSerializer.Deserialize<CometTask>(stream));
             }
         }
 

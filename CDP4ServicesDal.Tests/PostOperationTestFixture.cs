@@ -39,7 +39,7 @@ namespace CDP4ServicesDal.Tests
 
     using CDP4DalCommon.Protocol.Operations;
 
-    using CDP4DalJsonSerializer;
+    using CDP4JsonSerializer;
 
     using CDP4ServicesDal.Tests.Helper;
 

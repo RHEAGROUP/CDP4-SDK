@@ -22,7 +22,7 @@
 // </copyright>
 // -------------------------------------------------------------------------------------------------------------------------------
 
-namespace CDP4DalJsonSerializer.Extensions
+namespace CDP4JsonSerializer.Extensions
 {
     using System.Collections.Generic;
     using System.Text.Json;
@@ -34,16 +34,16 @@ namespace CDP4DalJsonSerializer.Extensions
     using CDP4DalCommon.Protocol.Operations;
 
     /// <summary>
-    /// Extension class for <see cref="JsonElement"/>
+    /// Extension class for <see cref="System.Text.Json.JsonElement"/>
     /// </summary>
     public static class JsonElementExtensions
     {
         /// <summary>
-        /// Deserialize the content of the <see cref="JsonElement"/> to the <see cref="PostOperation"/>
+        /// Deserialize the content of the <see cref="System.Text.Json.JsonElement"/> to the <see cref="CDP4DalCommon.Protocol.Operations.PostOperation"/>
         /// </summary>
-        /// <param name="element">The <see cref="JsonElement"/></param>
-        /// <param name="postOperation">The <see cref="PostOperation"/> that will receive new value properties</param>
-        /// <param name="serializerOptions">The <see cref="JsonSerializerOptions"/></param>
+        /// <param name="element">The <see cref="System.Text.Json.JsonElement"/></param>
+        /// <param name="postOperation">The <see cref="CDP4DalCommon.Protocol.Operations.PostOperation"/> that will receive new value properties</param>
+        /// <param name="serializerOptions">The <see cref="System.Text.Json.JsonSerializerOptions"/></param>
         public static void DeserializePostOperation(this JsonElement element, PostOperation postOperation, JsonSerializerOptions serializerOptions)
         {
             if (element.TryGetProperty("_delete", out var deleteElement))

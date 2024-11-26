@@ -849,7 +849,7 @@ namespace CDP4ServicesDal.Tests
             requestHandler.Respond(_ => thingsResponse);
 
             var stream = new MemoryStream();
-            this.dal.Cdp4JsonSerializer.SerializeToStream(this.iteration, stream, true);
+            this.dal.Cdp4DalJsonSerializer.SerializeToStream(this.iteration, stream, true);
             stream.Position = 0;
             thingsResponse.Content = new StreamContent(stream);
             SetHttpHeader(thingsResponse, "application/json");

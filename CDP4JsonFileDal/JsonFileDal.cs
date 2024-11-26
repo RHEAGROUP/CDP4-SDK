@@ -48,8 +48,6 @@ namespace CDP4JsonFileDal
     using CDP4DalCommon.Protocol.Operations;
     using CDP4DalCommon.Protocol.Tasks;
 
-    using CDP4DalJsonSerializer;
-
     using CDP4JsonFileDal.Json;
 
     using CDP4JsonSerializer;
