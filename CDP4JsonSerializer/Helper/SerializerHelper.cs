@@ -1,12 +1,12 @@
-﻿// -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="SerializerHelper.cs" company="RHEA System S.A.">
-//    Copyright (c) 2015-2024 RHEA System S.A.
-// 
-//    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
-// 
-//    This file is part of CDP4-COMET SDK Community Edition
-// 
-//    The CDP4-COMET SDK Community Edition is free software; you can redistribute it and/or
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SerializerHelper.cs" company="Starion Group S.A.">
+//    Copyright (c) 2015-2024 Starion Group S.A.
+//
+//    Author: Sam Gerené, Merlin Bieze, Alex Vorobiev, Naron Phou, Alexander van Delft
+//
+//    This file is part of CDP4-SDK Community Edition
+//
+//    The CDP4-SDK Community Edition is free software; you can redistribute it and/or
 //    modify it under the terms of the GNU Lesser General Public
 //    License as published by the Free Software Foundation; either
 //    version 3 of the License, or (at your option) any later version.
@@ -32,6 +32,8 @@ namespace CDP4JsonSerializer
 
     using CDP4Common.Types;
 
+    using CDP4JsonSerializer.Helper;
+
     /// <summary>
     /// Utility method to convert a JSON token to a CDP4 type
     /// </summary>
@@ -43,14 +45,29 @@ namespace CDP4JsonSerializer
         public const string DateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffZ";
 
         /// <summary>
+        /// The default <see cref="System.Text.Json.JsonSerializerOptions"/> instance for this class
+        /// </summary>
+        private static readonly JsonSerializerOptions JsonSerializerOptions;
+
+        /// <summary>
         /// Regex used for conversion of Json value to string
         /// </summary>
-        private static readonly Regex JsonToValueArrayRegex = new(@"^\[(.*)\]$", RegexOptions.Singleline);
+        private static readonly Regex JsonToValueArrayRegex ;
 
         /// <summary>
         /// Regex used for conversion of HStore value to string
         /// </summary>
-        private static readonly Regex HstoreToValueArrayRegex = new(@"^\{(.*)\}$", RegexOptions.Singleline);
+        private static readonly Regex HstoreToValueArrayRegex;
+
+        /// <summary>
+        /// Creates the new instance of the <see cref="SerializerHelper"/> static class
+        /// </summary>
+        static SerializerHelper()
+        {
+            JsonSerializerOptions = JsonSerializerOptionsCreator.CreateNew();
+            JsonToValueArrayRegex = new(@"^\[(.*)\]$", RegexOptions.Singleline);
+            HstoreToValueArrayRegex = new(@"^\{(.*)\}$", RegexOptions.Singleline);
+        }
 
         /// <summary>
         /// Convert a string to a <see cref="ValueArray{T}"/>
@@ -227,7 +244,7 @@ namespace CDP4JsonSerializer
 
             for (var i = 0; i < items.Count; i++)
             {
-                items[i] = $"{JsonSerializer.Serialize(items[i], SerializerOptions.Options)}";
+                items[i] = $"{JsonSerializer.Serialize(items[i], JsonSerializerOptions)}";
             }
 
             return items;
