@@ -33,6 +33,7 @@ namespace CDP4JsonSerializer
 
     using CDP4Common.MetaInfo;
 
+    using CDP4JsonSerializer.Helper;
     using CDP4JsonSerializer.JsonConverter;
 
     using NLog;
@@ -320,7 +321,8 @@ namespace CDP4JsonSerializer
         /// </summary>
         public virtual void InitializeJsonSerializerOptions()
         {
-            this.JsonSerializerOptions = SerializerOptions.Copy();
+            this.JsonSerializerOptions = JsonSerializerOptionsCreator.CreateNew();
+
             this.JsonSerializerOptions.Converters.Add(new ThingSerializer(this.MetaInfoProvider, this.RequestDataModelVersion));
             this.JsonSerializerOptions.Converters.Add(new ClasslessDtoSerializer(this.MetaInfoProvider, this.RequestDataModelVersion));
             this.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(null, false));
