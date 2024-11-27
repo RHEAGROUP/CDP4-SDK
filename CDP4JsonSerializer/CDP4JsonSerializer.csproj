@@ -28,7 +28,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
-    <PackageReference Include="NLog" Version="5.3.4" />
     <PackageReference Include="System.Text.Json" Version="9.0.0" />  
   </ItemGroup>
 
