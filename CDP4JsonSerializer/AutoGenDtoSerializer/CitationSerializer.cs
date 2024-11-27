@@ -1,5 +1,4 @@
-// -------------------------------------------------------------------------------------------------------------------------------
-// <copyright file="CitationSerializer.cs" company="Starion Group S.A.">
+// -------------------------------------------------------------------------------------------------------------------------------// <copyright file="CitationSerializer.cs" company="Starion Group S.A.">
 //    Copyright (c) 2015-2024 Starion Group S.A.
 // 
 //    Authors: Sam Gerené, Alex Vorobiev, Alexander van Delft, Nathanael Smiechowski, Antoine Théate, Omar Elebiary, Jaime Bernar
@@ -51,6 +50,19 @@ namespace CDP4JsonSerializer
     public class CitationSerializer : BaseThingSerializer, IThingSerializer
     {
         /// <summary>
+        /// The minimal <see cref="Version" /> that is allowed for serialization of a <see cref="Citation" />.
+        /// An error will be thrown when a Requested Data Model version for Serialization is lower than this.
+        /// </summary>
+        private static Version minimalAllowedDataModelVersion = Version.Parse("1.0.0");
+
+        /// <summary>
+        /// The minimal <see cref="Version" /> that is allowed for serialization of a <see cref="Citation" />.
+        /// When a Requested Data Model version for Serialization is lower than this, the object will not be Serialized, just ignored.
+        /// NO error will be thrown when a Requested Data Model version for Serialization is lower than this.
+        /// </summary>
+        private static Version thingMinimalAllowedDataModelVersion = Version.Parse("1.0.0");
+
+        /// <summary>
         /// Serializes a <see cref="Thing" /> into an <see cref="Utf8JsonWriter" />
         /// </summary>
         /// <param name="thing">The <see cref="Thing" /> that have to be serialized</param>
@@ -65,7 +77,12 @@ namespace CDP4JsonSerializer
                 throw new ArgumentException("The thing shall be a Citation", nameof(thing));
             }
 
-            if (requestedDataModelVersion < Version.Parse("1.0.0"))
+            if (requestedDataModelVersion < minimalAllowedDataModelVersion)
+            {
+                throw new NotSupportedException($"The provided version {requestedDataModelVersion.ToString(3)} is not supported for serialization of Citation.");
+            }
+
+            if (requestedDataModelVersion < thingMinimalAllowedDataModelVersion)
             {
                 Logger.Log(LogLevel.Info, "Skipping serialization of Citation since Version is below 1.0.0");
                 return;
